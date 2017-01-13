@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Auth from '../authentication/Auth';
 
 const propTypes = {
 
@@ -13,6 +14,7 @@ class Header extends Component {
         return(
           <header className="header">
             <span className="logo">Youfeed</span>
+            <Auth />
           </header>
         );
     }

@@ -1,8 +1,8 @@
 import * as firebase from 'firebase';
 import C from '../../constants';
-import { auth } from '../../util/firebase';
+import { auth } from '../../firebaseApp';
 
-import { listenToArticles } from './articles';
+//import { listenToArticles } from './articles';
 
 export const listenToAuth = () => {
 	return (dispatch, getState) => {
@@ -15,8 +15,8 @@ export const listenToAuth = () => {
 				});
 
 				// reload articles on auth update.
-				const listenToArticlesDispatcher = listenToArticles();
-				listenToArticlesDispatcher(dispatch, getState);
+				//const listenToArticlesDispatcher = listenToArticles();
+				//listenToArticlesDispatcher(dispatch, getState);
 			} else {
 				if (getState().auth.status !== C.AUTH_ANONYMOUS) {
 					dispatch({ type: C.AUTH_LOGOUT });
@@ -29,7 +29,7 @@ export const listenToAuth = () => {
 export const openAuth = () => {
 	return (dispatch) => {
 		dispatch({ type: C.AUTH_OPEN });
-		const provider = new firebase.auth.FacebookAuthProvider();
+		const provider = new firebase.auth.GoogleAuthProvider();
 		auth.signInWithPopup(provider)
 			.catch((error) => {
 				dispatch({
