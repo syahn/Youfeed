@@ -1,0 +1,291 @@
+
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #FAFAFA;
+  color: #1d2129;
+  line-height: 1.34;
+}
+
+section {
+  height: 100%;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+form {
+  display: inline-block;
+}
+
+button {
+  border: none;
+}
+
+
+
+
+
+
+.app {
+  height: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.header {
+  background: #fff;
+  height:61px;
+  left:0;
+  right:0;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.15);
+  border-bottom: 1px solid #ccc;
+  color: white;
+}
+
+.logo {
+  margin-top: 0;
+  font-size: 38px;
+  font-weight: bolder;
+  color: #555;
+}
+
+.mainContainer {
+  width: 90%;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  flex-direction: row;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: rox;
+  padding-left: 1em;
+  padding-top: 1em;
+}
+
+/*Cards*/
+
+.card {
+  background: #FFF;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid;
+  border-radius: 3px;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+}
+
+
+/*Left Control*/
+
+.leftCol {
+  width: 180px;
+  padding-top: 1em;
+  padding-right: 10px;
+}
+
+
+
+
+
+
+/*Content Area*/
+
+.contentArea {
+  width: 70%;
+  /*border: 1px solid gray;*/
+  padding-right: 10px;
+}
+
+/*Feed*/
+
+.card__feed {
+  text-align: left;
+  padding: 2em;
+}
+
+
+
+
+
+
+
+/*Right Control*/
+
+.rightCol {
+  width: 310px;
+}
+
+
+/*Weather*/
+
+.card__weather {
+  margin-bottom: 1em;
+  text-align: left;
+  padding: 1em;
+}
+
+.card__weather h4{
+  margin-top: 0;
+}
+
+.time__weather {
+  text-align: right;
+  display: block;
+}
+
+
+
+/*Todo*/
+
+.card__todo {
+  padding: 20px;
+  max-width: 273px;
+}
+
+
+.todo__form {
+}
+
+.todo__input {
+  width: 200px;
+  font-size: 1em;
+  outline: none;
+}
+
+.todo__items {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 0;
+
+
+}
+
+.todo__items li {
+  font-size: 12px;
+
+  width: 225px;
+  margin-top: 2px;
+}
+
+.todo__editDefault{
+  display: block;
+  width: 200px;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  text-align: left;
+}
+
+.todo__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 243px;
+  margin: 0 auto;
+  padding-left: 24px;
+}
+
+.todo__text {
+  width: 200px;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  margin-left: 3px;
+}
+
+.todo__editInput {
+  outline: none;
+  width: 200px;
+}
+
+
+.todo__addbutton {
+  cursor: pointer;
+  background-color: #1DE9B6;
+  margin-right: 3px;
+  color: #fff;
+  font-size: 12px;
+  padding: 1px 5px 2px 5px;
+}
+
+.todo__footer {
+  font-size: 10px;
+}
+
+
+
+
+
+/*
+.add-note {
+  background-color: #fdfdfd;
+
+  border: 1px solid #ccc;
+}
+
+.notes {
+  margin: 0.5em;
+  padding-left: 0;
+
+  max-width: 10em;
+  list-style: none;
+}
+
+.note {
+
+  overflow: auto;
+
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+
+  background-color: #fdfdfd;
+  box-shadow: 0 0 0.3em .03em rgba(0,0,0,.3);
+}
+.note:hover {
+  box-shadow: 0 0 0.3em .03em rgba(0,0,0,.7);
+  transition: .6s;
+}
+
+.note .value {
+  display: inline-block;
+}
+
+.note .editable {
+
+  float: left;
+}
+
+
+.note .delete {
+  float: right;
+
+  padding: 0;
+
+  background-color: #fdfdfd;
+  border: none;
+
+  cursor: pointer;
+
+  visibility: hidden;
+}
+
+.note:hover .delete {
+  visibility: visible;
+}*/
+
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
