@@ -4,7 +4,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux'
 
 import store from './stores/ConfigureStore';
-import App from './components/app';
+import App from './components/app/App';
 import About from './components/about';
 import NotFound from './components/notfound';
 import SignIn from './components/authentication/signin';
