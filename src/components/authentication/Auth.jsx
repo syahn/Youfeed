@@ -5,7 +5,7 @@ const Auth = () => {
     <div>
       <button className="button button--sign-in"
               onClick={
-                () => window.open('/sign-in', 'Sign In', 'width=985,height=735')
+                () => window.open('/signin', 'Sign In', 'width=985,height=735')
               }>
         Sign In
       </button>

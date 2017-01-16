@@ -6,8 +6,8 @@ import { Provider } from 'react-redux'
 import store from './stores/ConfigureStore';
 import App from './components/app/App';
 import About from './components/about';
+import Widget from './components/authentication/widget';
 import NotFound from './components/notfound';
-import SignIn from './components/authentication/signin';
 
 
 const Routes = () => (
@@ -15,8 +15,9 @@ const Routes = () => (
     <Router history={browserHistory}>
       <Route path="/" component={App} />
       <Route path="/about" component={About} />
+      <Route path="/signin" component={Widget} />
       <Route path="*" component={NotFound} />
-      <Route path="/sign-in" component={SignIn} />
+
     </Router>
   </Provider>
 );
