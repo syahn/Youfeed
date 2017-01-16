@@ -8,6 +8,6 @@ import Routes from './routes';
 import './index.css';
 
 ReactDOM.render(
-  <Routes history={browserHistory} />,
+  <Routes />,
   document.getElementById('root')
 );

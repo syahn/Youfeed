@@ -6,12 +6,12 @@ import { auth } from '../../firebaseApp';
 
 export const listenToAuth = () => {
 	return (dispatch, getState) => {
-		auth.onAuthStateChanged((authData) => {
-			if (authData) {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
 				dispatch({
 					type: C.AUTH_LOGIN,
-					uid: authData.uid,
-					username: authData.providerData[0].displayName,
+					uid: user.uid,
+					username: user.providerData[0].displayName,
 				});
 
 				// reload articles on auth update.

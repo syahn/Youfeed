@@ -1,29 +1,78 @@
+import firebaseui from 'firebaseui';
+import firebase from 'firebase';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { openAuth, logoutUser } from '../../actions/authentication/auth';
+import { auth } from '../../firebaseApp';
+import C from '../../constants';
 
-const Auth = () => {
-  return (
-    <div>
-      <button className="button button--sign-in"
-              onClick={
-                () => window.open('/sign-in', 'Sign In', 'width=985,height=735')
-              }>
-        Sign In
-      </button>
-    </div>
-  )
+
+var authUi = new firebaseui.auth.AuthUI(auth);
+//
+// var uiConfig = {
+//         signInSuccessUrl: '<url-to-redirect-to-on-success>',
+//         signInOptions: [
+//           // Leave the lines as is for the providers you want to offer your users.
+//           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//           firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+//           firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+//           firebase.auth.GithubAuthProvider.PROVIDER_ID,
+//           firebase.auth.EmailAuthProvider.PROVIDER_ID
+//         ],
+//         // Terms of service url.
+//         tosUrl: '<your-tos-url>'
+//       };
+
+export default class Auth extends Component {
+  //
+  //
+  // componentDidMount() {
+  //   var self = this;
+
+  //   var uiConfig = {
+  //     'callbacks': {
+  //       'signInSuccess': function(user) {
+  //         if (self.props.onSignIn) {
+  //           self.props.onSignIn(user);
+  //         }
+  //         return false;
+  //       }
+  //     },
+  //     'signInOptions': [
+  //       {
+  //         provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  //         scopes: ['https://www.googleapis.com/auth/plus.login']
+  //       },
+  //       {
+  //         provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+  //         scopes :[
+  //           'public_profile',
+  //           'email',
+  //           'user_likes',
+  //           'user_friends'
+  //         ]
+  //       },
+  //       firebase.auth.EmailAuthProvider.PROVIDER_ID,
+  //       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+  //       firebase.auth.GithubAuthProvider.PROVIDER_ID,
+  //     ]
+  //   };
+  //   authUi.start('#firebaseui-auth', uiConfig);
+  // }
+
+  componentWillUnmount() {
+    authUi.reset();
+  }
+
+  render() {
+      return (
+        <div>
+          <button id="sign-in-with-popup">Sign In</button>
+        </div>
+      );
+  }
 }
 
-export default Auth;
-
-
-// function Auth({onClick}){
-//   var signInWithPopup = function() {
-//     ;
-//   };
-//   return (
-//
-//   );
-// }
 
 
 //
