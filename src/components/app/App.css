@@ -20,6 +20,29 @@
   float: left;
 }
 
+.ant-modal-footer button {
+  display:none;
+}
+
+.Button-auth {
+  display: block;
+  width: 386px;
+  height: 64px;
+}
+
+.Button-facebook {
+
+}
+.Button-google {
+
+}
+.Button-twitter {
+
+}
+.Button-github {
+
+}
+
 
 /*
 html, body {
