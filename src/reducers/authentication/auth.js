@@ -8,7 +8,7 @@ const initialState = {
 
 export const auth = (state, action) => {
 	switch (action.type) {
-		case C.AUTH_OPEN:
+		case C.AUTH_WINDOW_OPEN:
 			return {
 				status: C.AUTH_AWAITING_RESPONSE,
 				username: 'guest',
