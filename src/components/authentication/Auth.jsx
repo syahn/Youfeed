@@ -1,49 +1,45 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { showModal, handleOk, handleCancel } from '../../actions/ui/UiActionCreator';
+import { showModal, closeModal } from '../../actions/ui/UiActionCreator';
+import { openAuth, logoutUser } from '../../actions/auth/AuthActionCreator';
 import C from '../../constants';
 
 import { Modal, Button } from 'antd';
 
 class Auth extends Component {
-  render(){
-    const { showModal, visible, confirmLoading, modalText,handleCancel } = this.props;
-    return (
-      <div>
-        <Button type="primary" onClick={showModal}>Log In</Button>
-        <Modal title="Title of the modal dialog"
-          visible={visible}
-          onOk={handleOk}
-          confirmLoading={confirmLoading}
-          onCancel={handleCancel}
-          okText="Ok"
-          cancelText="Cancel"
-          closable={true}
-          width={450}
-        >
-          <Button type="ghost" className="Button-auth Button-facebook">
-            Facebook
-          </Button>
-          <Button type="ghost" className="Button-auth Button-google">
-            Google
-          </Button>
-          <Button type="ghost" className="Button-auth Button-twitter">
-            Twitter
-          </Button>
-          <Button type="ghost" className="Button-auth Button-github">
-            Github
-          </Button>
-        </Modal>
-      </div>
-  )
-}
+  getJSX(props) {
+    const { auth, logoutUser, openAuth } = this.props;
+		switch ( auth.status) {
+			case C.AUTH_LOGGED_IN: return (
+				<div>
+					<span>Logged in as {auth.username}.</span>
+					{" "}<Button onClick={logoutUser}>Log out</Button>
+				</div>
+			);
+			case C.AUTH_AWAITING_RESPONSE: return (
+				<div>
+					<Button disabled>authenticating...</Button>
+				</div>
+			);
+			default: return (
+				<div>
+					<Button onClick={openAuth}>Log in</Button>
+				</div>
+			);
+		}
+	}
+	render() {
+		return this.getJSX(this.props);
+	}
+
 };
 
 
 const mapStateToProps = (state) => {
 	return {
     auth: state.auth,
+
     visible: state.ui.signInModalVisible,
     confirmLoading: state.ui.signInModalconfirmLoading,
     modalText: state.ui.signInModalText,
@@ -51,42 +47,51 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  showModal,
-  handleCancel
+  openAuth,
+  closeModal,
+  logoutUser
 };
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);
 //
+// render(){
+//   const { showModal, visible, confirmLoading, modalText, closeModal , openAuth } = this.props;
 //
-// getJSX = () => {
-//   const { auth, openAuthWindow, logoutUser } = this.props;
+//   return (
 //
-//   switch (auth.status) {
-//     case C.AUTH_LOGGED_IN: return (
-//       <div>
-//         <span>Logged in as {auth.username}.</span>
-//         {" "}
-//         <Button onClick={logoutUser}>Log out</Button>
-//       </div>
-//     );
-//     case C.AUTH_AWAITING_RESPONSE: return (
-//       <div>
-//         <Button disabled>authenticating...</Button>
-//       </div>
-//     );
-//     default: return (
-//       <div>
-//         <Button className="button button--sign-in"
-//                 onClick={
-//                   () => {
-//                     openAuthWindow();
-//                     window.open('/signin', '_blank', 'width=600,height=675');
-//                   }
-//                 }>
-//           Sign In
+//     <div>
+//       <Button type="primary" onClick={showModal}>Log In</Button>
+//       <Modal title="Title of the modal dialog"
+//         visible={visible}
+//         confirmLoading={confirmLoading}
+//         onCancel={closeModal}
+//         okText="Ok"
+//         cancelText="Cancel"
+//         closable={true}
+//         width={450}
+//       >
+//         <Button
+//           type="ghost"
+//           className="Button-auth Button-facebook"
+//           onClick={openAuth}
+//         >
+//           Facebook
 //         </Button>
-//       </div>
-//     );
-//   }
+//         <Button
+//           type="ghost"
+//           className="Button-auth Button-google"
+//           onClick={openAuth}
+//         >
+//           Google
+//         </Button>
+//         <Button type="ghost" className="Button-auth Button-twitter">
+//           Twitter
+//         </Button>
+//         <Button type="ghost" className="Button-auth Button-github">
+//           Github
+//         </Button>
+//       </Modal>
+//     </div>
+// )
 // }

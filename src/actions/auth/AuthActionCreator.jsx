@@ -1,10 +1,10 @@
 import * as firebase from 'firebase';
 import C from '../../constants';
 import { auth } from '../../firebaseApp';
+import { closeModal } from '../ui/UiActionCreator';
+
 
 //import { listenToArticles } from './articles';
-
-
 
 
 export const listenToAuth = () => {
@@ -16,7 +16,7 @@ export const listenToAuth = () => {
 					uid: user.uid,
 					username: user.providerData[0].displayName,
 				});
-
+				dispatch(closeModal());
 				// reload articles on auth update.
 				//const listenToArticlesDispatcher = listenToArticles();
 				//listenToArticlesDispatcher(dispatch, getState);
@@ -28,6 +28,7 @@ export const listenToAuth = () => {
 		});
 	};
 };
+
 
 export const openAuth = () => {
 	return (dispatch) => {
@@ -44,12 +45,6 @@ export const openAuth = () => {
 	};
 };
 
-
-export const openAuthWindow = () => {
-	return (dispatch) => {
-		dispatch({ type: C.AUTH_WINDOW_OPEN });
-	}
-}
 
 export const logoutUser = () => {
 	return (dispatch) => {
