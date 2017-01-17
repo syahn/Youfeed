@@ -1,9 +1,6 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import initialState from '../../database';
 
-const initialState = {
-    visibilityFilter : 'SHOW_ALL',
-    todos : []
-};
 
 // Reusable utility functions
 function updateObject(oldObject, newValues) {

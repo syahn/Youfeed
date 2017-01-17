@@ -6,7 +6,7 @@ import Weather from '../../containers/weather/AppWeather';
 import AsyncApp from '../../containers/AsyncApp';
 import FeedSelect from '../../containers/FeedSelect';
 
-import './app.css';
+import './App.css';
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { SubMenu } = Menu;

@@ -4,6 +4,9 @@ import { auth } from '../../firebaseApp';
 
 //import { listenToArticles } from './articles';
 
+
+
+
 export const listenToAuth = () => {
 	return (dispatch, getState) => {
 		auth.onAuthStateChanged((user) => {
@@ -41,8 +44,9 @@ export const openAuth = () => {
 	};
 };
 
+
 export const openAuthWindow = () => {
-	return (dispatch, getState) => {
+	return (dispatch) => {
 		dispatch({ type: C.AUTH_WINDOW_OPEN });
 	}
 }
@@ -53,3 +57,36 @@ export const logoutUser = () => {
 		auth.signOut();
 	};
 };
+
+//
+//
+// showModal, handleOk, handleCancel
+// showModal() {
+// 	this.setState({
+// 		visible: true,
+// 	});
+// },
+// handleOk() {
+// 	this.setState({
+// 		ModalText: 'The modal dialog will be closed after two seconds',
+// 		confirmLoading: true,
+// 	});
+// 	setTimeout(() => {
+// 		this.setState({
+// 			visible: false,
+// 			confirmLoading: false,
+// 		});
+// 	}, 2000);
+// },
+// handleCancel() {
+// 	console.log('Clicked cancel button');
+// 	this.setState({
+// 		visible: false,
+// 	});
+// },
+//
+// export const showModal = () => {
+// 	dispatch({
+// 		type: C.SHOW_MODAL
+// 	})
+// };
