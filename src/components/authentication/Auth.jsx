@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { Button } from 'antd';
 
 const Auth = () => {
   return (
     <div>
-      <button className="button button--sign-in"
+      <Button className="button button--sign-in"
               onClick={
-                () => window.open('/signin', 'Sign In', 'width=985,height=735')
+                () => window.open('/signin', '_blank', 'width=600,height=675')
               }>
         Sign In
-      </button>
+      </Button>
     </div>
   )
 }

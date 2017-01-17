@@ -1,5 +1,5 @@
 {
-  "name": "Greatab",
+  "name": "YouFeed",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -8,6 +8,7 @@
     "react-scripts": "0.6.1"
   },
   "dependencies": {
+    "antd": "^2.6.3",
     "artproject-scraper": "^1.0.1",
     "classnames": "^2.2.5",
     "es6-promise": "^4.0.5",

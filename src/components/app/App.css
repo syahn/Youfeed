@@ -1,4 +1,27 @@
+@import '~antd/dist/antd.css';
 
+.Header {
+  background-color: #fff;
+}
+
+.Menus {
+  float: right;
+}
+
+.Logo {
+  margin-top: 0;
+  font-size: 38px;
+  font-weight: bolder;
+  color: #555;
+  width: 120px;
+  height: 31px;
+  border-radius: 6px;
+  margin: 0 28px 16px 0;
+  float: left;
+}
+
+
+/*
 html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
   margin: 0;
@@ -79,7 +102,7 @@ button {
 }
 
 /*Cards*/
-
+/*
 .card {
   background: #FFF;
   box-shadow: 0 1px 4px rgba(0,0,0,.04);
@@ -90,12 +113,12 @@ button {
 
 
 /*Left Control*/
-
+/*
 .leftCol {
   width: 180px;
   padding-top: 1em;
   padding-right: 10px;
-}
+}*/
 
 
 
@@ -103,19 +126,18 @@ button {
 
 
 /*Content Area*/
-
+/*
 .contentArea {
   width: 70%;
-  /*border: 1px solid gray;*/
   padding-right: 10px;
-}
+}*/
 
 /*Feed*/
-
+/*
 .card__feed {
   text-align: left;
   padding: 2em;
-}
+}*/
 
 
 
@@ -125,13 +147,13 @@ button {
 
 /*Right Control*/
 
-.rightCol {
+/*.rightCol {
   width: 310px;
 }
-
+*/
 
 /*Weather*/
-
+/*
 .card__weather {
   margin-bottom: 1em;
   text-align: left;
@@ -145,12 +167,11 @@ button {
 .time__weather {
   text-align: right;
   display: block;
-}
+}*/
 
 
 
 /*Todo*/
-
 .card__todo {
   padding: 20px;
   max-width: 273px;
@@ -223,10 +244,6 @@ button {
 }
 
 
-
-
-
-/*
 .add-note {
   background-color: #fdfdfd;
 
@@ -281,7 +298,7 @@ button {
 
 .note:hover .delete {
   visibility: visible;
-}*/
+}
 
 
 

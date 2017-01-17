@@ -3,6 +3,8 @@ import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 import { auth } from '../../../firebaseApp';
 
+import './firebase-ui.css';
+
 class Widget extends Component {
   render() {
     var authUi = new firebaseui.auth.AuthUI(auth);
