@@ -9,13 +9,7 @@ export const showModal = () => {
 	}
 };
 
-export const handleOk = () => {
-	return (dispatch) => {
-		dispatch({ type: C.CONFIRM_MODAL });
-	}
-};
-
-export const handleCancel = () => {
+export const closeModal= () => {
 	return (dispatch) => {
 		dispatch({ type: C.CLOSE_MODAL });
 	}

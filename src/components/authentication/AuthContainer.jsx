@@ -1,73 +1,62 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+import { showModal, closeModal } from '../../actions/ui/UiActionCreator';
+import { openAuth, logoutUser } from '../../actions/auth/AuthActionCreator';
+import Auth from './Auth';
+import C from '../../constants';
 
+import { Button } from 'antd';
 
-const Test = React.createClass({
-  getInitialState() {
-    return {
-      ModalText: 'Content of the modal dialog',
-      visible: false,
-    };
-  },
-  showModal() {
-    this.setState({
-      visible: true,
-    });
-  },
-  handleOk() {
-    this.setState({
-      ModalText: 'The modal dialog will be closed after two seconds',
-      confirmLoading: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        visible: false,
-        confirmLoading: false,
-      });
-    }, 2000);
-  },
-  handleCancel() {
-    console.log('Clicked cancel button');
-    this.setState({
-      visible: false,
-    });
-  },
-  render() {
-    return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>Open a modal dialog</Button>
-        <Modal title="Title of the modal dialog"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          confirmLoading={this.state.confirmLoading}
-          onCancel={this.handleCancel}
-          okText="Ok"
-          cancelText="Cancel"
-          footer=<h1>hello</h1>
-          closable=true
-        >
-          <p>{this.state.ModalText}</p>
-        </Modal>
-      </div>
-    );
-  },
-});
-
-
+// Cotainer component determines which button state should show
 class AuthContainer extends Component {
+  getJSX(props) {
+    const { auth, logoutUser, openAuth, showModal, visible, confirmLoading } = this.props;
+		switch ( auth.status) {
+			case C.AUTH_LOGGED_IN: return (
+				<div>
+					<span>Logged in as {auth.username}.</span>
+					{" "}<Button onClick={logoutUser}>Log out</Button>
+				</div>
+			);
+			case C.AUTH_AWAITING_RESPONSE: return (
+				<div>
+					<Button disabled>authenticating...</Button>
+				</div>
+			);
+			default: return (
+        <Auth
+          showModal={showModal}
+          visible={visible}
+          confirmLoading={confirmLoading}
+          closeModal={closeModal}
+          openAuth={openAuth}
+          />
+			);
+		}
+	}
+	render() {
+		return this.getJSX(this.props);
+	}
 
-  constructor(props) {
-    super(props);
+};
+
+
+const mapStateToProps = (state) => {
+	return {
+    auth: state.auth,
+    visible: state.ui.signInModalVisible,
+    confirmLoading: state.ui.signInModalconfirmLoading,
+    modalText: state.ui.signInModalText,
   }
+};
 
-  render() {
-    return(
-      <div>AuthContainer</div>
-    );
-  }
-}
+const mapDispatchToProps = {
+  openAuth,
+  closeModal,
+  logoutUser,
+  showModal
+};
 
-AuthContainer.propTypes = propTypes;
-AuthContainer.defaultProps = defaultProps;
 
-export default AuthContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);
