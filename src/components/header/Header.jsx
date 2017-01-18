@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Auth from '../authentication/Auth';
+import AuthContainer from '../authentication/AuthContainer';
 
 import { Layout, Menu, Row, Col } from 'antd';
 const { SubMenu } = Menu;
@@ -21,7 +21,7 @@ const HeaderComponent = () => {
           <Menu.Item key="2">nav 2</Menu.Item>
           <Menu.Item key="3">nav 3</Menu.Item>
           <Menu.Item key="4">
-            <Auth />
+            <AuthContainer />
           </Menu.Item>
       </Menu>
       </div>
