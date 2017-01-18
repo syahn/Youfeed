@@ -85,7 +85,7 @@ module.exports = {
       'react-native': 'react-native-web'
     }
   },
-  
+
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -97,12 +97,48 @@ module.exports = {
       }
     ],
     loaders: [
+      // Default loader: load all assets that are not handled
+      // by other loaders with the url loader.
+      // Note: This list needs to be updated with every change of extensions
+      // the other loaders match.
+      // E.g., when adding a loader for a new supported file extension,
+      // we need to add the supported extension to this loader too.
+      // Add one new line in `exclude` for each loader.
+      //
+      // "file" loader makes sure those assets get served by WebpackDevServer.
+      // When you `import` an asset, you get its (virtual) filename.
+      // In production, they would get copied to the `build` folder.
+      // "url" loader works like "file" loader except that it embeds assets
+      // smaller than specified limit in bytes as data URLs to avoid requests.
+      // A missing `test` is equivalent to a match.
+      {
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.less$/,
+          /\.css$/,
+          /\.json$/,
+          /\.svg$/
+        ],
+          loader: 'url',
+          query: {
+          limit: 10000,
+          name: 'static/media/[name].[hash:8].[ext]'
+         }
+      },
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
-        
+        query: {
+
+          plugins: [
+            ['import', [{ libraryName: "antd", style: true }]],
+          ],
+
+        }
+
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -129,6 +165,14 @@ module.exports = {
         loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss')
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract(
+          'css?sourceMap&!' +
+          'postcss!' +
+          'less-loader?{"sourceMap":true,"modifyVars":{"@primary-color":"#1DA57A"}}'
+        ),
+      },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
       {
@@ -153,10 +197,15 @@ module.exports = {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]'
         }
-      }
+      },
+      // Parse less files and modify variables
+      {
+        test: /\.less$/,
+        loader: 'style!css!postcss!less?{modifyVars:{"@primary-color":"#1DA57A"}}'
+      },
     ]
   },
-  
+
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
