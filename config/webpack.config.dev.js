@@ -152,7 +152,8 @@ module.exports = {
       // Parse less files and modify variables
       {
         test: /\.less$/,
-        loader: 'style!css!postcss!less?{modifyVars:{"@primary-color":"#1DA57A"}}'
+        loader:
+        'style!css!postcss!less?{modifyVars:{"@heading-color":"#fff"}}'
       },
       {
         test: /\.css$/,
