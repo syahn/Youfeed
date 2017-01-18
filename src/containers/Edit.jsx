@@ -1,8 +1,12 @@
-import React, { Component, PropTypes } from 'react'
-import { editTodo } from '../actions/TodoActionCreators'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
 
   class Edit extends Component {
+    checkEnter = (e) => {
+      const value = e.target.value;
+      if(e.key === 'Enter') {
+        this.props.onEdit(value);
+      }
+    }
 
     render() {
       const {text, onEdit} = this.props;
@@ -16,13 +20,8 @@ import { connect } from 'react-redux'
         onKeyPress={this.checkEnter}
          />;
     }
-    checkEnter = (e) => {
-      const value = e.target.value;
-      if(e.key === 'Enter') {
-        this.props.onEdit(value);
-      }
-    }
+
   }
 
 
-export default Edit
+export default Edit;

@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-import Todo from './Todo'
+import React from 'react';
+import Todo from './Todo';
 
 // TodoList is a list showing visible todos.
 //
@@ -21,17 +21,17 @@ const TodoList = ({ todos, onTodoClick, onDeleteClick, onEditClick, onEditActiva
       />
     )}
   </ul>
-)
+);
 
 
-// TODO
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    completed: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
-  }).isRequired).isRequired,
-  onTodoClick: PropTypes.func.isRequired
-}
+// // TODO
+// TodoList.propTypes = {
+//   todos: PropTypes.arrayOf(PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//     completed: PropTypes.bool.isRequired,
+//     text: PropTypes.string.isRequired
+//   }).isRequired).isRequired,
+//   onTodoClick: PropTypes.func.isRequired
+// }
 
-export default TodoList
+export default TodoList;

@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-import Editable from './Editable'
+import React from 'react';
+import Editable from './Editable';
 
 // Todo is a single todo item.s
 //
@@ -37,12 +37,12 @@ const Todo = ({ onEditActivate, onToggle, onDelete, onEdit, completed, editing, 
       x
     </button>
   </div>
-)
+);
+//
+// Todo.propTypes = {
+//   onToggle: PropTypes.func.isRequired,
+//   completed: PropTypes.bool.isRequired,
+//   text: PropTypes.string.isRequired
+// }
 
-Todo.propTypes = {
-  onToggle: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
-}
-
-export default Todo
+export default Todo;

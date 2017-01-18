@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes, Component } from 'react';
 
 export default class Posts extends Component {
   render() {
@@ -12,13 +12,13 @@ export default class Posts extends Component {
           </li>
         )}
       </ul>
-    )
+    );
   }
 }
 
 Posts.propTypes = {
   posts: PropTypes.array.isRequired
-}
+};
 
 
 

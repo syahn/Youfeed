@@ -1,7 +1,6 @@
-import C from './constants';
 import * as firebase from 'firebase';
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyDfvH44yIqsIl45VmV8dfbH90jF3ybH-QE",
   authDomain: "youfeed-aca14.firebaseapp.com",
   databaseURL: "https://youfeed-aca14.firebaseio.com",
@@ -10,5 +9,6 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 export const auth = firebase.auth();
 export const database = firebase.database();

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react';
 
 // Link is a link with a callback.
 //
@@ -6,7 +6,7 @@ import React, { PropTypes } from 'react'
 
 const Link = ({ active, children, onClick }) => {
   if (active) {
-    return <span>{children}</span>
+    return <span>{children}</span>;
   }
 
   return (
@@ -15,19 +15,19 @@ const Link = ({ active, children, onClick }) => {
          //The idea of this is to tell the DOM to stop bubbling
          //events. In short, we'll avoid triggering possible other events elsewh
          //ere in the structure if we delete a note.
-         e.preventDefault()
-         onClick()
+         e.preventDefault();
+         onClick();
        }}
     >
       {children}
     </a>
-  )
-}
+  );
+};
 
-Link.propTypes = {
-  active: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired
-}
+// Link.propTypes = {
+//   active: PropTypes.bool.isRequired,
+//   children: PropTypes.node.isRequired,
+//   onClick: PropTypes.func.isRequired
+// }
 
-export default Link
+export default Link;

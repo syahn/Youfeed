@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 
 const Navigator = ({ value, onChange, options }) => (
   <span>
@@ -11,7 +11,7 @@ const Navigator = ({ value, onChange, options }) => (
       }
     </select>
   </span>
-)
+);
 
 Navigator.propTypes = {
   options: PropTypes.arrayOf(
@@ -19,6 +19,6 @@ Navigator.propTypes = {
   ).isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
-}
+};
 
-export default Navigator
+export default Navigator;

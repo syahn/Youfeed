@@ -11,7 +11,6 @@ export const listenToAuth = () => {
 	return (dispatch, getState) => {
 		auth.onAuthStateChanged((user) => {
 			if (user) {
-				console.log(user);
 				dispatch({
 					type: C.AUTH_LOGIN,
 					uid: user.uid,

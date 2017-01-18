@@ -1,7 +1,7 @@
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
   REQUEST_POSTS, RECEIVE_POSTS
-} from '../../actions/feed/reddit'
+} from '../../actions/feed/reddit';
 
 
 const posts = (state = {
@@ -14,13 +14,13 @@ const posts = (state = {
       return {
         ...state,
         didInvalidate: true
-      }
+      };
     case REQUEST_POSTS:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
-      }
+      };
     case RECEIVE_POSTS:
       return {
         ...state,
@@ -28,20 +28,20 @@ const posts = (state = {
         didInvalidate: false,
         items: action.posts,
         lastUpdated: action.receivedAt
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const selectedReddit = (state = 'frontend', action) => {
   switch (action.type) {
     case SELECT_REDDIT:
-      return action.reddit
+      return action.reddit;
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const postsByReddit = (state = { }, action) => {
   switch (action.type) {
@@ -51,8 +51,8 @@ export const postsByReddit = (state = { }, action) => {
       return {
         ...state,
         [action.reddit]: posts(state[action.reddit], action)
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};

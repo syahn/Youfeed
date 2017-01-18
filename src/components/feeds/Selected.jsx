@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 
-const Selected = ({ value, onChange, options }) => (
+const Selected = ({ value }) => (
   <span>
     <h1>{value}</h1>
   </span>
-)
+);
 
 Selected.propTypes = {
   options: PropTypes.arrayOf(
@@ -12,9 +12,9 @@ Selected.propTypes = {
   ).isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
-}
+};
 
-export default Selected
+export default Selected;
 //
 //
 // import React, { Component, PropTypes } from 'react'

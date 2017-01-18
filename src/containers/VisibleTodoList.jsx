@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import { toggleTodo, deleteTodo, editTodo, editActivateTodo } from '../actions/TodoActionCreators'
-import TodoList from '../components/todos/TodoList'
+import { connect } from 'react-redux';
+import { toggleTodo, deleteTodo, editTodo, editActivateTodo } from '../actions/TodoActionCreators';
+import TodoList from '../components/todos/TodoList';
 
 // VisibleTodoList that subscribes to the Redux store and knows how to apply the current visibility filter.
 // VisibleTodoList filters the todos according to the current visibility filter and renders a TodoList.
@@ -8,40 +8,40 @@ import TodoList from '../components/todos/TodoList'
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'SHOW_ALL':
-      return todos
+      return todos;
     case 'SHOW_COMPLETED':
-      return todos.filter(t => t.completed)
+      return todos.filter(t => t.completed);
     case 'SHOW_ACTIVE':
-      return todos.filter(t => !t.completed)
+      return todos.filter(t => !t.completed);
   }
-}
+};
 
 const mapStateToProps = (state) => {
   return {
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onTodoClick: (id) => {
-      dispatch(toggleTodo(id))
+      dispatch(toggleTodo(id));
     },
     onDeleteClick: (id) => {
-      dispatch(deleteTodo(id))
+      dispatch(deleteTodo(id));
     },
     onEditClick: (id, text) => {
-      dispatch(editTodo(id, text))
+      dispatch(editTodo(id, text));
     },
     onEditActivateClick: (id) => {
-      dispatch(editActivateTodo(id))
+      dispatch(editActivateTodo(id));
     }
-  }
-}
+  };
+};
 
 const VisibleTodoList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(TodoList)
+)(TodoList);
 
-export default VisibleTodoList
+export default VisibleTodoList;

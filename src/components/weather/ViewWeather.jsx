@@ -1,17 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
-import { fetchWeatherIfNeeded } from '../../actions/weather/WeatherActionCreator'
+import { fetchWeatherIfNeeded } from '../../actions/weather/WeatherActionCreator';
 
 class ViewWeather extends Component {
-
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchWeatherIfNeeded())
+    const { dispatch } = this.props;
+    dispatch(fetchWeatherIfNeeded());
   }
 
   render() {
-    const { forecast, receivedAt } = this.props
-
+    const { forecast, receivedAt } = this.props;
     return (
       <div className="card card__weather">
         <iframe id="forecast_embed"
@@ -23,11 +21,9 @@ class ViewWeather extends Component {
         </iframe>
         <div>{forecast}</div>
         <span className="time__weather">{new Date(receivedAt).toLocaleTimeString()}</span>
-
       </div>
-    )
+    );
   }
 }
-
 
 export default ViewWeather;

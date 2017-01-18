@@ -1,10 +1,4 @@
-import React, { Component } from 'react';
-
-import { connect } from 'react-redux';
-import { showModal, closeModal } from '../../actions/ui/UiActionCreator';
-import { openAuth, logoutUser } from '../../actions/auth/AuthActionCreator';
-import C from '../../constants';
-
+import React from 'react';
 import { Modal, Button } from 'antd';
 
 
@@ -51,7 +45,7 @@ const Auth = ( { showModal, visible, confirmLoading, closeModal , openAuth } ) =
         </Button>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
 export default Auth;

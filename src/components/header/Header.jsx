@@ -1,9 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import AuthContainer from '../authentication/AuthContainer';
 
-import { Layout, Menu, Row, Col } from 'antd';
-const { SubMenu } = Menu;
-const { Header, Content, Footer, Sider } = Layout;
+import { Menu, Layout } from 'antd';
+const { Header } = Layout;
 
 const HeaderComponent = () => {
   return(
@@ -28,22 +27,6 @@ const HeaderComponent = () => {
 
     </Header>
   );
-}
+};
 
 export default HeaderComponent;
-
-
-
-<Header className="header">
-      <div className="logo" />
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['2']}
-        style={{ lineHeight: '64px' }}
-      >
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
-      </Menu>
-    </Header>

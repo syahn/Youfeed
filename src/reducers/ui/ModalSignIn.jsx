@@ -10,10 +10,10 @@ function updateObject(oldObject, newValues) {
 
 const initialState = {
     ui : {
-  		signInModalVisible: false,
-  		signInModalconfirmLoading: false,
-  		signInModalText:'Content of the modal dialog',
-  	}
+      signInModalVisible: false,
+      signInModalconfirmLoading: false,
+      signInModalText:'Content of the modal dialog',
+    }
 };
 
 export const ui = (state = initialState, action) => {

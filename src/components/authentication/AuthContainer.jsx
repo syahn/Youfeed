@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import { showModal, closeModal } from '../../actions/ui/UiActionCreator';
 import { openAuth, logoutUser } from '../../actions/auth/AuthActionCreator';
@@ -10,8 +9,7 @@ import { Button } from 'antd';
 
 // Cotainer component determines which button state should show
 class AuthContainer extends Component {
-  getJSX(props) {
-    const { auth, logoutUser, openAuth, showModal, visible, confirmLoading } = this.props;
+  getJSX = ({ auth, logoutUser, openAuth, showModal, visible, confirmLoading }) => {
 		switch ( auth.status) {
 			case C.AUTH_LOGGED_IN: return (
 				<div>
@@ -39,8 +37,7 @@ class AuthContainer extends Component {
 		return this.getJSX(this.props);
 	}
 
-};
-
+}
 
 const mapStateToProps = (state) => {
 	return {
@@ -48,7 +45,7 @@ const mapStateToProps = (state) => {
     visible: state.ui.signInModalVisible,
     confirmLoading: state.ui.signInModalconfirmLoading,
     modalText: state.ui.signInModalText,
-  }
+  };
 };
 
 const mapDispatchToProps = {
