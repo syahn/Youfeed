@@ -70,6 +70,7 @@
     "redux-form": "^6.1.1",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
+    "styled-components": "^1.4.3",
     "uuid": "^2.0.3",
     "whatwg-fetch": "^1.0.0"
   },
