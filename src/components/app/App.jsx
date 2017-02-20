@@ -5,6 +5,7 @@ import Header from '../header/Header';
 import Weather from '../../containers/weather/AppWeather';
 import AsyncApp from '../../containers/AsyncApp';
 import FeedSelect from '../../containers/FeedSelect';
+import FeedBox from '../feeds/FeedBox';
 
 import { Layout } from 'antd';
 const { Content, Footer, Sider } = Layout;
@@ -19,6 +20,7 @@ export default class App extends Component {
                 <FeedSelect />
               </Sider>
               <Content>
+                <FeedBox />
                 <AsyncApp />
               </Content>
               <Sider>

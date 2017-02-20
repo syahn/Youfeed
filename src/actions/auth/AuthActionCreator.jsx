@@ -10,6 +10,7 @@ import { closeModal } from '../ui/UiActionCreator';
 export const listenToAuth = () => {
 	return (dispatch, getState) => {
 		auth.onAuthStateChanged((user) => {
+			console.log(JSON.stringify(user));
 			if (user) {
 				dispatch({
 					type: C.AUTH_LOGIN,
@@ -53,6 +54,7 @@ export const openAuth = (Provider) => {
 		switch(Provider){
 			case "facebook":
 				provider = new firebase.auth.FacebookAuthProvider();
+				provider.addScope('user_likes');
 				break;
 			case "google":
 				provider = new firebase.auth.GoogleAuthProvider();
