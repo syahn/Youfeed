@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 
-import { fetchWeatherIfNeeded } from '../../actions/weather/WeatherActionCreator';
+// import { fetchWeatherIfNeeded } from '../../actions/weather/WeatherActionCreator';
 
 class ViewWeather extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchWeatherIfNeeded());
-  }
 
   render() {
     const { forecast, receivedAt } = this.props;

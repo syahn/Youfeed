@@ -1,44 +1,7 @@
-
-
-// Reusable utility functions
-function updateObject(oldObject, newValues) {
-    // Encapsulate the idea of passing a new object as the first parameter
-    // to Object.assign to ensure we correctly copy data instead of mutating
-    return Object.assign({}, oldObject, newValues);
-}
-
-
-function updateItemInArray(array, itemId, updateItemCallback) {
-    const updatedItems = array.map(item => {
-        if(item.id !== itemId) {
-            // Since we only want to update one item, preserve all others as they are now
-            return item;
-        }
-
-        // Use the provided callback to create an updated item
-        const updatedItem = updateItemCallback(item);
-        return updatedItem;
-    });
-    return updatedItems;
-}
-
-function deleteItemInArray(array, itemId) {
-    const updatedArrays = array.filter(item => {
-          return item.id !== itemId;
-        }
-    );
-    return updatedArrays;
-}
-
-function createReducer(initialState, handlers) {
-  return function reducer(state = initialState, action) {
-    if (handlers.hasOwnProperty(action.type)) {
-      return handlers[action.type](state, action);
-    } else {
-      return state;
-    }
-  };
-}
+import { updateObject,
+         updateItemInArray,
+         deleteItemInArray,
+         createReducer } from '../util';
 
 
 // Handler for a specific case ("case reducer")
@@ -48,20 +11,20 @@ function setVisibilityFilter(visibilityState, action) {
 }
 
 // Handler for an entire slice of state ("slice reducer")
-export const visibilityReducer = createReducer('SHOW_ALL', {
+export const visibilityFilter = createReducer('SHOW_ALL', {
     'SET_VISIBILITY_FILTER' : setVisibilityFilter
 });
 
 
 // Case reducer
 function addTodo(todosState, action) {
-    const newTodos = todosState.concat({
-        id: action.id,
-        text: action.text,
-        completed: false
-    });
+  const newTodos = todosState.concat({
+    id: action.id,
+    text: action.text,
+    completed: false
+  });
 
-    return newTodos;
+  return newTodos;
 }
 
 // Case reducer
@@ -97,18 +60,10 @@ function editActivateTodo(todosState, action) {
 }
 
 // Slice reducer
-export const todosReducer = createReducer([], {
+export const todos = createReducer([], {
     'ADD_TODO' : addTodo,
     'TOGGLE_TODO' : toggleTodo,
     'DELETE_TODO' : deleteTodo,
     'EDIT_TODO' : editTodo,
     'EDIT_ACTIVATE_TODO' : editActivateTodo
 });
-
-
-
-// // "Root reducer"
-// const rootReducer = combineReducers({
-//     visibilityFilter : visibilityReducer,
-//     todos : todosReducer
-// });

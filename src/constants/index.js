@@ -4,6 +4,7 @@ import feedback from './feedback';
 import firebase from './firebase';
 import todo from './todo';
 import ui from './ui';
+import dnd from './dnd';
 
 export default Object.assign({},
 	articles,
@@ -11,5 +12,6 @@ export default Object.assign({},
 	feedback,
 	firebase,
 	todo,
-	ui
+	ui,
+	dnd
 );

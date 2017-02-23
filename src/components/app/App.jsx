@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Todo from '../todos/AppTodo';
 import Header from '../header/Header';
-import Weather from '../../containers/weather/AppWeather';
+import FeedControl from '../../components/layout/FeedControl';
+import WidgetControl from '../../containers/widgets/WidgetControl';
 import AsyncApp from '../../containers/AsyncApp';
-import FeedSelect from '../../containers/FeedSelect';
 import FeedBox from '../feeds/FeedBox';
 import { Layout } from 'antd';
 import styled from 'styled-components';
@@ -18,10 +17,7 @@ const defaultProps = {
 
 };
 
-const GlobalLayout = styled(Layout)`
-
-
-`;
+const GlobalLayout = styled(Layout)``;
 
 const ContentLayout = styled.div`
   display: flex;
@@ -35,15 +31,6 @@ const RightCol = styled.div`
   width: 833px;
 `;
 
-const RightSider = styled.div`
-  width: 310px;
-  padding: 12px;
-`;
-
-const LeftSider = styled.div`
-  padding: 12px;
-  width: 180px;
-`;
 
 const FeedContent = styled.div`
   width: 512px;
@@ -56,22 +43,17 @@ class App extends Component {
       <GlobalLayout>
         <Header />
           <ContentLayout>
-            <LeftSider>
-              <FeedSelect />
-            </LeftSider>
+            <FeedControl />
             <RightCol>
               <FeedContent>
                 <FeedBox />
                 <AsyncApp />
               </FeedContent>
-              <RightSider>
-                <Weather />
-                <Todo />
-              </RightSider>
+              <WidgetControl />
             </RightCol>
           </ContentLayout>
-          <Footer>footer</Footer>
-        </GlobalLayout>
+        <Footer>footer</Footer>
+      </GlobalLayout>
     );
   }
 }

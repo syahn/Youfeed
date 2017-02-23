@@ -4,17 +4,22 @@ import createLogger from 'redux-logger';
 import rootReducer from '../reducers/index';
 import initialState from '../database';
 
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 const loggerMiddleware = createLogger();
 
+/* eslint-disable no-underscore-dangle */
 const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
+    composeWithDevTools(
+      applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+      )
     )
-  );
-
+);
+/* eslint-enable */
 
 export default store;
 
