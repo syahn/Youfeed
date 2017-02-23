@@ -31,8 +31,6 @@ let AddTodo = ({ dispatch }) => {
           ref={node => {
           input = node;
         }} />
-
-
       </form>
     </div>
   );
