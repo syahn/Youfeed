@@ -128,7 +128,6 @@ module.exports = {
         include: paths.appSrc,
         loader: 'babel',
         query: {
-
           plugins: [
             ['import', [{ libraryName: "antd", style: true }]],
           ],
@@ -152,7 +151,7 @@ module.exports = {
       {
         test: /\.less$/,
         loader:
-        'style!css!postcss!less?{modifyVars:{"@heading-color":"#fff"}}'
+        'style!css!postcss!less?{modifyVars:{"@font-size-base":"14px","@font-family":"-apple-system, BlinkMacSystemFont, sans-serif"}}'
       },
       {
         test: /\.css$/,
