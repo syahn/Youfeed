@@ -12,8 +12,7 @@ const defaultProps = {
 };
 
 const Box = styled.div`
-  width: 310px;
-  padding: 12px;
+  width: 310px;  
 `;
 
 function WidgetBox({ widgets, onMove }) {

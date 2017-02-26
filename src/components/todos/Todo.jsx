@@ -1,43 +1,72 @@
 import React from 'react';
 import Editable from './Editable';
+import { Checkbox } from 'antd';
+import styled from 'styled-components';
 
-// Todo is a single todo item.s
-//
-// text: string is the text to show.
-// completed: boolean is whether todo should appear crossed out.
-// onClick() is a callback to invoke when a todo is clicked.
+const TodoItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 243px;
+  margin-top: 8px;
 
-const Todo = ({ onEditActivate, onToggle, onDelete, onEdit, completed, editing, text,id }) => (
-  <div className="todo__item">
-    <input
-      type="checkbox"
-      className="todo__checkbox"
-      defaultChecked={completed}
-      onClick={onToggle}
-    />
+  &:hover {
+    button {
+      display: block;
+    }
+  }
+`;
 
-    <li
-      onClick={onEditActivate}
-      style={{
-        textDecoration: completed ? 'line-through' : 'none'
-      }}
-    >
-      <Editable
-        editing={editing}
-        onEdit={onEdit}
-        text={text}
-        id={id}
+const DeleteButton = styled.button`
+  display: none;
+  border: none;
+  background: #fff;
+  outline: none;
+  margin-left: 3px;
+`;
+
+const TodoText = styled.li`
+  text-decoration: ${props => props.completed ? 'line-through' : 'none'}
+`;
+
+function Todo({
+  onEditActivate,
+  onToggle,
+  onDelete,
+  onEdit,
+  completed,
+  editing,
+  text,
+  id
+}){
+  return (
+    <TodoItem>
+      <Checkbox
+        defaultChecked={completed}
+        onClick={onToggle}
       />
-    </li>
 
-    <button
-      className="todo__delete"
-      onClick={onDelete}
-    >
-      x
-    </button>
-  </div>
-);
+      <TodoText
+        onClick={onEditActivate}
+        completed={completed}
+      >
+        <Editable
+          editing={editing}
+          onEdit={onEdit}
+          text={text}
+          id={id}
+        />
+      </TodoText>
+
+      <DeleteButton
+        className="todo__delete"
+        shape="circle"
+        onClick={onDelete}
+      >
+        x
+      </DeleteButton>
+    </TodoItem>
+  );
+}
 //
 // Todo.propTypes = {
 //   onToggle: PropTypes.func.isRequired,

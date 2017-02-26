@@ -1,30 +1,37 @@
 import React from 'react';
 import Todo from './Todo';
+import styled from 'styled-components';
 
-// TodoList is a list showing visible todos.
-//
-// todos: Array is an array of todo items with { id, text, completed } shape.
-// onTodoClick(id: number) is a callback to invoke when a todo is clicked.
+const TodoItems = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
 
-const TodoList = ({ todos, onTodoClick, onDeleteClick, onEditClick, onEditActivateClick }) => (
+function TodoList({
+  todos,
+  onTodoClick,
+  onDeleteClick,
+  onEditClick,
+  onEditActivateClick
+}) {
+  return (
+    <TodoItems>
+      {todos.map(todo =>
+        <Todo
+          key={todo.id}
+          {...todo}
+          onToggle={() => onTodoClick(todo.id)}
+          onDelete={() => onDeleteClick(todo.id)}
+          onEdit={(text) => onEditClick(todo.id, text)}
+          onEditActivate={() => onEditActivateClick(todo.id)}
+        />
+      )}
+    </TodoItems>
+  );
+}
 
-  <ul className="todo__items">
-    {todos.map(todo =>
-      <Todo
-        key={todo.id}
-        id={todo.id}
-        {...todo}
-        onToggle={() => onTodoClick(todo.id)}
-        onDelete={() => onDeleteClick(todo.id)}
-        onEdit={(text) => onEditClick(todo.id, text)}
-        onEditActivate={() => onEditActivateClick(todo.id)}
-      />
-    )}
-  </ul>
-);
 
-
-// // TODO
+// TODO
 // TodoList.propTypes = {
 //   todos: PropTypes.arrayOf(PropTypes.shape({
 //     id: PropTypes.number.isRequired,

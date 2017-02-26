@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
-import { toggleTodo, deleteTodo, editTodo, editActivateTodo } from '../actions/TodoActionCreators';
-import TodoList from '../components/todos/TodoList';
+import {
+  toggleTodo,
+  deleteTodo,
+  editTodo,
+  editActivateTodo
+} from '../../actions/todo/TodoActionCreators';
+import TodoList from '../../components/todos/TodoList';
 
 // VisibleTodoList that subscribes to the Redux store and knows how to apply the current visibility filter.
 // VisibleTodoList filters the todos according to the current visibility filter and renders a TodoList.

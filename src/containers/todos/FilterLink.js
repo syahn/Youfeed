@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { setVisibilityFilter } from '../actions/TodoActionCreators';
-import Link from '../components/todos/Link';
+import { setVisibilityFilter } from '../../actions/todo/TodoActionCreators';
+import Link from '../../components/todos/Link';
 
 // FilterLink gets the current visibility filter and renders a Link.
 // filter: string is the visibility filter it represents.

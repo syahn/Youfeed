@@ -1,12 +1,31 @@
 import React from 'react';
-import Edit from '../../containers/Edit';
+import Edit from './Edit';
+import styled from 'styled-components';
 
-const Editable = ({onEdit, editing, text}) => {
+const TodoText = styled.span`
+  display: block;
+  width: 187px;
+  height: 25px;
+  overflow:hidden;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  text-align: left;
+`;
+
+function Editable({onEdit, editing, text}) {
   if(editing) {
-    return <Edit text={text} onEdit={onEdit} />;
+    return (
+      <Edit
+        text={text}
+        editing={editing}
+        onEdit={onEdit}
+      />
+    );
   }
-  return <span className="todo__editDefault">{text}</span>;
-};
-
+  return (
+    <TodoText>
+      {text}
+    </TodoText>
+  );
+}
 
 export default Editable;

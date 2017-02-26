@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterLink from '../../containers/FilterLink';
+import FilterLink from '../../containers/todos/FilterLink';
 
 // Footer is where we let the user change currently visible todos.
 
