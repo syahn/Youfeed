@@ -8,6 +8,7 @@ const initialState = {
     },
     widgets: [
       {type: 'todo', id: 100},
+      {type: 'photo', id: 300}
     ]
 };
 

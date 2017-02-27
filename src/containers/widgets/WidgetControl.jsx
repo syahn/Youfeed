@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import WidgetBox from '../../components/layout/WidgetBox';
+import WidgetBox from '../../components/widgets/WidgetBox';
 import { moveWidget } from '../../actions/widget/WidgetActionCreator';
 
 /**

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Todo from '../todos/AppTodo';
 import Weather from '../weather/ViewWeather';
 import Widget from './Widget';
+import PhotoFrame from './photo-frame/PhotoFrame';
 
 const propTypes = {
 };
@@ -12,17 +13,19 @@ const defaultProps = {
 };
 
 const Box = styled.div`
-  width: 310px;  
+  width: 310px;
 `;
 
 function WidgetBox({ widgets, onMove }) {
-  const widgetTable = {
+  const widgetMapTable = {
     todo: <Todo />,
     weather: <Weather />,
+    photo: <PhotoFrame />,
   };
+
   const widgetList = widgets.map((widget) => (
     {
-      widget: widgetTable[widget.type],
+      widget: widgetMapTable[widget.type],
       id: widget.id,
       type: 'widget'
     })

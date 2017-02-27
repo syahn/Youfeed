@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const TodoText = styled.span`
   display: block;
-  width: 187px;
+  width: 219px;
   height: 25px;
   overflow:hidden;
   border-bottom: 1px solid rgba(0,0,0,.12);
