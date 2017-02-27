@@ -2,16 +2,18 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/index';
-import initialState from '../database';
-
+// import initialState from '../database';
+import { loadState } from './localStorage';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const loggerMiddleware = createLogger();
+const persistedState = loadState();
+
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
     rootReducer,
-    initialState,
+    persistedState,
     composeWithDevTools(
       applyMiddleware(
         thunkMiddleware,

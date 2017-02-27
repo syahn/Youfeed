@@ -6,13 +6,16 @@ import store from './stores/ConfigureStore';
 import App from './components/app/App';
 import About from './components/about';
 import NotFound from './components/notfound';
-
+import { saveState } from './stores/localStorage';
 import { listenToAuth } from './actions/auth/AuthActionCreator';
 
 
 class Root extends Component {
 	componentWillMount() {
 		store.dispatch(listenToAuth());
+		store.subscribe(() => {
+			saveState(store.getState());
+		});
 	}
 
   render() {

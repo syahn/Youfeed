@@ -4,9 +4,6 @@ import { auth } from '../../firebaseApp';
 import { closeModal } from '../ui/UiActionCreator';
 
 
-//import { listenToArticles } from './articles';
-
-
 export const listenToAuth = () => {
 	return (dispatch, getState) => {
 		auth.onAuthStateChanged((user) => {

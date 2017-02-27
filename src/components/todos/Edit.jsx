@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const EditInput = styled.input`
-  width: 187px;
+  width: 219px;
   border: 0;
   border-bottom: 1px solid rgba(0,0,0,.12);
   padding-bottom: 3px;

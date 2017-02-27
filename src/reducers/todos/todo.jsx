@@ -3,19 +3,6 @@ import { updateObject,
          deleteItemInArray,
          createReducer } from '../util';
 
-
-// Handler for a specific case ("case reducer")
-function setVisibilityFilter(visibilityState, action) {
-    // Technically, we don't even care about the previous state
-    return action.filter;
-}
-
-// Handler for an entire slice of state ("slice reducer")
-export const visibilityFilter = createReducer('SHOW_ALL', {
-    'SET_VISIBILITY_FILTER' : setVisibilityFilter
-});
-
-
 // Case reducer
 function addTodo(todosState, action) {
   const newTodos = [{

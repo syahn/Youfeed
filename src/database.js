@@ -1,3 +1,5 @@
+import uuid from 'uuid';
+
 const initialState = {
     todos : [],
     ui : {
@@ -7,8 +9,8 @@ const initialState = {
       visibilityFilter : 'SHOW_ALL',
     },
     widgets: [
-      {type: 'todo', id: 100},
-      {type: 'photo', id: 300}
+      {type: 'todo', id: uuid() },
+      {type: 'photo', id: uuid() }
     ]
 };
 

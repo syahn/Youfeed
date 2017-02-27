@@ -8,19 +8,15 @@ import { moveWidget } from '../../actions/widget/WidgetActionCreator';
  * WidgetBox gets current sequence of widgets and gives to WidgetBox components.
  */
 
-const mapStateToProps = (state) => {
-  return {
-    widgets: state.widgets
-  };
-};
+const mapStateToProps = state => ({
+  widgets: state.widgets
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onMove: (from, to) => {
-      dispatch(moveWidget(from, to));
-    }
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onMove(from, to) {
+    dispatch(moveWidget(from, to));
+  }
+});
 
 const ControlWidget = connect(
   mapStateToProps,
