@@ -34,17 +34,13 @@ class Todo extends Component {
 
   }
 
-  componentDidUpdate() {
-    this.completed = this.props.completed;
-
-  }
   render() {
     const {
       onEditActivate,
       onToggle,
       onDelete,
       onEdit,
-
+      completed,
       editing,
       text,
       id
@@ -53,12 +49,12 @@ class Todo extends Component {
     return (
       <TodoItem>
         <Checkbox
-          defaultChecked={this.completed}
+          defaultChecked={completed}
           onClick={onToggle}
         />
         <TodoText
           onClick={onEditActivate}
-          completed={this.completed}
+          completed={completed}
         >
           <Editable
             editing={editing}

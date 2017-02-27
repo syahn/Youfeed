@@ -14,8 +14,7 @@ export const ui = (state = initialState, action) => {
         confirmLoading: true,
       });
     case C.SET_VISIBILITY_FILTER:
-      return updateObject(state, { 'SET_VISIBILITY_FILTER': action.filter });
-
+      return updateObject(state, { 'visibilityFilter': action.filter });
 		default:
 			return state;
 	}

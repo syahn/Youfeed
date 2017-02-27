@@ -2,20 +2,17 @@
 import React, { Component } from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import store from './stores/ConfigureStore';
+import configureStore from './stores/configureStore';
 import App from './components/app/App';
 import About from './components/about';
 import NotFound from './components/notfound';
-import { saveState } from './stores/localStorage';
 import { listenToAuth } from './actions/auth/AuthActionCreator';
 
+const store = configureStore();
 
 class Root extends Component {
 	componentWillMount() {
 		store.dispatch(listenToAuth());
-		store.subscribe(() => {
-			saveState(store.getState());
-		});
 	}
 
   render() {

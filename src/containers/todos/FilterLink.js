@@ -6,17 +6,17 @@ import Link from '../../components/todos/Link';
 // filter: string is the visibility filter it represents.
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-        active: ownProps.filter === state.visibilityFilter
-    };
+  return {
+    active: ownProps.filter === state.ui.visibilityFilter
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        onClick: () => {
-            dispatch(setVisibilityFilter(ownProps.filter));
-        }
-    };
+  return {
+    onClick: () => {
+      dispatch(setVisibilityFilter(ownProps.filter));
+    }
+  };
 };
 
 const FilterLink = connect(mapStateToProps, mapDispatchToProps)(Link);

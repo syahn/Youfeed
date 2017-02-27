@@ -1,4 +1,5 @@
 import initialState from '../database';
+
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');

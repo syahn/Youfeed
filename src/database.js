@@ -9,8 +9,8 @@ const initialState = {
       visibilityFilter : 'SHOW_ALL',
     },
     widgets: [
-      {type: 'todo', id: uuid() },
-      {type: 'photo', id: uuid() }
+      {type: 'todo', id: uuid()},
+      {type: 'photo', id: uuid()}
     ]
 };
 

@@ -44,18 +44,16 @@ function Feed({ story }) {
 
   return(
     <FeedItem>
-      <a href={story.permalinkUrl} className="list-group-item">
-        <FeedItemHeader>
-          <img src={source.icon} />
-          {story.title}
-        </FeedItemHeader>
-        <div>
-          {ReactHtmlParser(source.text)}
-        </div>
-        <span className="source">
-          {source.title}
-        </span>
-      </a>
+      <FeedItemHeader>
+        <img src={source.icon} />
+        <a href={story.permalinkUrl} target="_blank">{story.title}</a>
+      </FeedItemHeader>
+      <div>
+        {ReactHtmlParser(source.text)}
+      </div>
+      <span className="source">
+        {source.title}
+      </span>
     </FeedItem>
   );
 }
