@@ -18,13 +18,13 @@ export const visibilityFilter = createReducer('SHOW_ALL', {
 
 // Case reducer
 function addTodo(todosState, action) {
-  const newTodos = todosState.concat({
+  const newTodos = [{
     id: action.id,
     text: action.text,
     completed: false
-  });
+  }];
 
-  return newTodos;
+  return newTodos.concat(todosState);
 }
 
 // Case reducer
