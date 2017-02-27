@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Editable from './Editable';
 import { Checkbox } from 'antd';
 import styled from 'styled-components';
@@ -28,44 +28,55 @@ const TodoText = styled.li`
   text-decoration: ${props => props.completed ? 'line-through' : 'none'}
 `;
 
-function Todo({
-  onEditActivate,
-  onToggle,
-  onDelete,
-  onEdit,
-  completed,
-  editing,
-  text,
-  id
-}){
-  return (
-    <TodoItem>
-      <Checkbox
-        defaultChecked={completed}
-        onClick={onToggle}
-      />
+class Todo extends Component {
+  constructor(props){
+    super(props);
 
-      <TodoText
-        onClick={onEditActivate}
-        completed={completed}
-      >
-        <Editable
-          editing={editing}
-          onEdit={onEdit}
-          text={text}
-          id={id}
+  }
+
+  componentDidUpdate() {
+    this.completed = this.props.completed;
+
+  }
+  render() {
+    const {
+      onEditActivate,
+      onToggle,
+      onDelete,
+      onEdit,
+
+      editing,
+      text,
+      id
+    } = this.props;
+
+    return (
+      <TodoItem>
+        <Checkbox
+          defaultChecked={this.completed}
+          onClick={onToggle}
         />
-      </TodoText>
-
-      <DeleteButton
-        className="todo__delete"
-        shape="circle"
-        onClick={onDelete}
-      >
-        x
-      </DeleteButton>
-    </TodoItem>
-  );
+        <TodoText
+          onClick={onEditActivate}
+          completed={this.completed}
+        >
+          <Editable
+            editing={editing}
+            onEdit={onEdit}
+            text={text}
+            id={id}
+          />
+        </TodoText>
+        <DeleteButton
+          className="todo__delete"
+          shape="circle"
+          onClick={onDelete}
+        >
+          x
+        </DeleteButton>
+      </TodoItem>
+    );
+  }
 }
 //
 // Todo.propTypes = {
