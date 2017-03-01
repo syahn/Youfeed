@@ -8,11 +8,12 @@ const TodoItems = styled.ul`
 `;
 
 function TodoList({
+  auth,
   todos,
   onTodoClick,
   onDeleteClick,
   onEditClick,
-  onEditActivateClick
+  onEditActivateClick,
 }) {
   return (
     <TodoItems>
@@ -20,9 +21,9 @@ function TodoList({
         <Todo
           key={todo.id}
           {...todo}
-          onToggle={() => onTodoClick(todo.id)}
-          onDelete={() => onDeleteClick(todo.id)}
-          onEdit={(text) => onEditClick(todo.id, text)}
+          onToggle={() => onTodoClick(todo.id, todo.dbKey, todo.completed, auth)}
+          onDelete={() => onDeleteClick(todo.id, todo.dbKey, auth)}
+          onEdit={(text) => onEditClick(todo.id, todo.dbKey, text, auth)}
           onEditActivate={() => onEditActivateClick(todo.id)}
         />
       )}

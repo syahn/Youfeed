@@ -3,12 +3,9 @@ import {
   toggleTodo,
   deleteTodo,
   editTodo,
-  editActivateTodo
+  editActivateTodo,
 } from '../../actions/todo/TodoActionCreators';
 import TodoList from '../../components/todos/TodoList';
-
-// VisibleTodoList that subscribes to the Redux store and knows how to apply the current visibility filter.
-// VisibleTodoList filters the todos according to the current visibility filter and renders a TodoList.
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -23,7 +20,8 @@ const getVisibleTodos = (todos, filter) => {
 
 const mapStateToProps = (state) => {
   return {
-    todos: getVisibleTodos(state.todos, state.ui.visibilityFilter)
+    todos: getVisibleTodos(state.todos, state.ui.visibilityFilter),
+    auth: state.auth
   };
 };
 
@@ -33,7 +31,7 @@ const VisibleTodoList = connect(
     onTodoClick: toggleTodo,
     onDeleteClick: deleteTodo,
     onEditClick: editTodo,
-    onEditActivateClick: editActivateTodo
+    onEditActivateClick: editActivateTodo,
   }
 )(TodoList);
 

@@ -1,17 +1,18 @@
 import { createStore, applyMiddleware } from 'redux';
-import throttle from 'lodash/throttle';
+// import throttle from 'lodash/throttle';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/index';
-import { saveState, loadState } from './localStorage';
+// import { saveState, loadState } from './localStorage';
+import initialState from '../database';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 function configureStore() {
-  const persistedState = loadState();
+  // const persistedState = loadState();
   const loggerMiddleware = createLogger();
   const store = createStore(
       rootReducer,
-      persistedState,
+      initialState,
       composeWithDevTools(
         applyMiddleware(
           thunkMiddleware,
@@ -20,9 +21,9 @@ function configureStore() {
       )
   );
 
-  store.subscribe(throttle(() => {
-    saveState(store.getState());
-  }, 1000));
+  // store.subscribe(throttle(() => {
+  //   saveState(store.getState());
+  // }, 1000));
 
   return store;
 }

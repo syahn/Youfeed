@@ -3,12 +3,23 @@ import { updateObject,
          deleteItemInArray,
          createReducer } from '../util';
 
-// Case reducer
 function addTodo(todosState, action) {
   const newTodos = [{
     id: action.id,
     text: action.text,
-    completed: false
+    dbKey: action.key,
+    completed: action.completed
+  }];
+
+  return newTodos.concat(todosState);
+}
+
+function getTodo(todosState, action) {
+  const newTodos = [{
+    id: action.id,
+    text: action.text,
+    dbKey: action.key,
+    completed: action.completed
   }];
 
   return newTodos.concat(todosState);
@@ -22,6 +33,7 @@ function toggleTodo(todosState, action) {
 
     return newTodos;
 }
+
 
 // Case reducer
 function deleteTodo(todosState, action) {
@@ -48,9 +60,10 @@ function editActivateTodo(todosState, action) {
 
 // Slice reducer
 export const todos = createReducer([], {
-    'ADD_TODO' : addTodo,
-    'TOGGLE_TODO' : toggleTodo,
-    'DELETE_TODO' : deleteTodo,
-    'EDIT_TODO' : editTodo,
-    'EDIT_ACTIVATE_TODO' : editActivateTodo
+    'ADD_TODO': addTodo,
+    'TOGGLE_TODO': toggleTodo,
+    'DELETE_TODO': deleteTodo,
+    'EDIT_TODO': editTodo,
+    'EDIT_ACTIVATE_TODO': editActivateTodo,
+    'GET_FULFILLED_TODO': getTodo
 });

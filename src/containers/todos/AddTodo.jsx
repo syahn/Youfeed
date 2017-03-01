@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../../actions/todo/TodoActionCreators';
+import { appendTodo } from '../../actions/todo/TodoActionCreators';
 import { Button } from 'antd';
 import styled from 'styled-components';
 
@@ -32,7 +32,7 @@ const AddButton = styled(Button)`
   }
 `;
 
-function AddTodo({ dispatch }) {
+function AddTodo({ dispatch, auth }) {
   let input;
 
   return (
@@ -42,7 +42,7 @@ function AddTodo({ dispatch }) {
       if (!input.value.trim()) {
         return;
       }
-      dispatch(addTodo(input.value));
+      dispatch(appendTodo(input.value, auth));
       input.value = '';
     }}>
       <Input
@@ -60,4 +60,6 @@ function AddTodo({ dispatch }) {
   );
 }
 
-export default connect()(AddTodo);
+
+
+export default connect(state => ({ auth: state.auth}))(AddTodo);
