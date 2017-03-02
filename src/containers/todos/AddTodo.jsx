@@ -32,7 +32,7 @@ const AddButton = styled(Button)`
   }
 `;
 
-function AddTodo({ dispatch, auth }) {
+function AddTodo({ dispatch }) {
   let input;
 
   return (
@@ -42,7 +42,7 @@ function AddTodo({ dispatch, auth }) {
       if (!input.value.trim()) {
         return;
       }
-      dispatch(appendTodo(input.value, auth));
+      dispatch(appendTodo(input.value));
       input.value = '';
     }}>
       <Input
@@ -60,6 +60,4 @@ function AddTodo({ dispatch, auth }) {
   );
 }
 
-
-
-export default connect(state => ({ auth: state.auth}))(AddTodo);
+export default connect()(AddTodo);

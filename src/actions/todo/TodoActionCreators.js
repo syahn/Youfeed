@@ -21,7 +21,7 @@ export const getTodo = () => dispatch => {
   });
 };
 
-export const appendTodo = (text, auth) => dispatch => {
+export const appendTodo = text => dispatch => {
   const newId = uuid();
   let newKey = {};
   let newTodo = {
@@ -31,7 +31,7 @@ export const appendTodo = (text, auth) => dispatch => {
     text: text,
     completed: false,
   };
-  if(auth.status == 'AUTH_LOGGED_IN'){
+  if(auth.currentUser){
     dispatch(pushTodo(newTodo));
   } else {
     dispatch(newTodo);
@@ -53,13 +53,13 @@ export const pushTodo = todo => dispatch => {
 };
 
 
-export const toggleTodo = (id, key, completed, auth) => dispatch => {
+export const toggleTodo = (id, key, completed) => dispatch => {
   const newAction = {
     type: C.TOGGLE_TODO,
     id
   };
 
-  if(auth.status == 'AUTH_LOGGED_IN'){
+  if(auth.currentUser){
     dispatch(updateToggleTodo(newAction, completed, key));
   } else {
     dispatch(newAction);
@@ -78,12 +78,12 @@ export const updateToggleTodo = (newAction, completed, key) => dispatch => {
   });
 };
 
-export const deleteTodo = (id, key, auth) => dispatch => {
+export const deleteTodo = (id, key) => dispatch => {
   const newAction = {
     type: C.DELETE_TODO,
     id
   };
-  if(auth.status == 'AUTH_LOGGED_IN'){
+  if(auth.currentUser){
     dispatch(removeTodo(newAction, key));
   } else {
     dispatch(newAction);
@@ -101,14 +101,14 @@ export const removeTodo = (newAction, key) => dispatch => {
   });
 };
 
-export const editTodo = (id, key, text, auth) => dispatch => {
+export const editTodo = (id, key, text) => dispatch => {
   const newAction = {
     type: C.EDIT_TODO,
     id,
     text
   };
 
-  if(auth.status == 'AUTH_LOGGED_IN'){
+  if(auth.currentUser){
     dispatch(updateTodo(newAction, key));
   } else {
     dispatch(newAction);

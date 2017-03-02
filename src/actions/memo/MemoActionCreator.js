@@ -2,7 +2,6 @@ import { database, auth } from '../../firebaseApp';
 import C from '../../constants';
 
 export const getMemo = () => dispatch => {
-  console.log('auth: ', auth.currentUser);
   return database.ref(`/memo/${auth.currentUser.uid}/`)
   .once('value')
   .then(snap => {
@@ -20,13 +19,13 @@ export const downloadMemo = memo => ({
 });
 
 
-export const editMemo = (text, auth) => dispatch => {
+export const editMemo = text => dispatch => {
   const newAction = {
     type: C.EDIT_MEMO,
     text
   };
 
-  if(auth.status == 'AUTH_LOGGED_IN'){
+  if(auth.currentUser){
     dispatch(updateMemo(newAction));
   } else {
     dispatch(newAction);

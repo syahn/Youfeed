@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Header from '../header/Header';
+import { getTodo } from '../../actions/todo/TodoActionCreators';
+import { getMemo } from '../../actions/memo/MemoActionCreator';
 import FeedControl from '../../components/layout/FeedControl';
 import WidgetControl from '../../containers/widgets/WidgetControl';
 import AsyncApp from '../../containers/AsyncApp';
@@ -8,13 +11,10 @@ import { Layout } from 'antd';
 import styled from 'styled-components';
 const { Footer } = Layout;
 
-//TODO: Fill it up
 const propTypes = {
-
-};
-//TODO: Fill it up
-const defaultProps = {
-
+  auth: PropTypes.object,
+  onGetTodo: PropTypes.func,
+  onGetMemo: PropTypes.func
 };
 
 const GlobalLayout = styled(Layout)``;
@@ -31,13 +31,20 @@ const RightCol = styled.div`
   width: 833px;
 `;
 
-
 const FeedContent = styled.div`
   width: 512px;
   padding-right: 10px;
 `;
 
 class App extends Component {
+  componentWillReceiveProps(nextProps) {
+    const { auth, onGetTodo, onGetMemo } = this.props;
+    if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
+      onGetTodo();
+      onGetMemo();
+    }
+  }
+
   render() {
     return (
       <GlobalLayout>
@@ -59,6 +66,10 @@ class App extends Component {
 }
 
 App.propTypes = propTypes;
-App.defaultProps = defaultProps;
 
-export default App;
+const mapStateToProps = state => ({ auth: state.auth });
+
+export default connect(mapStateToProps, {
+  onGetTodo: getTodo,
+  onGetMemo: getMemo
+})(App);
