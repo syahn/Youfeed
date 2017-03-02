@@ -1,12 +1,11 @@
-// These functions are referenced from Redux documentation
-
-// Reusable utility functions
+// This functions is referenced from Redux documentation
 export function updateObject(oldObject, newValues) {
-    // Encapsulate the idea of passing a new object as the first parameter
-    // to Object.assign to ensure we correctly copy data instead of mutating
-    return Object.assign({}, oldObject, newValues);
+  // Encapsulate the idea of passing a new object as the first parameter
+  // to Object.assign to ensure we correctly copy data instead of mutating
+  return Object.assign({}, oldObject, newValues);
 }
 
+// This functions is referenced from Redux documentation
 export function updateItemInArray(array, itemId, updateItemCallback) {
     const updatedItems = array.map(item => {
         if(item.id !== itemId) {
@@ -21,6 +20,7 @@ export function updateItemInArray(array, itemId, updateItemCallback) {
     return updatedItems;
 }
 
+// This functions is referenced from Redux documentation
 export function deleteItemInArray(array, itemId) {
     const updatedArrays = array.filter(item => {
           return item.id !== itemId;
@@ -29,6 +29,7 @@ export function deleteItemInArray(array, itemId) {
     return updatedArrays;
 }
 
+// This functions is referenced from Redux documentation
 export function createReducer(initialState, handlers) {
   return function reducer(state = initialState, action) {
     if (handlers.hasOwnProperty(action.type)) {

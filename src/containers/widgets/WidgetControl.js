@@ -12,15 +12,9 @@ const mapStateToProps = state => ({
   widgets: state.widgets
 });
 
-const mapDispatchToProps = dispatch => ({
-  onMove(from, to) {
-    dispatch(moveWidget(from, to));
-  }
-});
-
 const ControlWidget = connect(
   mapStateToProps,
-  mapDispatchToProps
+  { onMove: moveWidget }
 )(WidgetBox);
 
 export default DragDropContext(HTML5Backend)(ControlWidget);

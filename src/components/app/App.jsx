@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from '../header/Header';
 import { getTodo } from '../../actions/todo/TodoActionCreators';
 import { getMemo } from '../../actions/memo/MemoActionCreator';
+import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCreator';
 import FeedControl from '../../components/layout/FeedControl';
 import WidgetControl from '../../containers/widgets/WidgetControl';
 import AsyncApp from '../../containers/AsyncApp';
@@ -38,10 +39,22 @@ const FeedContent = styled.div`
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
-    const { auth, onGetTodo, onGetMemo } = this.props;
+    const {
+      auth,
+      widgets,
+      onGetTodo,
+      onGetMemo,
+      onGetWidget,
+      onEditWidget
+    } = this.props;
+
     if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
       onGetTodo();
       onGetMemo();
+      onGetWidget();
+    }
+    if (auth.status == 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
+      onEditWidget(nextProps.widgets);
     }
   }
 
@@ -67,9 +80,14 @@ class App extends Component {
 
 App.propTypes = propTypes;
 
-const mapStateToProps = state => ({ auth: state.auth });
+const mapStateToProps = state => ({
+  auth: state.auth,
+  widgets: state.widgets
+});
 
 export default connect(mapStateToProps, {
   onGetTodo: getTodo,
-  onGetMemo: getMemo
+  onGetMemo: getMemo,
+  onGetWidget: getWidget,
+  onEditWidget: editLayoutWidget,
 })(App);

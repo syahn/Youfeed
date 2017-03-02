@@ -12,6 +12,14 @@ function addWidget(widgetState, action){
 
 /**
  * Case reducer
+ * Set list of widgets from db
+ */
+function getWidget(widgetState, action){
+  return action.widgets;
+}
+
+/**
+ * Case reducer
  * Move widget in different order
  */
 function moveWidget(widgetState, action){
@@ -27,6 +35,7 @@ function moveWidget(widgetState, action){
 
 
 export const widgets = createReducer([], {
-    'ADD_WIDGET': addWidget,
-    'MOVE_WIDGET' : moveWidget,
+  'ADD_WIDGET': addWidget,
+  'MOVE_WIDGET': moveWidget,
+  'SET_WIDGET': getWidget
 });

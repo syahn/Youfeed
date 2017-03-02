@@ -41,6 +41,7 @@ function WidgetBox({ widgets, onMove }) {
             <Widget
               key={item.id}
               id={item.id}
+              list={widgets}
               element={item.widget}
               onMove={onMove}
               type={item.type}
