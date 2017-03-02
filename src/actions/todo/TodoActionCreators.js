@@ -34,7 +34,6 @@ export const appendTodo = (text, auth) => dispatch => {
   if(auth.status == 'AUTH_LOGGED_IN'){
     dispatch(pushTodo(newTodo));
   } else {
-
     dispatch(newTodo);
   }
 };

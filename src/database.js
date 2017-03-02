@@ -2,6 +2,7 @@ import uuid from 'uuid';
 
 const initialState = {
     todos : [],
+    memo: '',
     ui : {
       signInModalVisible: false,
       signInModalconfirmLoading: false,
@@ -10,7 +11,9 @@ const initialState = {
     },
     widgets: [
       {type: 'todo', id: uuid()},
-      {type: 'photo', id: uuid()}
+      {type: 'memo', id: uuid()},
+      {type: 'photo', id: uuid()},
+
     ]
 };
 

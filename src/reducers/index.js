@@ -4,6 +4,7 @@ import { selectedReddit, postsByReddit} from './feeds/feed';
 import { forecastWeather } from './weather/weather';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets/widget';
+import { memo  } from './memo';
 import { ui } from './ui/ModalSignIn';
 
 
@@ -13,6 +14,7 @@ const Reducer = combineReducers({
   postsByReddit,
   forecastWeather,
   auth,
+  memo,
   ui,
   widgets
 });

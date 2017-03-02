@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Card } from '../../ui-components/General';
+import { Card } from '../ui-components/General';
 
 const propTypes = {
 

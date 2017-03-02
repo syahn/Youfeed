@@ -3,8 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Todo from '../todos/AppTodo';
 import Weather from '../weather/ViewWeather';
+import MemoBox from '../memo/MemoBox';
+import PhotoFrame from '../photoframe/PhotoFrame';
 import Widget from './Widget';
-import PhotoFrame from './photo-frame/PhotoFrame';
 
 const propTypes = {
 };
@@ -21,6 +22,7 @@ function WidgetBox({ widgets, onMove }) {
     todo: <Todo />,
     weather: <Weather />,
     photo: <PhotoFrame />,
+    memo: <MemoBox />
   };
 
   const widgetList = widgets.map((widget) => (
