@@ -20,8 +20,7 @@ class FeedBox extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { auth } = this.props;
-    if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
+    if (nextProps.auth.status == 'AUTH_LOGGED_IN') {
       this.loadContent(nextProps.auth);
     }
   }
