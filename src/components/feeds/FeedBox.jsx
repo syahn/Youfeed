@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import querystring from 'querystring';
 import Feed from './Feed';
-
 import { superfeedrConfig } from '../../config';
 
-
 const propTypes = {
-
-};
-const defaultProps = {
 
 };
 
@@ -83,7 +79,11 @@ class FeedBox extends Component {
   }
 }
 
-FeedBox.propTypes = propTypes;
-FeedBox.defaultProps = defaultProps;
 
-export default FeedBox;
+FeedBox.propTypes = propTypes;
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(FeedBox);

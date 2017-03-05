@@ -7,7 +7,7 @@ import querystring from 'querystring';
 import FeedSubscript from './FeedSubscript';
 import { superfeedrConfig } from '../../config';
 import { Card } from '../ui-components/General';
-
+import { Link } from 'react-router';
 
 const propTypes = {
 
@@ -68,6 +68,12 @@ class FeedControl extends Component {
         <button onClick={this.getHN} >
           Hacker News
         </button>
+        <Link to="/" activeClassName="activeNav">
+          <p>RSS</p>
+        </Link>
+        <Link to="/hacker-news" activeClassName="activeNav">
+          <p>Hacker News</p>
+        </Link>
       </Col>
     );
   }

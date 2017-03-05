@@ -7,7 +7,7 @@ import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCr
 import FeedControl from '../../components/feeds/FeedControl';
 import WidgetControl from '../../containers/widgets/WidgetControl';
 // import AsyncApp from '../../containers/AsyncApp';
-import FeedBox from '../feeds/FeedBox';
+
 import { Layout } from 'antd';
 import styled from 'styled-components';
 const { Footer } = Layout;
@@ -59,6 +59,7 @@ class App extends Component {
     }
   }
 
+
   render() {
     return (
       <GlobalLayout>
@@ -67,8 +68,7 @@ class App extends Component {
             <FeedControl auth = {this.props.auth} />
             <RightCol>
               <FeedContent>
-
-                <FeedBox auth = {this.props.auth} />
+                {this.props.children}
               </FeedContent>
               <WidgetControl />
             </RightCol>
