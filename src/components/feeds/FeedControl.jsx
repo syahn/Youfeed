@@ -41,14 +41,21 @@ class FeedControl extends Component {
             <p key={id++}>{item.subscription.feed.title}</p>
           ))
         }
-        <Link to="/" activeClassName="activeNav">
+        <Link to="/">
           <p>RSS</p>
         </Link>
 
-        <Link to="/hacker-news" activeClassName="activeNav">
+        <Link to="/hacker-news">
           <img style={{ width: '24px'}} src="https://dl.dropbox.com/s/t8avm6wndwfxf04/hackerNews.svg?dl=0" alt="hackernews" />
           <span>Hacker News</span>
+          <br />
         </Link>
+
+        <Link to="/medium">
+          <img style={{ width: '40px'}} src="https://dl.dropbox.com/s/lh0qk2agauwzjez/medium-m-color-100px.png?dl=0" alt="medium" />
+          <span>Medium</span>
+        </Link>
+
       </Col>
     );
   }
