@@ -54,6 +54,12 @@ class FeedControl extends Component {
         <Link to="/medium">
           <img style={{ width: '40px'}} src="https://dl.dropbox.com/s/lh0qk2agauwzjez/medium-m-color-100px.png?dl=0" alt="medium" />
           <span>Medium</span>
+          <br />
+        </Link>
+
+        <Link to="/behance">
+          <img style={{ width: '40px'}} src="https://dl.dropbox.com/s/ztbtx0mx7q3un9u/behance.png?dl=0" alt="medium" />
+          <span>Behance</span>
         </Link>
 
       </Col>

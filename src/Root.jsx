@@ -7,6 +7,7 @@ import App from './components/app/App';
 import FeedBox from './components/feeds/FeedBox';
 import HackerNews from './components/feeds/HackerNews';
 import Medium from './components/feeds/Medium';
+import Behance from './components/feeds/Behance';
 import About from './components/about';
 import NotFound from './components/notfound';
 import { listenToAuth } from './actions/auth/AuthActionCreator';
@@ -26,6 +27,7 @@ class Root extends Component {
 					<IndexRoute component={FeedBox} />
 					<Route path="/hacker-news" component={HackerNews} />
 					<Route path="/medium" component={Medium} />
+					<Route path="/behance" component={Behance} />
 				</Route>
         <Route path="/about" component={About} />
         <Route path="*" component={NotFound} />

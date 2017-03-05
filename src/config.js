@@ -15,3 +15,7 @@ export const superfeedrConfig = {
   login: 'Frankahn',
   token: '84a7ae219672104d9a8641093444ca2f'
 };
+
+export const behanceConfig = {
+  key: 'aGKdIP0yb7YmWlW26UhnJczF4Vx8UlLR'
+};
