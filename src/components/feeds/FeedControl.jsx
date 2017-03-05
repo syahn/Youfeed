@@ -62,6 +62,11 @@ class FeedControl extends Component {
           <span>Behance</span>
         </Link>
 
+        <Link to="/dribble">
+          <img style={{ width: '40px'}} src="https://dl.dropbox.com/s/089c3x5fquh8oe9/dribbble%20.svg?dl=0" alt="medium" />
+          <span>Dribble</span>
+        </Link>
+
       </Col>
     );
   }

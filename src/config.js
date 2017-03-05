@@ -19,3 +19,7 @@ export const superfeedrConfig = {
 export const behanceConfig = {
   key: 'aGKdIP0yb7YmWlW26UhnJczF4Vx8UlLR'
 };
+
+export const dribbleConfig = {
+  accessToken: '3da719d0b673e20c483853b77b8bf4402ca49d03270f7df7d42a60aeba64ad72'
+};
