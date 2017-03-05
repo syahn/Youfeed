@@ -58,13 +58,21 @@ class FeedControl extends Component {
         </Link>
 
         <Link to="/behance">
-          <img style={{ width: '40px'}} src="https://dl.dropbox.com/s/ztbtx0mx7q3un9u/behance.png?dl=0" alt="medium" />
+          <img style={{ width: '28px'}} src="https://dl.dropbox.com/s/ztbtx0mx7q3un9u/behance.png?dl=0" alt="medium" />
           <span>Behance</span>
+          <br />
         </Link>
 
         <Link to="/dribble">
-          <img style={{ width: '40px'}} src="https://dl.dropbox.com/s/089c3x5fquh8oe9/dribbble%20.svg?dl=0" alt="medium" />
+          <img style={{ width: '28px'}} src="https://dl.dropbox.com/s/089c3x5fquh8oe9/dribbble%20.svg?dl=0" alt="medium" />
           <span>Dribble</span>
+          <br />
+        </Link>
+
+        <Link to="/techmeme">
+          <img style={{ width: '28px'}} src="https://dl.dropbox.com/s/2byudsj3akgzkib/techmeme_size_328x328.jpg?dl=0" alt="medium" />
+          <span>Techmeme</span>
+          <br />
         </Link>
 
       </Col>
