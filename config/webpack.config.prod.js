@@ -105,26 +105,24 @@ module.exports = {
       // we need to add the supported extension to this loader too.
       // Add one new line in `exclude` for each loader.
       //
-      // "file" loader makes sure those assets get served by WebpackDevServer.
-      // When you `import` an asset, you get its (virtual) filename.
-      // In production, they would get copied to the `build` folder.
-      // "url" loader works like "file" loader except that it embeds assets
-      // smaller than specified limit in bytes as data URLs to avoid requests.
-      // A missing `test` is equivalent to a match.
+      // "file" loader makes sure those assets end up in the `build` folder.
+      // When you `import` an asset, you get its filename.
+      // "url" loader works just like "file" loader but it also embeds
+      // assets smaller than specified size as data URLs to avoid requests.
       {
         exclude: [
           /\.html$/,
           /\.(js|jsx)$/,
-          /\.less$/,
           /\.css$/,
+          /\.less$/,
           /\.json$/,
           /\.svg$/
         ],
-          loader: 'url',
-          query: {
+        loader: 'url',
+        query: {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]'
-         }
+        }
       },
       // Process JS with Babel.
       {
@@ -132,13 +130,10 @@ module.exports = {
         include: paths.appSrc,
         loader: 'babel',
         query: {
-
           plugins: [
-            ['import', [{ libraryName: "antd", style: true }]],
-          ],
-
+            ['import', [{ libraryName: "antd", style: true }]],  // 加载 less 文件
+          ]
         }
-
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -154,15 +149,7 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.css$/,
-        // "?-autoprefixer" disables autoprefixer in css-loader itself:
-        // https://github.com/webpack/css-loader/issues/281
-        // We already have it thanks to postcss. We only pass this flag in
-        // production because "css" loader only enables autoprefixer-powered
-        // removal of unnecessary prefixes when Uglify plugin is enabled.
-        // Webpack 1.x uses Uglify plugin as a signal to minify *all* the assets
-        // including CSS. This is confusing and will be removed in Webpack 2:
-        // https://github.com/webpack/webpack/issues/283
-        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss')
+        loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1!postcss')
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
       {
@@ -170,7 +157,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract(
           'css?sourceMap&!' +
           'postcss!' +
-          'less-loader?{"sourceMap":true,"modifyVars":{"@primary-color":"#1DA57A"}}'
+          'less-loader?{"sourceMap":true,"modifyVars":{"@font-size-base":"14px","@font-family":"-apple-system, BlinkMacSystemFont, sans-serif"}}'
         ),
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
@@ -179,30 +166,14 @@ module.exports = {
         test: /\.json$/,
         loader: 'json'
       },
-      // "file" loader makes sure those assets end up in the `build` folder.
-      // When you `import` an asset, you get its filename.
+      // "file" loader for svg
       {
-        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        test: /\.svg$/,
         loader: 'file',
         query: {
           name: 'static/media/[name].[hash:8].[ext]'
         }
-      },
-      // "url" loader works just like "file" loader but it also embeds
-      // assets smaller than specified size as data URLs to avoid requests.
-      {
-        test: /\.(mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]'
-        }
-      },
-      // Parse less files and modify variables
-      {
-        test: /\.less$/,
-        loader: 'style!css!postcss!less?{modifyVars:{"@primary-color":"#1DA57A"}}'
-      },
+      }
     ]
   },
 
@@ -268,7 +239,11 @@ module.exports = {
       }
     }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
-    new ExtractTextPlugin('static/css/[name].[contenthash:8].css')
+    new ExtractTextPlugin('static/css/[name].[contenthash:8].css'),
+    // Generate a manifest file which contains a mapping of all asset filenames
+    // to their corresponding output file so that tools can pick it up without
+    // having to parse `index.html`.
+
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

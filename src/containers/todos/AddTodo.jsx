@@ -10,7 +10,7 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  position: relative;;
+  position: relative;
   display: inline-block;
   width: 85%;
   padding: 4px 7px;

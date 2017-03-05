@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import querystring from 'querystring';
 import Feed from './Feed';
 
+import { superfeedrConfig } from '../../config';
+
+
 const propTypes = {
 
 };
@@ -14,24 +17,27 @@ class FeedBox extends Component {
     super(props);
     this.state = {
       stories: [],
-      login: 'Frankahn',
-      token: '84a7ae219672104d9a8641093444ca2f',
+      token: superfeedrConfig.token,
+      login: superfeedrConfig.login,
       data: {}
     };
   }
 
-  componentDidMount() {
-    this.loadContent();
+  componentWillReceiveProps(nextProps) {
+    const { auth } = this.props;
+    if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
+      this.loadContent(nextProps.auth);
+    }
   }
 
-  loadContent() {
+  loadContent(auth) {
     const { login, token } = this.state;
     let url = "https://stream.superfeedr.com/?";
     const query = {
       'count': 20,
       'hub.mode': 'retrieve',
       'authorization': btoa([login, token].join(':')),
-      'hub.callback': 'https://push.superfeedr.com/dev/null'
+      'hub.callback': `https://youfeed.space/${auth.uid}`
     };
     url = url + querystring.stringify(query);
 

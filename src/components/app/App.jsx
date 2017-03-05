@@ -4,9 +4,9 @@ import Header from '../header/Header';
 import { getTodo } from '../../actions/todo/TodoActionCreators';
 import { getMemo } from '../../actions/memo/MemoActionCreator';
 import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCreator';
-import FeedControl from '../../components/layout/FeedControl';
+import FeedControl from '../../components/feeds/FeedControl';
 import WidgetControl from '../../containers/widgets/WidgetControl';
-import AsyncApp from '../../containers/AsyncApp';
+// import AsyncApp from '../../containers/AsyncApp';
 import FeedBox from '../feeds/FeedBox';
 import { Layout } from 'antd';
 import styled from 'styled-components';
@@ -22,7 +22,8 @@ const GlobalLayout = styled(Layout)``;
 
 const ContentLayout = styled.div`
   display: flex;
-  width: 1014px;
+  justify-content: center;
+  width: 1126px;
   margin: 0 auto;
 `;
 
@@ -63,11 +64,11 @@ class App extends Component {
       <GlobalLayout>
         <Header />
           <ContentLayout>
-            <FeedControl />
+            <FeedControl auth = {this.props.auth} />
             <RightCol>
               <FeedContent>
-                <FeedBox />
-                <AsyncApp />
+
+                <FeedBox auth = {this.props.auth} />
               </FeedContent>
               <WidgetControl />
             </RightCol>
