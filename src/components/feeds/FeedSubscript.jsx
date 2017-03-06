@@ -70,23 +70,18 @@ class FeedSubscript extends Component {
     return(
       <Form
         onSubmit={this.handleSubmit}
-
       >
-
-          <Input
-            addonBefore={<Icon type="link" />}
-            defaultValue={'https://'}
-            innerRef={ node => this.input = node }
-          />
-
-
-          <Button_
-            type="primary"
-            htmlType="submit"
-          >
-            Add
-          </Button_>
-
+        <Input
+          addonBefore={<Icon type="link" />}
+          defaultValue={'https://'}
+          innerRef={ node => this.input = node }
+        />
+        <Button_
+          type="primary"
+          htmlType="submit"
+        >
+          Add
+        </Button_>
       </Form>
     );
   }

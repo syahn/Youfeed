@@ -10,6 +10,7 @@ import Medium from './components/feeds/Medium';
 import Behance from './components/feeds/Behance';
 import Dribble from './components/feeds/Dribble';
 import TechMeme from './components/feeds/TechMeme';
+import Reddit from './containers/Reddit';
 import About from './components/about';
 import NotFound from './components/notfound';
 import { listenToAuth } from './actions/auth/AuthActionCreator';
@@ -32,6 +33,7 @@ class Root extends Component {
 					<Route path="/behance" component={Behance} />
 					<Route path="/dribble" component={Dribble} />
 					<Route path="/techmeme" component={TechMeme} />
+					<Route path="/reddit" component={Reddit} />
 				</Route>
         <Route path="/about" component={About} />
         <Route path="*" component={NotFound} />

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import querystring from 'querystring';
-// import FeedSelect from '../../containers/FeedSelect';
+import FeedSelect from '../../containers/FeedSelect';
 import FeedSubscript from './FeedSubscript';
 import { superfeedrConfig } from '../../config';
 import { Card } from '../ui-components/General';
@@ -74,6 +74,13 @@ class FeedControl extends Component {
           <span>Techmeme</span>
           <br />
         </Link>
+
+        <Link to="/reddit">
+          <img style={{ width: '28px'}} src="https://dl.dropbox.com/s/c7cacxajdx5s3sm/reddit.svg?dl=0" alt="medium" />
+          <span>Reddit</span>
+          <br />
+        </Link>
+        <FeedSelect />
 
       </Col>
     );
