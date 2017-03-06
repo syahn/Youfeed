@@ -43,6 +43,8 @@ export const selectedReddit = (state = 'frontend', action) => {
   }
 };
 
+
+
 export const postsByReddit = (state = { }, action) => {
   switch (action.type) {
     case INVALIDATE_REDDIT:

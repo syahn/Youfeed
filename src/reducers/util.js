@@ -22,11 +22,16 @@ export function updateItemInArray(array, itemId, updateItemCallback) {
 
 // This functions is referenced from Redux documentation
 export function deleteItemInArray(array, itemId) {
-    const updatedArrays = array.filter(item => {
-          return item.id !== itemId;
-        }
-    );
-    return updatedArrays;
+  const updatedArrays = array.filter(item => {
+      return item.id !== itemId;
+    }
+  );
+  return updatedArrays;
+}
+
+export function addItemInArray(array, item) {
+  const updatedArrays = [item].concat(array);
+  return updatedArrays;
 }
 
 // This functions is referenced from Redux documentation

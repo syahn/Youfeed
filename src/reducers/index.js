@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { todos } from './todos/todo';
 import { selectedReddit, postsByReddit} from './feeds/feed';
+import { postsByHackerNews } from './feeds/hackernews';
 import { forecastWeather } from './weather/weather';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets';
@@ -12,6 +13,7 @@ const Reducer = combineReducers({
   todos,
   selectedReddit,
   postsByReddit,
+  postsByHackerNews,
   forecastWeather,
   auth,
   memo,

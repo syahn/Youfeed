@@ -1,5 +1,8 @@
 import React, { Component  } from 'react';
 import styled from 'styled-components';
+import { fetchPosts } from '../../actions/feed/hackernews';
+import { connect } from 'react-redux';
+
 
 const propTypes = {
 
@@ -20,53 +23,14 @@ const FeedItem = styled.div`
 
 class HackerNews extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: [],
-      items: []
-    };
-  }
   componentWillMount() {
-    this.getHN();
+    const { dispatch } = this.props;
+    dispatch(fetchPosts('hackernews'));
   }
-
-  getHN = () => {
-
-    fetch(`https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`)
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          list: json
-        });
-        this.fetchItem();
-      });
-
-      // listPost.forEach(list => {
-      //   fetch(`https://hacker-news.firebaseio.com/v0/item/${list}.json?print=pretty`)
-      //   .then(item => console.log(item));
-      // });
-      // .then(lists => lists.map(list =>
-      //
-      // .then(item => console.log(item.json()))));
-  }
-
-  fetchItem = () => {
-    const { list } = this.state;
-    for ( let i=0; i<10; i++){
-      fetch(`https://hacker-news.firebaseio.com/v0/item/${list[i]}.json?print=pretty`)
-        .then(response => response.json())
-        .then(json => this.setState(prevState => ({
-          items: prevState.items.concat(json)
-        })));
-  }}
 
   render() {
-    const { items } = this.state;
+    const { items } = this.props;
 
-    if(items.length > 0){
-      console.log(items);
-    }
     return(
       <div>
         {items.map(item => (
@@ -81,7 +45,11 @@ class HackerNews extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  items: state.postsByHackerNews
+});
+
 HackerNews.propTypes = propTypes;
 HackerNews.defaultProps = defaultProps;
 
-export default HackerNews;
+export default connect(mapStateToProps)(HackerNews);
