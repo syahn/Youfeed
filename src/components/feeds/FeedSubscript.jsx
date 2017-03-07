@@ -12,7 +12,7 @@ const Input = styled.input`
   position: relative;
   display: inline-block;
   height: 28px;
-  width: 85%;
+  width: 172px;
   padding: 4px 7px;
   height: 28px;
   cursor: text;
@@ -27,8 +27,10 @@ const Input = styled.input`
 
 const Button_ = styled(Button)`
   height: 28px;
-  margin-left: 12px;
-  padding: 0 13px;
+  margin-left: 4px;
+  padding-top: 0;
+  padding-left: 13px;
+  padding-right: 12px;
 `;
 
 const propTypes = {
@@ -80,7 +82,7 @@ class FeedSubscript extends Component {
           type="primary"
           htmlType="submit"
         >
-          Add
+          +
         </Button_>
       </Form>
     );

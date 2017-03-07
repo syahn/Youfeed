@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { FeedCard } from '../ui-components/General';
 import styled from 'styled-components';
-
+import { Spin } from 'antd';
 
 const HackerNewsLink = styled.a`
   font-size: 18px;
@@ -43,7 +43,7 @@ function HackerNewsFeed({ posts }) {
 
   return(
     <div>
-      {list || <p>is fetching</p>}
+      {list || <Spin size="large" />}
     </div>
   );
 }

@@ -8,6 +8,9 @@ import FeedSubscript from './FeedSubscript';
 import { superfeedrConfig } from '../../config';
 import { Card } from '../ui-components/General';
 import { Link } from 'react-router';
+import { Icon, Menu, Popover, Button, Spin } from 'antd';
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 const propTypes = {
 
@@ -15,15 +18,55 @@ const propTypes = {
 
 const Col = styled(Card)`
   margin-top: 11px;
+  padding: 12px 0 12px 21px;
   width: 100%;
   height: 100%;
 `;
 
+const NewsFeed = styled(Link)`
+  display: flex !important;
+  align-items: center;
+`;
+
+const Logo = styled.img`
+  width: 18px;
+  height: 18px;
+`;
+
+const CenterSpin = styled(Spin)`
+  text-align: center;
+  padding-left: 52px;
+`;
+
 class FeedControl extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-
+      listOfSubscription: [
+        {
+          name: 'hacker-news',
+          logo: 'https://dl.dropbox.com/s/t8avm6wndwfxf04/hackerNews.svg?dl=0'
+        },
+        {
+          name: 'medium',
+          logo: 'https://dl.dropbox.com/s/lh0qk2agauwzjez/medium-m-color-100px.png?dl=0'
+        },
+        {
+          name: 'behance',
+          logo: 'https://dl.dropbox.com/s/ztbtx0mx7q3un9u/behance.png?dl=0'
+        },
+        {
+          name: 'dribble',
+          logo: 'https://dl.dropbox.com/s/089c3x5fquh8oe9/dribbble%20.svg?dl=0'
+        },
+        {
+          name: 'techmeme',
+          logo: 'https://dl.dropbox.com/s/2byudsj3akgzkib/techmeme_size_328x328.jpg?dl=0'
+        },
+        {
+          name: 'reddit',
+          logo: 'https://dl.dropbox.com/s/c7cacxajdx5s3sm/reddit.svg?dl=0'
+        }]
     }
   }
 
@@ -45,65 +88,87 @@ class FeedControl extends Component {
   }
 
   render(){
-    let id = 0;
+    const { auth } = this.props;
+    const { listOfSubscription } = this.state;
+    const addSubscription = <FeedSubscript auth={auth}/>;
+
     return (
       <Col>
-        <h3>Add subscription</h3>
-        <FeedSubscript auth={this.props.auth}/>
+        <Menu
+        onClick={this.handleClick}
+        style={{ width: 240 }}
+        defaultOpenKeys={['newsFeed', 'rssList', 'youfeedList']}
+        mode="inline"
+        >
+          <SubMenu
+            key="newsFeed"
+            title={
+              <NewsFeed to="/">
+                <Icon type="inbox" />
+                News Feed
+              </NewsFeed>}
+          >
+            <Menu.Item key='feedByPersonalized'>
+              <Icon type="user" />
+              Personalized Feeds
+            </Menu.Item>
+            <Menu.Item key='feedByTime'>
+              <Icon type="clock-circle-o" />
+              Feeds By Time
+            </Menu.Item>
+          </SubMenu>
+          <SubMenu
+            key="rssList"
+            title={
+              <span>
+                <Icon type="appstore-o" />
+                <span>RSS Subscription List</span>
+              </span>}
+          >
+            {
+              auth.uid && this.lists
+              ?
+              this.lists.map(item => (
+                <Menu.Item key={item.subscription.feed.title}>
+                  <Icon type="book" />
+                  {item.subscription.feed.title.split(' ')[0]}
+                </Menu.Item>
+              ))
+              :
+              <Menu.Item key="isWaiting">
+                <CenterSpin size="small"/>
+              </Menu.Item>
+            }
+            <Menu.Item key="subscription">
+              <Popover content={addSubscription} trigger="click">
+                <Button>+ Add subscription</Button>
+              </Popover>
+            </Menu.Item>
 
-        <h3>Subcription List</h3>
-        {
-          this.props.auth.uid &&
-          this.lists.map( item => (
-            <p key={id++}>{item.subscription.feed.title}</p>
-          ))
-        }
-        <Link to="/">
-          <p>RSS</p>
-        </Link>
-
-        <Link to="/hacker-news">
-          <img style={{ width: '24px'}} src="https://dl.dropbox.com/s/t8avm6wndwfxf04/hackerNews.svg?dl=0" alt="hackernews" />
-          <span>Hacker News</span>
-          <br />
-        </Link>
-
-        <Link to="/medium">
-          <img style={{ width: '40px'}} src="https://dl.dropbox.com/s/lh0qk2agauwzjez/medium-m-color-100px.png?dl=0" alt="medium" />
-          <span>Medium</span>
-          <br />
-        </Link>
-
-        <Link to="/behance">
-          <img style={{ width: '28px'}} src="https://dl.dropbox.com/s/ztbtx0mx7q3un9u/behance.png?dl=0" alt="medium" />
-          <span>Behance</span>
-          <br />
-        </Link>
-
-        <Link to="/dribble">
-          <img style={{ width: '28px'}} src="https://dl.dropbox.com/s/089c3x5fquh8oe9/dribbble%20.svg?dl=0" alt="medium" />
-          <span>Dribble</span>
-          <br />
-        </Link>
-
-        <Link to="/techmeme">
-          <img style={{ width: '28px'}} src="https://dl.dropbox.com/s/2byudsj3akgzkib/techmeme_size_328x328.jpg?dl=0" alt="medium" />
-          <span>Techmeme</span>
-          <br />
-        </Link>
-
-        <Link to="/reddit">
-          <img style={{ width: '28px'}} src="https://dl.dropbox.com/s/c7cacxajdx5s3sm/reddit.svg?dl=0" alt="medium" />
-          <span>Reddit</span>
-          <br />
-        </Link>
-        <RedditSelect />
-
+          </SubMenu>
+          <SubMenu
+            key="youfeedList"
+            title={
+              <span>
+                <Icon type="appstore" />
+                <span>Youfeed List</span>
+              </span>}
+          >
+            {
+              listOfSubscription.map(item => (
+                <Menu.Item key={item.name}>
+                  <NewsFeed to={`/${item.name}`}>
+                    <Logo src={item.logo} alt={item.name} />
+                    <span>&nbsp;{item.name.charAt(0).toUpperCase() + item.name.slice(1).replace('-', ' ')}</span>
+                  </NewsFeed>
+                </Menu.Item>
+              ))
+            }
+          </SubMenu>
+        </Menu>
       </Col>
     );
   }
-
-
 }
 
 

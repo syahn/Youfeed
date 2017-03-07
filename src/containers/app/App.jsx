@@ -66,11 +66,15 @@ class App extends Component {
 
 
   render() {
+    const { auth, listOfSubscription } = this.props;
     return (
       <GlobalLayout>
         <Header />
           <ContentLayout>
-            <FeedControl auth = {this.props.auth} />
+            <FeedControl
+              auth = {auth}
+              listOfSubscription = {listOfSubscription}
+            />
             <RightCol>
               <FeedContent>
                 {this.props.children}
@@ -88,7 +92,8 @@ App.propTypes = propTypes;
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  widgets: state.widgets
+  widgets: state.widgets,
+  listOfSubscription: state.listOfSubscription
 });
 
 export default connect(mapStateToProps, {
