@@ -30,7 +30,7 @@ export function deleteItemInArray(array, itemId) {
 }
 
 export function addItemInArray(array, item) {
-  const updatedArrays = [item].concat(array);
+  const updatedArrays = array.concat([item]);
   return updatedArrays;
 }
 

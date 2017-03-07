@@ -12,17 +12,29 @@ export const receivePosts = (post, subscription) => ({
   post,
 });
 
+export const rejectPosts = () => ({
+  type: C.REJECT_POSTS_HACKERNEWS
+});
+
 export const fetchPosts = () => dispatch => {
   dispatch(requestPosts());
   return fetch(`https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`)
     .then(response => response.json())
-    .then(list => dispatch(fetchPostItem(list)));
+    .then(list => dispatch(fetchPostItem(list)))
+    .catch((error) => {
+      console.log(error);
+      dispatch(rejectPosts());
+    });
 };
 
 const fetchPostItem = list => dispatch => {
   for (let i=0; i<10; i++){
     fetch(`https://hacker-news.firebaseio.com/v0/item/${list[i]}.json?print=pretty`)
       .then(response => response.json())
-      .then(post => dispatch(receivePosts(post, 'hackernews')));
+      .then(post => dispatch(receivePosts(post, 'hackernews')))
+      .catch((error) => {
+        console.log(error);
+        dispatch(rejectPosts());
+      });
   }
 };

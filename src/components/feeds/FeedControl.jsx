@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import querystring from 'querystring';
-import FeedSelect from '../../containers/FeedSelect';
+import RedditSelect from '../../containers/feeds/RedditSelect';
 import FeedSubscript from './FeedSubscript';
 import { superfeedrConfig } from '../../config';
 import { Card } from '../ui-components/General';
@@ -24,6 +24,23 @@ class FeedControl extends Component {
     super(props);
     this.state = {
 
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.auth){
+      const { login, token } = superfeedrConfig;
+      const { auth } = this.props;
+      let url = "https://stream.superfeedr.com/?";
+      const query = {
+        'hub.mode': 'list',
+        'authorization': btoa([login, token].join(':')),
+        'search[endpoint][url]': `https://youfeed.space/${nextProps.auth.uid}`
+      };
+      url = url + querystring.stringify(query);
+
+      fetch(url).then(res => res.json())
+      .then(json => this.lists = json);
     }
   }
 
@@ -80,7 +97,7 @@ class FeedControl extends Component {
           <span>Reddit</span>
           <br />
         </Link>
-        <FeedSelect />
+        <RedditSelect />
 
       </Col>
     );

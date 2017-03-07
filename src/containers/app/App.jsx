@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../components/header/Header';
-
 import { getTodo } from '../../actions/todo/TodoActionCreators';
 import { getMemo } from '../../actions/memo/MemoActionCreator';
 import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCreator';
+import { fetchPosts } from '../../actions/feed/HackerNewsActionCreator';
 import FeedControl from '../../components/feeds/FeedControl';
-import WidgetControl from '../widgets/WidgetControl';
+import WidgetControl from '../../containers/widgets/WidgetControl';
+
 import { Layout } from 'antd';
 import styled from 'styled-components';
-
 const { Footer } = Layout;
 
 const propTypes = {
@@ -40,19 +40,24 @@ const FeedContent = styled.div`
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
+
     const {
       auth,
       widgets,
       onGetTodo,
       onGetMemo,
       onGetWidget,
-      onEditWidget
+      onEditWidget,
+      onFetchPosts
     } = this.props;
+
+
 
     if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
       onGetTodo();
       onGetMemo();
       onGetWidget();
+      onFetchPosts('hackernews');
     }
     if (auth.status == 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
       onEditWidget(nextProps.widgets);
@@ -91,4 +96,5 @@ export default connect(mapStateToProps, {
   onGetMemo: getMemo,
   onGetWidget: getWidget,
   onEditWidget: editLayoutWidget,
+  onFetchPosts: fetchPosts
 })(App);
