@@ -1,10 +1,22 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
+import styled from 'styled-components';
 
+const UserStatus = styled.div`
+  display: flex;
+  height: 35px;
+`;
 
-const Auth = ( { showModal, visible, confirmLoading, closeModal , openAuth } ) => {
+const Auth = ({
+  showModal,
+  visible,
+  confirmLoading,
+  closeModal,
+  openAuth
+}) => {
+
   return (
-    <div>
+    <UserStatus>
       <Button type="primary" onClick={showModal}>Log In</Button>
       <Modal title="Title of the modal dialog"
         visible={visible}
@@ -15,6 +27,8 @@ const Auth = ( { showModal, visible, confirmLoading, closeModal , openAuth } ) =
         closable={true}
         width={450}
       >
+        {/* TODO: Refactoring */}
+
         <Button
           type="ghost"
           className="Button-auth Button-facebook"
@@ -44,7 +58,7 @@ const Auth = ( { showModal, visible, confirmLoading, closeModal , openAuth } ) =
           Github
         </Button>
       </Modal>
-    </div>
+    </UserStatus>
   );
 };
 

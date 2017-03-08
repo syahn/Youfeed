@@ -4,23 +4,44 @@ import { showModal, closeModal } from '../../actions/ui/UiActionCreator';
 import { openAuth, logoutUser } from '../../actions/auth/AuthActionCreator';
 import Auth from './Auth';
 import C from '../../constants';
-
+import styled from 'styled-components';
 import { Button } from 'antd';
+
+const UserStatus = styled.div`
+  display: flex;
+  height: 35px;
+`;
+
+const UserPhoto = styled.img`
+  width: 35px;
+  border-radius: 50%;
+  margin-right: 14px;
+`;
 
 // Cotainer component determines which button state should show
 class AuthContainer extends Component {
-  getJSX = ({ auth, logoutUser, openAuth, showModal, visible, confirmLoading }) => {
-		switch ( auth.status) {
+  getJSX = ({
+    auth,
+    logoutUser,
+    openAuth,
+    showModal,
+    visible,
+    confirmLoading
+  }) => {
+		switch (auth.status) {
 			case C.AUTH_LOGGED_IN: return (
-				<div>
-					<span>Logged in as {auth.username}.</span>
-					{" "}<Button onClick={logoutUser}>Log out</Button>
-				</div>
+				<UserStatus>
+					<UserPhoto src={auth.photo} alt={auth.username}/>
+					{" "}
+          <Button onClick={logoutUser}>
+            Log out
+          </Button>
+				</UserStatus>
 			);
 			case C.AUTH_AWAITING_RESPONSE: return (
-				<div>
+				<UserStatus>
 					<Button disabled>authenticating...</Button>
-				</div>
+				</UserStatus>
 			);
 			default: return (
         <Auth
@@ -29,7 +50,7 @@ class AuthContainer extends Component {
           confirmLoading={confirmLoading}
           closeModal={closeModal}
           openAuth={openAuth}
-          />
+        />
 			);
 		}
 	}

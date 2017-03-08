@@ -13,18 +13,6 @@ html {
   float: right;
 }
 
-.Logo {
-  margin-top: 0;
-  font-size: 38px;
-  font-weight: bolder;
-  color: #555;
-  width: 120px;
-  height: 31px;
-  border-radius: 6px;
-  margin: 0 28px 16px 0;
-  float: left;
-}
-
 .ant-modal-footer button {
   display:none;
 }

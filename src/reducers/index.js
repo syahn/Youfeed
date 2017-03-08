@@ -10,12 +10,12 @@ import { ui } from './ui/ModalSignIn';
 
 
 const Reducer = combineReducers({
+  auth,
   todos,
   selectedReddit,
   postsByReddit,
   postsByHackerNews,
   forecastWeather,
-  auth,
   memo,
   ui,
   widgets

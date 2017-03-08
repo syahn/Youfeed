@@ -2,13 +2,11 @@ import C from '../../constants';
 
 // Reusable utility functions
 
-const initialState = {
+export const auth = (state = {
 	username: null,
 	uid: null,
 	status: C.AUTH_ANONYMOUS,
-};
-
-export const auth = (state, action) => {
+}, action) => {
 	switch (action.type) {
 		case C.AUTH_WINDOW_OPEN:
 			return {
@@ -21,7 +19,8 @@ export const auth = (state, action) => {
 			return {
 				status: C.AUTH_LOGGED_IN,
 				username: action.username,
-				uid: action.uid
+				uid: action.uid,
+				photo: action.photo
 			};
 
 		case C.AUTH_LOGOUT:
@@ -31,6 +30,6 @@ export const auth = (state, action) => {
 				uid: null
 			};
 		default:
-			return state || initialState;
+			return state;
 	}
 };
