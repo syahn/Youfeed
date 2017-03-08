@@ -1,3 +1,6 @@
+import 'babel-polyfill';
+ import { polyfill } from 'es6-promise'; polyfill();
+// require('es6-promise').polyfill();
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root';

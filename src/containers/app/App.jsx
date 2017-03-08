@@ -4,7 +4,7 @@ import Header from '../../components/header/Header';
 import { getTodo } from '../../actions/todo/TodoActionCreators';
 import { getMemo } from '../../actions/memo/MemoActionCreator';
 import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCreator';
-import { fetchPosts } from '../../actions/feed/HackerNewsActionCreator';
+import { fetchPostsHN } from '../../actions/feed/HackerNewsActionCreator';
 import FeedControl from '../../components/feeds/FeedControl';
 import WidgetControl from '../../containers/widgets/WidgetControl';
 
@@ -57,7 +57,7 @@ class App extends Component {
       onGetTodo();
       onGetMemo();
       onGetWidget();
-      onFetchPosts('hackernews');
+      onFetchPosts();
     }
     if (auth.status == 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
       onEditWidget(nextProps.widgets);
@@ -101,5 +101,5 @@ export default connect(mapStateToProps, {
   onGetMemo: getMemo,
   onGetWidget: getWidget,
   onEditWidget: editLayoutWidget,
-  onFetchPosts: fetchPosts
+  onFetchPosts: fetchPostsHN
 })(App);

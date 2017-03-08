@@ -11,11 +11,7 @@ class HackerNews extends Component {
   render() {
     const { items } = this.props;
 
-    return(
-      <HackerNewsFeed
-        posts={items}
-      />
-    );
+    return <HackerNewsFeed posts={items} />;
   }
 }
 
