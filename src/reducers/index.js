@@ -3,6 +3,7 @@ import { todos } from './todos/todo';
 import { selectedReddit, postsByReddit} from './feeds/feed';
 import { postsByHackerNews } from './feeds/hackernews';
 import { postsByMedium } from './feeds/medium';
+import { postsByTechmeme } from './feeds/techmeme';
 import { forecastWeather } from './weather/weather';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets';
@@ -17,6 +18,7 @@ const Reducer = combineReducers({
   postsByReddit,
   postsByHackerNews,
   postsByMedium,
+  postsByTechmeme,
   forecastWeather,
   ui,
   widgets

@@ -55,9 +55,7 @@ function MediumFeed({ posts }) {
         </TagBox>
       </FeedCard>
       );
-  }
-    );
-
+  });
 
   return(
     <div>

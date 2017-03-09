@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import { superfeedrConfig } from '../../config';
 import { fetchPostsMedium } from '../../actions/feed/MediumActionCreator';
 import MediumFeed from '../../components/feeds/MediumFeed';
 
-
 const propTypes = {
-
-};
-const defaultProps = {
-
+  dispatch: PropTypes.func
 };
 
 class Medium extends Component {
@@ -28,8 +23,6 @@ const mapStateToProps = state => ({
   posts: state.postsByMedium
 });
 
-
 Medium.propTypes = propTypes;
-Medium.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(Medium);

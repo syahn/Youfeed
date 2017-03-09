@@ -9,7 +9,7 @@ import HackerNews from './containers/feeds/HackerNews';
 import Medium from './containers/feeds/Medium';
 import Behance from './components/feeds/Behance';
 import Dribble from './components/feeds/Dribble';
-import TechMeme from './components/feeds/TechMeme';
+import TechMeme from './containers/feeds/TechMeme';
 import Reddit from './containers/feeds/Reddit';
 import About from './components/about';
 import NotFound from './components/notfound';
