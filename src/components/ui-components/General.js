@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Tag } from 'antd';
 
 export const Card = styled.div`
   width: 310px;
@@ -18,4 +19,12 @@ export const FeedCard = styled.div`
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 3px;
   background: #fff;
+`;
+
+export const TagBox = styled.div`
+  text-align: right;
+`;
+
+export const Category = styled(Tag)`
+  margin: 3px 0;
 `;

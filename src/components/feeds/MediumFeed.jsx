@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import { FeedCard } from '../ui-components/General';
+import { FeedCard, TagBox, Category } from '../ui-components/General';
 import styled from 'styled-components';
 import ReactHtmlParser from 'react-html-parser';
-import { Spin, Tag } from 'antd';
+import { Spin } from 'antd';
 
 const FeedItemHeader = styled.h2`
   display: flex;
@@ -18,13 +18,6 @@ const FeedItemHeader = styled.h2`
     }
 `;
 
-const Category = styled(Tag)`
-  margin: 3px 0;
-`;
-
-const TagBox = styled.div`
-  text-align: right;
-`;
 const Summary = styled.div`
   margin-bottom: 10px;
   img {

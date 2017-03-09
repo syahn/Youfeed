@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
-import { FeedCard } from '../ui-components/General';
+import { FeedCard, TagBox, Category } from '../ui-components/General';
 import styled from 'styled-components';
 import { Spin } from 'antd';
 
-const HackerNewsLink = styled.a`
-  font-size: 18px;
+const HackerNewsHeader = styled.h2`
+  a {
+    color: #495057;
+  }
 `;
 
 const OriginalLink = styled.a`
@@ -26,17 +28,22 @@ function HackerNewsFeed({ posts }) {
     list = posts.sort((a, b) => {
       return b.score - a.score;
     }).map(item => (
-      <FeedCard>
-        <HackerNewsLink href={`https://news.ycombinator.com/item?id=${item.id}`} target="_blank">
-          {item.title}
-        </HackerNewsLink>
-        &nbsp;&#40;
+      <FeedCard key={item.id}>
+        <HackerNewsHeader>
+          <a href={`https://news.ycombinator.com/item?id=${item.id}`} target="_blank">
+            {item.title}
+          </a>
+        </HackerNewsHeader>
+        &#40;
         <OriginalLink href={`${item.url}`} target="_blank">
           {item.url.split('/')[2]}
         </OriginalLink>
         &#41;
-        <p></p>
-        <p>score: {item.score}</p>
+        <TagBox>
+          <Category>
+            score:{item.score}
+          </Category>
+        </TagBox>
       </FeedCard>
     ));
   }
