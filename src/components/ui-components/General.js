@@ -12,7 +12,6 @@ export const Card = styled.div`
 `;
 
 export const FeedCard = styled.div`
-  width: 500px;
   padding: 12px;
   margin-bottom: 10px;
   border: 1px solid;

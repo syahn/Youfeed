@@ -6,7 +6,6 @@ import querystring from 'querystring';
 import RedditSelect from '../../containers/feeds/RedditSelect';
 import FeedSubscript from './FeedSubscript';
 import { superfeedrConfig } from '../../config';
-import { Card } from '../ui-components/General';
 import { Link } from 'react-router';
 import { Icon, Menu, Popover, Button, Spin } from 'antd';
 const SubMenu = Menu.SubMenu;
@@ -16,10 +15,12 @@ const propTypes = {
 
 };
 
-const Col = styled(Card)`
-  margin-top: 11px;
-  padding: 12px 0 12px 21px;
-  width: 100%;
+const Col = styled.div`
+  margin: 11px 0;
+  border: 1px solid;
+  border-radius: 3px;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  background: #fff;
   height: 100%;
 `;
 
@@ -96,7 +97,7 @@ class FeedControl extends Component {
       <Col>
         <Menu
         onClick={this.handleClick}
-        style={{ width: 240 }}
+        style={{ background: '#e9ecef'}}
         defaultOpenKeys={['newsFeed', 'rssList', 'youfeedList']}
         mode="inline"
         >

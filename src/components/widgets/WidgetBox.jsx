@@ -5,6 +5,7 @@ import Todo from '../todos/AppTodo';
 import Weather from '../weather/ViewWeather';
 import MemoBox from '../memo/MemoBox';
 import PhotoFrame from '../photoframe/PhotoFrame';
+import ColCategory from '../ui-components/ColCategory';
 import Widget from './Widget';
 
 const propTypes = {
@@ -36,6 +37,7 @@ function WidgetBox({ widgets, onMove }) {
   return (
     <div>
       <Box>
+        <ColCategory name='Widgets' />
         <ul>
           {widgetList.map( item => (
             <Widget

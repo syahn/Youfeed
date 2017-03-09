@@ -7,6 +7,7 @@ import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCr
 import { fetchPostsHN } from '../../actions/feed/HackerNewsActionCreator';
 import FeedControl from '../../components/feeds/FeedControl';
 import WidgetControl from '../../containers/widgets/WidgetControl';
+import ColCategory from '../../components/ui-components/ColCategory';
 
 import { Layout } from 'antd';
 import styled from 'styled-components';
@@ -18,7 +19,9 @@ const propTypes = {
   onGetMemo: PropTypes.func
 };
 
-const GlobalLayout = styled(Layout)``;
+const GlobalLayout = styled(Layout)`
+  background:#f8f9fa;
+`;
 
 const ContentLayout = styled.div`
   display: flex;
@@ -40,7 +43,6 @@ const FeedContent = styled.div`
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
-
     const {
       auth,
       widgets,
@@ -50,8 +52,6 @@ class App extends Component {
       onEditWidget,
       onFetchPosts
     } = this.props;
-
-
 
     if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
       onGetTodo();
@@ -63,7 +63,6 @@ class App extends Component {
       onEditWidget(nextProps.widgets);
     }
   }
-
 
   render() {
     const { auth, listOfSubscription } = this.props;
@@ -77,6 +76,10 @@ class App extends Component {
             />
             <RightCol>
               <FeedContent>
+                <ColCategory
+                  name='News Feed'
+                  color='blue'
+                />
                 {this.props.children}
               </FeedContent>
               <WidgetControl />

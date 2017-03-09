@@ -9,7 +9,7 @@ const { Header } = Layout;
 const Header_ = styled(Header)`
   border-bottom: 1px solid #e8e8e8;
   background: #fff;
-  padding: 14px 71px;
+  padding: 14px 101px;
 `;
 
 const Menu_ = styled(Menu)`
@@ -57,6 +57,7 @@ const LogoText = styled.div`
 `;
 
 const HeaderComponent = () => {
+
   return(
     <Header_>
       <LogoBox to="/">
@@ -74,9 +75,7 @@ const HeaderComponent = () => {
         </LogoText>
       </LogoBox>
       <Menu_ mode="horizontal">
-        <MenuItem key="1">About</MenuItem>
-        <MenuItem key="2">Support</MenuItem>
-        <MenuItem key="3">
+        <MenuItem key="2">
           <AuthContainer />
         </MenuItem>
       </Menu_>

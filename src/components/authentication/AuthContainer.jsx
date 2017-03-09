@@ -5,7 +5,7 @@ import { openAuth, logoutUser } from '../../actions/auth/AuthActionCreator';
 import Auth from './Auth';
 import C from '../../constants';
 import styled from 'styled-components';
-import { Button } from 'antd';
+import { Button, Dropdown, Menu, Icon } from 'antd';
 
 const UserStatus = styled.div`
   display: flex;
@@ -15,7 +15,11 @@ const UserStatus = styled.div`
 const UserPhoto = styled.img`
   width: 35px;
   border-radius: 50%;
-  margin-right: 14px;
+`;
+
+const Button_ = styled(Button)`
+  margin: 0 12px;
+  padding-right: 6px;
 `;
 
 // Cotainer component determines which button state should show
@@ -28,11 +32,30 @@ class AuthContainer extends Component {
     visible,
     confirmLoading
   }) => {
+    const menu = (
+    <Menu>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">2nd menu item</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">3d menu item</a>
+      </Menu.Item>
+    </Menu>
+  );
+
 		switch (auth.status) {
 			case C.AUTH_LOGGED_IN: return (
 				<UserStatus>
-					<UserPhoto src={auth.photo} alt={auth.username}/>
-					{" "}
+					<UserPhoto src="https://dl.dropbox.com/s/3xbifmxyi82vorw/photo.jpg?dl=0" alt={auth.username}/>
+					&nbsp;
+          <Dropdown overlay={menu}>
+            <Button_>
+              <Icon type="appstore" />
+            </Button_>
+          </Dropdown>
           <Button onClick={logoutUser}>
             Log out
           </Button>
