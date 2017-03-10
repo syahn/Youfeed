@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPostsMedium } from '../../actions/feed/MediumActionCreator';
 import MediumFeed from '../../components/feeds/MediumFeed';
 
 const propTypes = {
@@ -8,11 +7,6 @@ const propTypes = {
 };
 
 class Medium extends Component {
-  componentWillMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchPostsMedium());
-  }
-
   render() {
     const { posts } = this.props;
     return <MediumFeed posts={posts} />;

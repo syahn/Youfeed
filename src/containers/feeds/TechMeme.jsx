@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TechmemeFeed from '../../components/feeds/TechmemeFeed';
-import { fetchPostsTechmeme } from '../../actions/feed/TechmemeActionCreator';
 
 const propTypes = {
 
@@ -9,12 +8,6 @@ const propTypes = {
 
 
 class TechMeme extends Component {
-
-  componentWillMount(){
-    const { dispatch } = this.props;
-    dispatch(fetchPostsTechmeme());
-  }
-
   render() {
     const { posts } = this.props;
 

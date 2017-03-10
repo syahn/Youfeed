@@ -1,7 +1,4 @@
-import {
-  SELECT_REDDIT, INVALIDATE_REDDIT,
-  REQUEST_POSTS, RECEIVE_POSTS
-} from '../../actions/feed/reddit';
+import C from '../../constants';
 
 
 const posts = (state = {
@@ -10,18 +7,18 @@ const posts = (state = {
   items: []
 }, action) => {
   switch (action.type) {
-    case INVALIDATE_REDDIT:
+    case C.INVALIDATE_REDDIT:
       return {
         ...state,
         didInvalidate: true
       };
-    case REQUEST_POSTS:
+    case C.REQUEST_POSTS_REDDIT:
       return {
         ...state,
         isFetching: true,
         didInvalidate: false
       };
-    case RECEIVE_POSTS:
+    case C.RECEIVE_POSTS_REDDIT:
       return {
         ...state,
         isFetching: false,
@@ -34,9 +31,9 @@ const posts = (state = {
   }
 };
 
-export const selectedReddit = (state = 'frontend', action) => {
+export const selectedReddit = (state = 'programming/top/', action) => {
   switch (action.type) {
-    case SELECT_REDDIT:
+    case C.SELECT_REDDIT:
       return action.reddit;
     default:
       return state;
@@ -47,9 +44,9 @@ export const selectedReddit = (state = 'frontend', action) => {
 
 export const postsByReddit = (state = { }, action) => {
   switch (action.type) {
-    case INVALIDATE_REDDIT:
-    case RECEIVE_POSTS:
-    case REQUEST_POSTS:
+    case C.INVALIDATE_REDDIT:
+    case C.RECEIVE_POSTS_REDDIT:
+    case C.REQUEST_POSTS_REDDIT:
       return {
         ...state,
         [action.reddit]: posts(state[action.reddit], action)

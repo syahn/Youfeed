@@ -9,7 +9,6 @@ const initialState = {
     signInModalText:'Content of the modal dialog',
     visibilityFilter: 'SHOW_ALL',
   },
-  postsByHackerNews: [],
   widgets: [
     {type: 'todo', id: uuid()},
     {type: 'memo', id: uuid()},

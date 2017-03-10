@@ -5,6 +5,10 @@ import { getTodo } from '../../actions/todo/TodoActionCreators';
 import { getMemo } from '../../actions/memo/MemoActionCreator';
 import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCreator';
 import { fetchPostsHN } from '../../actions/feed/HackerNewsActionCreator';
+import { fetchPostsMedium } from '../../actions/feed/MediumActionCreator';
+import { fetchPostsDribble } from '../../actions/feed/DribbleActionCreator';
+import { fetchPostsBehance } from '../../actions/feed/BehanceActionCreator';
+import { fetchPostsTechmeme } from '../../actions/feed/TechmemeActionCreator';
 import FeedControl from '../../components/feeds/FeedControl';
 import WidgetControl from '../../containers/widgets/WidgetControl';
 import ColCategory from '../../components/ui-components/ColCategory';
@@ -50,14 +54,22 @@ class App extends Component {
       onGetMemo,
       onGetWidget,
       onEditWidget,
-      onFetchPosts
+      onFetchPostsHN,
+      onFetchPostsMedium,
+      onFetchPostsBehance,
+      onFetchPostsDribble,
+      onFetchPostsTechmeme
     } = this.props;
 
     if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
       onGetTodo();
       onGetMemo();
       onGetWidget();
-      onFetchPosts();
+      onFetchPostsHN();
+      onFetchPostsMedium();
+      onFetchPostsBehance();
+      onFetchPostsDribble();
+      onFetchPostsTechmeme();
     }
     if (auth.status == 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
       onEditWidget(nextProps.widgets);
@@ -104,5 +116,9 @@ export default connect(mapStateToProps, {
   onGetMemo: getMemo,
   onGetWidget: getWidget,
   onEditWidget: editLayoutWidget,
-  onFetchPosts: fetchPostsHN
+  onFetchPostsHN: fetchPostsHN,
+  onFetchPostsMedium: fetchPostsMedium,
+  onFetchPostsBehance: fetchPostsBehance,
+  onFetchPostsDribble: fetchPostsDribble,
+  onFetchPostsTechmeme: fetchPostsTechmeme
 })(App);

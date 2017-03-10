@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import querystring from 'querystring';
-import RedditSelect from '../../containers/feeds/RedditSelect';
 import FeedSubscript from './FeedSubscript';
 import { superfeedrConfig } from '../../config';
 import { Link } from 'react-router';

@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPostsDribble } from '../../actions/feed/DribbleActionCreator';
 import DribbleFeed from '../../components/feeds/DribbleFeed';
 
 const propTypes = {
@@ -9,11 +8,6 @@ const propTypes = {
 };
 
 class Dribble extends Component {
-  componentWillMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchPostsDribble());
-  }
-
   render() {
     const { posts } = this.props;
 

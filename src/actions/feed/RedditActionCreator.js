@@ -12,12 +12,12 @@ export const selectReddit = reddit => ({
 // });
 
 export const requestPosts = reddit => ({
-  type: C.REQUEST_POSTS,
+  type: C.REQUEST_POSTS_REDDIT,
   reddit
 });
 
 export const receivePosts = (reddit, json) => ({
-  type: C.RECEIVE_POSTS,
+  type: C.RECEIVE_POSTS_REDDIT,
   reddit,
   posts: json.data.children.map(child => child.data),
   receivedAt: Date.now()
