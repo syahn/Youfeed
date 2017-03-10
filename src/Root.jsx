@@ -7,7 +7,7 @@ import App from './containers/app/App';
 import FeedBox from './components/feeds/FeedBox';
 import HackerNews from './containers/feeds/HackerNews';
 import Medium from './containers/feeds/Medium';
-import Behance from './components/feeds/Behance';
+import Behance from './containers/feeds/Behance';
 import Dribble from './components/feeds/Dribble';
 import TechMeme from './containers/feeds/TechMeme';
 import Reddit from './containers/feeds/Reddit';

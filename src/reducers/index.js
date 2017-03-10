@@ -4,6 +4,7 @@ import { selectedReddit, postsByReddit} from './feeds/feed';
 import { postsByHackerNews } from './feeds/hackernews';
 import { postsByMedium } from './feeds/medium';
 import { postsByTechmeme } from './feeds/techmeme';
+import { postsByBehance } from './feeds/behance';
 import { forecastWeather } from './weather/weather';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets';
@@ -18,6 +19,7 @@ const Reducer = combineReducers({
   postsByReddit,
   postsByHackerNews,
   postsByMedium,
+  postsByBehance,
   postsByTechmeme,
   forecastWeather,
   ui,

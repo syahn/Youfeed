@@ -20,6 +20,17 @@ export const FeedCard = styled.div`
   background: #fff;
 `;
 
+export const PostHeader = styled.h2`
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+
+  a {
+    color: #495057;
+  }
+`;
+
+
 export const TagBox = styled.div`
   text-align: right;
 `;
