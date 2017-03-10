@@ -36,5 +36,5 @@ export const TagBox = styled.div`
 `;
 
 export const Category = styled(Tag)`
-  margin: 3px 0;
+  margin: 4px 0;
 `;

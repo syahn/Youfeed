@@ -21,7 +21,6 @@ export const fetchPostsBehance = () => dispatch => {
   return fetch(`https://crossorigin.me/https://www.behance.net/v2/projects?api_key=${behanceConfig.key}`)
     .then( response => response.json())
     .then( json => {
-      console.log(json);
       dispatch(receivePosts(json));
     })
     .catch( error => {

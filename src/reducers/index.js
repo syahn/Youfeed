@@ -5,6 +5,7 @@ import { postsByHackerNews } from './feeds/hackernews';
 import { postsByMedium } from './feeds/medium';
 import { postsByTechmeme } from './feeds/techmeme';
 import { postsByBehance } from './feeds/behance';
+import { postsByDribble } from './feeds/dribble';
 import { forecastWeather } from './weather/weather';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets';
@@ -20,6 +21,7 @@ const Reducer = combineReducers({
   postsByHackerNews,
   postsByMedium,
   postsByBehance,
+  postsByDribble,
   postsByTechmeme,
   forecastWeather,
   ui,

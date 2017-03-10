@@ -30,13 +30,13 @@ function BehanceFeed({ posts }) {
         <Category color="blue">
           <Icon type="caret-up" />
           &nbsp;
-          {item.stats.appreciations}
+          {item.likes_count}
         </Category>
-        <a href={item.url} alt="Behance URL" target="_blank">{item.name}</a>
+        <a href={item.html_url} alt="Behance URL" target="_blank">{item.title}</a>
       </PostHeader>
-      <img src={item.covers.original} alt="cover" />
+      <img src={item.images.normal} alt="cover" />
       <TagBox>
-        {item.fields.map( tag => (
+        {item.tags.map( tag => (
           <Category key={tag}>{tag}</Category>
         ))}
       </TagBox>
