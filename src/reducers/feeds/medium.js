@@ -1,7 +1,6 @@
 import { createReducer } from '../util';
 
 function retrievePost(mediumState, action) {
-
   return action.post.items;
 }
 

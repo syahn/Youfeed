@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Tag } from 'antd';
+import { Link } from 'react-router';
+import { Tag, Spin } from 'antd';
 
 export const Card = styled.div`
   width: 310px;
@@ -52,4 +53,15 @@ export const TagBox = styled.div`
 
 export const Category = styled(Tag)`
   margin: 4px 0;
+`;
+
+export const Link_ = styled(Link)`
+  display: flex !important;
+  align-items: center;
+`;
+
+export const CenterSpin = styled(Spin)`
+  position: relative !important;
+  left: 45%;
+  top: 60px;
 `;

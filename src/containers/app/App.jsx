@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../components/header/Header';
@@ -9,10 +10,10 @@ import { fetchPostsMedium } from '../../actions/feed/MediumActionCreator';
 import { fetchPostsDribble } from '../../actions/feed/DribbleActionCreator';
 import { fetchPostsBehance } from '../../actions/feed/BehanceActionCreator';
 import { fetchPostsTechmeme } from '../../actions/feed/TechmemeActionCreator';
+import { fetchListsRss } from '../../actions/feed/RssListActionCreator';
 import FeedControl from '../../components/feeds/FeedControl';
+import FeedContent from '../../components/feeds/FeedContent';
 import WidgetControl from '../../containers/widgets/WidgetControl';
-import ColCategory from '../../components/ui-components/ColCategory';
-
 import { Layout } from 'antd';
 import styled from 'styled-components';
 const { Footer } = Layout;
@@ -40,10 +41,6 @@ const RightCol = styled.div`
   width: 833px;
 `;
 
-const FeedContent = styled.div`
-  width: 512px;
-  padding-right: 10px;
-`;
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
@@ -58,10 +55,12 @@ class App extends Component {
       onFetchPostsMedium,
       onFetchPostsBehance,
       onFetchPostsDribble,
-      onFetchPostsTechmeme
+      onFetchPostsTechmeme,
+      onFetchListsRss
     } = this.props;
 
     if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
+      onFetchListsRss(nextProps.auth);
       onGetTodo();
       onGetMemo();
       onGetWidget();
@@ -77,21 +76,13 @@ class App extends Component {
   }
 
   render() {
-    const { auth, listOfSubscription } = this.props;
     return (
       <GlobalLayout>
         <Header />
           <ContentLayout>
-            <FeedControl
-              auth = {auth}
-              listOfSubscription = {listOfSubscription}
-            />
+            <FeedControl />
             <RightCol>
               <FeedContent>
-                <ColCategory
-                  name='News Feed'
-                  color='blue'
-                />
                 {this.props.children}
               </FeedContent>
               <WidgetControl />
@@ -105,13 +96,12 @@ class App extends Component {
 
 App.propTypes = propTypes;
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  widgets: state.widgets,
-  listOfSubscription: state.listOfSubscription
-});
-
-export default connect(mapStateToProps, {
+export default connect(
+  state => ({
+    auth: state.auth,
+    widgets: state.widgets,
+  }), {
+  onFetchListsRss: fetchListsRss,
   onGetTodo: getTodo,
   onGetMemo: getMemo,
   onGetWidget: getWidget,

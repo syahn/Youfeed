@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Icon, Button } from 'antd';
 import querystring from 'querystring';
 import styled from 'styled-components';
@@ -92,4 +93,8 @@ class FeedSubscript extends Component {
 FeedSubscript.propTypes = propTypes;
 FeedSubscript.defaultProps = defaultProps;
 
-export default FeedSubscript;
+export default connect(
+  state => ({
+    auth: state.auth
+  }),
+  )(FeedSubscript);

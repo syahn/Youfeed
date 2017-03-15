@@ -18,15 +18,6 @@ const rejectPosts = () => ({
 export const fetchPostsDribble = () => dispatch => {
   dispatch(requestPosts());
 
-  fetch(``)
-    .then(response => response.json())
-    .then(json => {
-      console.log(json);
-      this.setState({
-        list: json
-      });
-    });
-
   return fetch(`https://api.dribbble.com/v1/shots?access_token=${dribbleConfig.accessToken}`)
     .then( response => response.json())
     .then( json => {

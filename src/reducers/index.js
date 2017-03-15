@@ -7,6 +7,7 @@ import { postsByTechmeme } from './feeds/techmeme';
 import { postsByBehance } from './feeds/behance';
 import { postsByDribble } from './feeds/dribble';
 import { forecastWeather } from './weather/weather';
+import { subscription } from './feeds/rss';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets';
 import { memo  } from './memo';
@@ -24,6 +25,7 @@ const Reducer = combineReducers({
   postsByDribble,
   postsByTechmeme,
   forecastWeather,
+  subscription,
   ui,
   widgets
 });

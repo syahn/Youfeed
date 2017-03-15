@@ -13,10 +13,10 @@ class Medium extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  posts: state.postsByMedium
-});
-
 Medium.propTypes = propTypes;
 
-export default connect(mapStateToProps)(Medium);
+export default connect(
+  state => ({
+    posts: state.postsByMedium
+  })
+)(Medium);

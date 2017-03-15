@@ -34,6 +34,7 @@ export const fetchPostsTechmeme = () => dispatch => {
   let source = new EventSource(url);
 
   source.addEventListener("notification", (e) => {
+    console.log(e.data);
     let notification = JSON.parse(e.data);
 
     notification.items.sort((x, y) => {

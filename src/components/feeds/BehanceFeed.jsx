@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import { PostHeader, TagBox, Category } from '../ui-components/General';
+import { PostHeader, TagBox, Category, CenterSpin } from '../ui-components/General';
 import styled from 'styled-components';
-import { Spin, Icon } from 'antd';
+import { Icon } from 'antd';
 
 
 const FeedItem = styled.div`
@@ -24,28 +24,30 @@ const propTypes = {
 
 function BehanceFeed({ posts }) {
   let list;
-  list = posts.map( item => (
-    <FeedItem key={item.id}>
-      <PostHeader>
-        <Category color="blue">
-          <Icon type="caret-up" />
-          &nbsp;
-          {item.stats.appreciations}
-        </Category>
-        <a href={item.url} alt="Behance URL" target="_blank">{item.name}</a>
-      </PostHeader>
-      <img src={item.covers.original} alt="cover" />
-      <TagBox>
-        {item.fields.map( tag => (
-          <Category key={tag}>{tag}</Category>
-        ))}
-      </TagBox>
-    </FeedItem>
-  ));
+  if(posts.length > 0){
+    list = posts.map( item => (
+      <FeedItem key={item.id}>
+        <PostHeader>
+          <Category color="blue">
+            <Icon type="caret-up" />
+            &nbsp;
+            {item.stats.appreciations}
+          </Category>
+          <a href={item.url} alt="Behance URL" target="_blank">{item.name}</a>
+        </PostHeader>
+        <img src={item.covers.original} alt="cover" />
+        <TagBox>
+          {item.fields.map( tag => (
+            <Category key={tag}>{tag}</Category>
+          ))}
+        </TagBox>
+      </FeedItem>
+    ));
+  }
 
   return(
     <div>
-      { list || <Spin /> }
+      { list || <CenterSpin size="large" /> }
     </div>
   );
 }

@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
-
+  story: PropTypes.object
 };
-const defaultProps = {
-
-};
-
 
 const FeedItem = styled.div`
   width: 500px;
@@ -59,6 +55,5 @@ function Feed({ story }) {
 }
 
 Feed.propTypes = propTypes;
-Feed.defaultProps = defaultProps;
 
 export default Feed;

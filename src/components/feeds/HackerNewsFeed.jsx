@@ -1,6 +1,12 @@
 import React, { PropTypes } from 'react';
-import { PostHeader, FeedCard, Category, OriginalLink } from '../ui-components/General';
-import { Spin, Icon } from 'antd';
+import {
+  PostHeader,
+  FeedCard,
+  Category,
+  OriginalLink,
+  CenterSpin
+} from '../ui-components/General';
+import { Icon } from 'antd';
 
 const propTypes = {
   posts: PropTypes.array
@@ -24,9 +30,16 @@ function HackerNewsFeed({ posts }) {
           </a>
         </PostHeader>
         &#40;
-        <OriginalLink href={`${item.url}`} target="_blank">
-          {item.url.split('/')[2]}
-        </OriginalLink>
+        { item.url
+          ?
+          <OriginalLink href={`${item.url}`} target="_blank">
+            {item.url.split('/')[2]}
+          </OriginalLink>
+          :
+          <OriginalLink href={`https://news.ycombinator.com/item?id=${item.id}`} target="_blank">
+            news.ycombinator.com
+          </OriginalLink>
+        }
         &#41;
       </FeedCard>
     ));
@@ -34,7 +47,7 @@ function HackerNewsFeed({ posts }) {
 
   return(
     <div>
-      {list || <Spin size="large" />}
+      { list || <CenterSpin size="large" /> }
     </div>
   );
 }

@@ -7,6 +7,7 @@ import {
 } from '../../actions/feed/RedditActionCreator';
 import Selected from '../../components/feeds/Selected';
 import RedditFeed from '../../components/feeds/RedditFeed';
+import { CenterSpin } from '../../components/ui-components/General';
 
 class Reddit extends Component {
 
@@ -60,7 +61,7 @@ class Reddit extends Component {
         </p>
 
         {isEmpty
-          ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
+          ? (isFetching ? <CenterSpin size="large" /> : <h2>Empty.</h2>)
           : <RedditFeed posts={posts} />
         }
       </div>

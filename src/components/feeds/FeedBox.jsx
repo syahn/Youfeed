@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import querystring from 'querystring';
+import uuid from 'uuid';
 import Feed from './Feed';
 import { superfeedrConfig } from '../../config';
 
@@ -63,7 +64,7 @@ class FeedBox extends Component {
     const { stories } = this.state;
     const newsNodes = stories.map((story) => (
       <Feed
-        key={story.id}
+        key={uuid()}
         story={story}
       >
       </Feed>

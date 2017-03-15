@@ -1,18 +1,11 @@
-/* eslint-disable */
-
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import uuid from 'uuid';
 import styled from 'styled-components';
-import querystring from 'querystring';
 import FeedSubscript from './FeedSubscript';
-import { superfeedrConfig } from '../../config';
-import { Link } from 'react-router';
-import { Icon, Menu, Popover, Button, Spin } from 'antd';
+import { connect } from 'react-redux';
+import { Link_ } from '../ui-components/General';
+import { Icon, Menu, Popover, Button } from 'antd';
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
-
-const propTypes = {
-
-};
 
 const Col = styled.div`
   margin: 11px 0;
@@ -23,20 +16,19 @@ const Col = styled.div`
   height: 100%;
 `;
 
-const NewsFeed = styled(Link)`
-  display: flex !important;
+const Logo = styled.img`
+  width: 27px;
+  height: 27px;
+`;
+
+const MenuItem = styled(Menu.Item)`
+  display: flex;
   align-items: center;
 `;
 
-const Logo = styled.img`
-  width: 18px;
-  height: 18px;
-`;
-
-const CenterSpin = styled(Spin)`
-  text-align: center;
-  padding-left: 52px;
-`;
+const propTypes = {
+  subscription: PropTypes.array.isRequired
+};
 
 class FeedControl extends Component {
   constructor(props) {
@@ -67,55 +59,39 @@ class FeedControl extends Component {
           name: 'reddit',
           logo: 'https://dl.dropbox.com/s/c7cacxajdx5s3sm/reddit.svg?dl=0'
         }]
-    }
+    };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.auth){
-      const { login, token } = superfeedrConfig;
-      const { auth } = this.props;
-      let url = "https://stream.superfeedr.com/?";
-      const query = {
-        'hub.mode': 'list',
-        'authorization': btoa([login, token].join(':')),
-        'search[endpoint][url]': `https://youfeed.space/${nextProps.auth.uid}`
-      };
-      url = url + querystring.stringify(query);
-
-      fetch(url).then(res => res.json())
-      .then(json => this.lists = json);
-    }
-  }
 
   render(){
-    const { auth } = this.props;
-    const { listOfSubscription } = this.state;
+    const { auth, subscription } = this.props;
     const addSubscription = <FeedSubscript auth={auth}/>;
 
     return (
       <Col>
         <Menu
-        onClick={this.handleClick}
-        style={{ background: '#e9ecef'}}
-        defaultOpenKeys={['newsFeed', 'rssList', 'youfeedList']}
-        mode="inline"
+          onClick={this.handleClick}
+          style={{ background: '#e9ecef'}}
+          defaultOpenKeys={['newsFeed', 'rssList', 'youfeedList']}
+          mode="inline"
         >
           <SubMenu
             key="newsFeed"
             title={
-              <NewsFeed to="/">
+              <Link_ to="/">
                 <Icon type="inbox" />
                 News Feed
-              </NewsFeed>}
+              </Link_>
+            }
           >
-            <Menu.Item key='feedByPersonalized'>
+            <MenuItem key='feedByPersonalized'>
               <Icon type="user" />
               Personalized Feeds
-            </Menu.Item>
-            <Menu.Item key='feedByTime'>
+            </MenuItem>
+            <MenuItem key='feedByTime'>
               <Icon type="clock-circle-o" />
               Feeds By Time
-            </Menu.Item>
+            </MenuItem>
           </SubMenu>
           <SubMenu
             key="rssList"
@@ -126,24 +102,24 @@ class FeedControl extends Component {
               </span>}
           >
             {
-              auth.uid && this.lists
-              ?
-              this.lists.map(item => (
-                <Menu.Item key={item.subscription.feed.title}>
-                  <Icon type="book" />
-                  {item.subscription.feed.title.split(' ')[0]}
-                </Menu.Item>
-              ))
-              :
-              <Menu.Item key="isWaiting">
-                <CenterSpin size="small"/>
-              </Menu.Item>
+              subscription.length > 0 &&
+              subscription.map(item => {
+                const domain = item.subscription.feed.title.split(' ')[0];
+                return (
+                  <MenuItem key={uuid()}>
+                    <Icon type="book" />
+                    <Link_ to={`/${domain}`}>
+                      <span>{domain}</span>
+                    </Link_>
+                  </MenuItem>
+                );
+              })
             }
-            <Menu.Item key="subscription">
+            <MenuItem key="subscription">
               <Popover content={addSubscription} trigger="click">
                 <Button>+ Add subscription</Button>
               </Popover>
-            </Menu.Item>
+            </MenuItem>
 
           </SubMenu>
           <SubMenu
@@ -155,13 +131,16 @@ class FeedControl extends Component {
               </span>}
           >
             {
-              listOfSubscription.map(item => (
-                <Menu.Item key={item.name}>
-                  <NewsFeed to={`/${item.name}`}>
+              this.state.listOfSubscription.map(item => (
+                <MenuItem key={item.name}>
+                  <Link_ to={`/${item.name}`}>
                     <Logo src={item.logo} alt={item.name} />
-                    <span>&nbsp;{item.name.charAt(0).toUpperCase() + item.name.slice(1).replace('-', ' ')}</span>
-                  </NewsFeed>
-                </Menu.Item>
+                    <span>
+                      &nbsp;{item.name.charAt(0).toUpperCase()
+                        + item.name.slice(1).replace('-', ' ')}
+                      </span>
+                  </Link_>
+                </MenuItem>
               ))
             }
           </SubMenu>
@@ -171,7 +150,10 @@ class FeedControl extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  subscription: state.subscription
+});
 
 FeedControl.propTypes = propTypes;
 
-export default FeedControl;
+export default connect(mapStateToProps)(FeedControl);
