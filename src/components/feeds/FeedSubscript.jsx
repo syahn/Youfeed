@@ -37,11 +37,6 @@ const Button_ = styled(Button)`
 const propTypes = {
 
 };
-const defaultProps = {
-
-};
-
-
 
 class FeedSubscript extends Component {
   requestSubscription = (urlAdded) => {
@@ -53,7 +48,7 @@ class FeedSubscript extends Component {
       'hub.topic': `${urlAdded}`,
       'format': 'json',
       'authorization': btoa([login, token].join(':')),
-      'hub.callback': `https://youfeed.space/${auth.uid}`
+      'hub.callback': `https://youfeed.space/${auth.uid}/${urlAdded}`
     };
     url = url + querystring.stringify(query);
     fetch(url, {
@@ -91,7 +86,6 @@ class FeedSubscript extends Component {
 }
 
 FeedSubscript.propTypes = propTypes;
-FeedSubscript.defaultProps = defaultProps;
 
 export default connect(
   state => ({

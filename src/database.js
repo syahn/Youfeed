@@ -3,7 +3,6 @@ import uuid from 'uuid';
 const initialState = {
   todos: [],
   memo: '',
-  subscription: [],
   ui: {
     signInModalVisible: false,
     signInModalconfirmLoading: false,

@@ -1,8 +1,9 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import querystring from 'querystring';
-import uuid from 'uuid';
-import Feed from './Feed';
+// import uuid from 'uuid';
+// import Feed from './Feed';
 import { superfeedrConfig } from '../../config';
 
 const propTypes = {
@@ -62,13 +63,14 @@ class FeedBox extends Component {
 
   render() {
     const { stories } = this.state;
-    const newsNodes = stories.map((story) => (
-      <Feed
-        key={uuid()}
-        story={story}
-      >
-      </Feed>
-    ));
+    const newsNodes = [];
+    // const newsNodes = stories.map((story) => (
+    //   <Feed
+    //     key={uuid()}
+    //     story={story}
+    //   >
+    //   </Feed>
+    // ));
     return (
       <div className="panel panel-default">
         <div className="list-group">

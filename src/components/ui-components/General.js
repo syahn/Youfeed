@@ -36,6 +36,10 @@ export const PostHeader = styled.span`
     font-weight: 600;
     color: #495057;
   }
+
+  img {
+    width: 24px;
+  }
 `;
 
 export const OriginalLink = styled.a`

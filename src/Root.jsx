@@ -4,6 +4,7 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from './stores/configureStore';
 import App from './containers/app/App';
+import RssFeed from './containers/feeds/RssFeed';
 import FeedBox from './components/feeds/FeedBox';
 import HackerNews from './containers/feeds/HackerNews';
 import Medium from './containers/feeds/Medium';
@@ -34,6 +35,7 @@ class Root extends Component {
 					<Route path="/dribble" component={Dribble} />
 					<Route path="/techmeme" component={TechMeme} />
 					<Route path="/reddit" component={Reddit} />
+					<Route path="/(:subscription)" component={RssFeed} />
 				</Route>
         <Route path="/about" component={About} />
         <Route path="*" component={NotFound} />

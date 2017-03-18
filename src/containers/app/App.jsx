@@ -11,6 +11,7 @@ import { fetchPostsDribble } from '../../actions/feed/DribbleActionCreator';
 import { fetchPostsBehance } from '../../actions/feed/BehanceActionCreator';
 import { fetchPostsTechmeme } from '../../actions/feed/TechmemeActionCreator';
 import { fetchListsRss } from '../../actions/feed/RssListActionCreator';
+import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
 import FeedControl from '../../components/feeds/FeedControl';
 import FeedContent from '../../components/feeds/FeedContent';
 import WidgetControl from '../../containers/widgets/WidgetControl';
@@ -47,6 +48,7 @@ class App extends Component {
     const {
       auth,
       widgets,
+      subscription,
       onGetTodo,
       onGetMemo,
       onGetWidget,
@@ -56,7 +58,8 @@ class App extends Component {
       onFetchPostsBehance,
       onFetchPostsDribble,
       onFetchPostsTechmeme,
-      onFetchListsRss
+      onFetchListsRss,
+      onFetchPostsRss
     } = this.props;
 
     if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
@@ -70,8 +73,15 @@ class App extends Component {
       onFetchPostsDribble();
       onFetchPostsTechmeme();
     }
+
     if (auth.status == 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
       onEditWidget(nextProps.widgets);
+    }
+
+    if(subscription.length === 0 && nextProps.subscription.length > 0) {
+      for(let item of nextProps.subscription) {
+        onFetchPostsRss(item.subscription.feed.url);
+      }
     }
   }
 
@@ -100,8 +110,8 @@ export default connect(
   state => ({
     auth: state.auth,
     widgets: state.widgets,
+    subscription: state.subscription
   }), {
-  onFetchListsRss: fetchListsRss,
   onGetTodo: getTodo,
   onGetMemo: getMemo,
   onGetWidget: getWidget,
@@ -110,5 +120,7 @@ export default connect(
   onFetchPostsMedium: fetchPostsMedium,
   onFetchPostsBehance: fetchPostsBehance,
   onFetchPostsDribble: fetchPostsDribble,
-  onFetchPostsTechmeme: fetchPostsTechmeme
+  onFetchPostsTechmeme: fetchPostsTechmeme,
+  onFetchListsRss: fetchListsRss,
+  onFetchPostsRss: fetchPostsRss,
 })(App);
