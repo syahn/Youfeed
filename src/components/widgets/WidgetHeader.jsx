@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import FontAwesome from 'react-fontawesome';
+import { Icon } from 'antd';
 
 const propTypes = {
   name: PropTypes.string
@@ -14,20 +15,21 @@ const HeaderContainer = styled.div`
   font-size: 12px;
   border-radius: 3px;
   padding: 3px 8px;
-
-  i {
-    margin-right: 3px;
-  }
 `;
 
 const Name = styled.span`
   margin-left: 6px;
 `;
 
-function WidgetHeader({ name }) {
+function WidgetHeader({ name, type, icon }) {
   return(
     <HeaderContainer>
-      <FontAwesome name="hourglass-o" />
+      {type === "antd"
+      ?
+      <Icon type={icon} />
+      :
+      <FontAwesome name={icon} />
+      }
       <Name>{name}</Name>
     </HeaderContainer>
   );

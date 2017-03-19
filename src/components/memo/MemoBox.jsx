@@ -1,20 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Card } from '../ui-components/General';
 import UpdateMemo from '../../containers/memo/UpdateMemo';
-
-const MemoTitle = styled.p`
-  margin-bottom: 10px;
-`;
+import WidgetHeader from '../widgets/WidgetHeader';
 
 function MemoBox() {
   return(
-    <Card>
-      <MemoTitle>
-        Memopad
-      </MemoTitle>
-      <UpdateMemo />
-    </Card>
+    <div>
+      <WidgetHeader
+        name="Memo"
+        type="antd"
+        icon="copy"
+      />
+      <Card>
+        <UpdateMemo />
+      </Card>
+    </div>
+
   );
 }
 

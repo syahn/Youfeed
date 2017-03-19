@@ -192,7 +192,7 @@ class Pomodoro extends React.Component {
     const { minutes, seconds } = this.state;
     return(
       <div>
-        <WidgetHeader name="Pomodoro Timer" />
+        <WidgetHeader name="Pomodoro Timer" type="fontawesome" icon="hourglass-o"/>
         <PomodoroContainer>
           <TimeView
             minutes={minutes}

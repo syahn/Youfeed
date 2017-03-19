@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Card } from '../ui-components/General';
+import WidgetHeader from '../widgets/WidgetHeader';
 
 const CalculatorWrapper = styled(Card)`
   height: 375px;
@@ -286,27 +287,32 @@ class App extends Component {
         start: true
       });
     }
-
   }
-
 
   render(){
     const { value, entry } = this.state;
     return(
-      <CalculatorWrapper>
-        <NumView
-          value={value}
-          entry={entry}
+      <div>
+        <WidgetHeader
+          name="Calculator"
+          type="antd"
+          icon="calculator"
         />
-        <NumController
-          handleNum={this.handleNum}
-          handleOperation={this.handleOperation}
-          handleAC={this.handleAC}
-          handleCE={this.handleCE}
-          handleEqual={this.handleEqual}
-          handleDot={this.handleDot}
-        />
-      </CalculatorWrapper>
+        <CalculatorWrapper>
+          <NumView
+            value={value}
+            entry={entry}
+          />
+          <NumController
+            handleNum={this.handleNum}
+            handleOperation={this.handleOperation}
+            handleAC={this.handleAC}
+            handleCE={this.handleCE}
+            handleEqual={this.handleEqual}
+            handleDot={this.handleDot}
+          />
+        </CalculatorWrapper>
+      </div>
     )
   }
 };
