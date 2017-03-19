@@ -5,8 +5,8 @@ import Todo from '../todos/AppTodo';
 import Weather from '../weather/ViewWeather';
 import MemoBox from '../memo/MemoBox';
 import Calculator from '../calculator';
+import Pomodoro from '../pomodoro';
 import PhotoFrame from '../photoframe/PhotoFrame';
-import ColCategory from '../ui-components/ColCategory';
 import Widget from './Widget';
 
 const propTypes = {
@@ -25,7 +25,8 @@ function WidgetBox({ widgets, onMove }) {
     weather: <Weather />,
     photo: <PhotoFrame />,
     memo: <MemoBox />,
-    calculator: <Calculator />
+    calculator: <Calculator />,
+    pomodoro: <Pomodoro />
   };
 
   const widgetList = widgets.map(widget => (
@@ -35,11 +36,10 @@ function WidgetBox({ widgets, onMove }) {
       type: 'widget'
     })
   );
-  
+
   return (
     <div>
       <Box>
-        <ColCategory name='Widgets' />
         <ul>
           {widgetList.map(item => (
             <Widget

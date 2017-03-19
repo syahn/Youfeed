@@ -4,7 +4,6 @@ import { Icon } from 'antd';
 
 const propTypes = {
   name: PropTypes.string,
-  color: PropTypes.string
 };
 
 const Tag = styled.div`
@@ -20,7 +19,7 @@ const Tag = styled.div`
   }
 `;
 
-function ColCategory({ name, color }) {
+function ColCategory({ name, color = '' }) {
   return(
     <Tag color={color}>
       <Icon type="down-square" />

@@ -3,15 +3,16 @@ import { Link } from 'react-router';
 import { Tag, Spin } from 'antd';
 
 export const Card = styled.div`
+  position: relative;
+  bottom: 4px;
   width: 310px;
   border: 1px solid;
-  padding: 12px;
+  padding: 16px 12px 12px 12px;
   margin-bottom: 11px;
   border-radius: 3px;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   background: #e9ecef;
 `;
-
 
 export const FeedCard = styled.div`
   padding: 12px;
