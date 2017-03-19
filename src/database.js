@@ -14,6 +14,7 @@ const initialState = {
     {type: 'todo', id: uuid()},
     {type: 'memo', id: uuid()},
     {type: 'photo', id: uuid()},
+    {type: 'calculator', id: uuid()},
   ]
 };
 
