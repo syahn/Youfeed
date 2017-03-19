@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Todo from '../todos/AppTodo';
 import Weather from '../weather/ViewWeather';
 import MemoBox from '../memo/MemoBox';
+import Calculator from '../calculator';
 import PhotoFrame from '../photoframe/PhotoFrame';
 import ColCategory from '../ui-components/ColCategory';
 import Widget from './Widget';
@@ -23,23 +24,24 @@ function WidgetBox({ widgets, onMove }) {
     todo: <Todo />,
     weather: <Weather />,
     photo: <PhotoFrame />,
-    memo: <MemoBox />
+    memo: <MemoBox />,
+    calculator: <Calculator />
   };
 
-  const widgetList = widgets.map((widget) => (
+  const widgetList = widgets.map(widget => (
     {
       widget: widgetMapTable[widget.type],
       id: widget.id,
       type: 'widget'
     })
   );
-
+  
   return (
     <div>
       <Box>
         <ColCategory name='Widgets' />
         <ul>
-          {widgetList.map( item => (
+          {widgetList.map(item => (
             <Widget
               key={item.id}
               id={item.id}

@@ -8,13 +8,8 @@ import { moveWidget } from '../../actions/widget/WidgetActionCreator';
  * WidgetBox gets current sequence of widgets and gives to WidgetBox components.
  */
 
-const mapStateToProps = state => ({
-  widgets: state.widgets
-});
 
 const ControlWidget = connect(
-  mapStateToProps,
-  { onMove: moveWidget }
-)(WidgetBox);
+  state => ({ widgets: state.widgets }), { onMove: moveWidget })(WidgetBox);
 
 export default DragDropContext(HTML5Backend)(ControlWidget);
