@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import { FeedCard, CenterSpin, TagBox, Category } from '../ui-components/General';
 import styled from 'styled-components';
 import ReactHtmlParser from 'react-html-parser';
+import { FeedCard, CenterSpin, TagBox, Category } from '../General';
 
 const FeedItemHeader = styled.h2`
   display: flex;

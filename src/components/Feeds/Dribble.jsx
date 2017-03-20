@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import DribbleFeed from '../../components/feeds/DribbleFeed';
+import DribbleFeed from './DribbleFeed';
 
 const propTypes = {
   posts: PropTypes.array,

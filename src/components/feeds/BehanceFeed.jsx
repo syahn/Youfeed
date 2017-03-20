@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import { PostHeader, TagBox, Category, CenterSpin } from '../ui-components/General';
 import styled from 'styled-components';
 import { Icon } from 'antd';
+import { PostHeader, TagBox, Category, CenterSpin } from '../General';
 
 
 const FeedItem = styled.div`

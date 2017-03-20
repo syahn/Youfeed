@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
+import { Icon } from 'antd';
 import {
   FeedCard,
   PostHeader,
   TagBox,
   Category,
   CenterSpin
-} from '../ui-components/General';
-import { Icon } from 'antd';
+} from '../General';
 
 const propTypes = {
   posts: PropTypes.array

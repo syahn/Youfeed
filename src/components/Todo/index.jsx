@@ -4,10 +4,10 @@
 
 import React from 'react';
 import Footer from './Footer';
-import AddTodo from '../../containers/todos/AddTodo';
-import VisibleTodoList from '../../containers/todos/VisibleTodoList';
-import WidgetHeader from '../widgets/WidgetHeader';
-import { Card } from '../ui-components/General';
+import AddTodo from './AddTodo';
+import VisibleTodoList from './VisibleTodoList';
+import WidgetHeader from '../Widgets/WidgetHeader';
+import { Card } from '../General';
 
 function AppTodo() {
   return (

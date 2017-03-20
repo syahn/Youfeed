@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import MediumFeed from '../../components/feeds/MediumFeed';
+import MediumFeed from './MediumFeed';
 
 const propTypes = {
   dispatch: PropTypes.func

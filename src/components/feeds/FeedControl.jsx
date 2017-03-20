@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import uuid from 'uuid';
-import styled from 'styled-components';
-import FeedSubscript from './FeedSubscript';
 import { connect } from 'react-redux';
-import { Link_ } from '../ui-components/General';
+import styled from 'styled-components';
+import uuid from 'uuid';
+import FeedSubscript from './FeedSubscript';
+import { Link_ } from '../General';
 import { Icon, Menu, Popover, Button } from 'antd';
 const SubMenu = Menu.SubMenu;
 

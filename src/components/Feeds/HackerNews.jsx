@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import HackerNewsFeed from '../../components/feeds/HackerNewsFeed';
+import HackerNewsFeed from './HackerNewsFeed';
 import { connect } from 'react-redux';
 
 

@@ -5,7 +5,7 @@ import {
   Category,
   OriginalLink,
   CenterSpin
-} from '../ui-components/General';
+} from '../General';
 import { Icon } from 'antd';
 
 const propTypes = {

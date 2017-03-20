@@ -1,7 +1,9 @@
 /* eslint-disable */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../components/header/Header';
+import { Layout } from 'antd';
+import styled from 'styled-components';
+import Header from '../Header';
 import { getTodo } from '../../actions/todo/TodoActionCreators';
 import { getMemo } from '../../actions/memo/MemoActionCreator';
 import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCreator';
@@ -12,11 +14,10 @@ import { fetchPostsBehance } from '../../actions/feed/BehanceActionCreator';
 import { fetchPostsTechmeme } from '../../actions/feed/TechmemeActionCreator';
 import { fetchListsRss } from '../../actions/feed/RssListActionCreator';
 import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
-import FeedControl from '../../components/feeds/FeedControl';
-import FeedContent from '../../components/feeds/FeedContent';
-import WidgetControl from '../../containers/widgets/WidgetControl';
-import { Layout } from 'antd';
-import styled from 'styled-components';
+import FeedControl from '../Feeds/FeedControl';
+import FeedContent from '../Feeds/FeedContent';
+import WidgetControl from '../Widgets/WidgetControl';
+
 const { Footer } = Layout;
 
 const propTypes = {

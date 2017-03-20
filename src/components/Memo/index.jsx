@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card } from '../ui-components/General';
-import UpdateMemo from '../../containers/memo/UpdateMemo';
-import WidgetHeader from '../widgets/WidgetHeader';
+import { Card } from '../General';
+import UpdateMemo from './UpdateMemo';
+import WidgetHeader from '../Widgets/WidgetHeader';
 
 function MemoBox() {
   return(

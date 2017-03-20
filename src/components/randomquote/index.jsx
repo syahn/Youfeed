@@ -1,14 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Spin } from 'antd';
-import { Card } from '../ui-components/General';
-import WidgetHeader from '../widgets/WidgetHeader';
 import ReactHtmlParser from 'react-html-parser';
-
-const propTypes = {
-  mode: PropTypes.string
-};
+import { Spin } from 'antd';
+import { Card } from '../General';
+import WidgetHeader from '../Widgets/WidgetHeader';
 
 const BlockQuote = styled.blockquote`
   background: #fff;
@@ -27,6 +23,10 @@ const IsFetching = styled(Spin)`
   position: relative;
   left: 45%;
 `;
+
+const propTypes = {
+  mode: PropTypes.string
+};
 
 class RandomQuote extends Component {
 

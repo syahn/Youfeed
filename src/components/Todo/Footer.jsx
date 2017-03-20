@@ -1,6 +1,6 @@
 import React from 'react';
-import FilterLink from '../../containers/todos/FilterLink';
 import styled from 'styled-components';
+import FilterLink from './FilterLink';
 
 const FooterSelector = styled.p`
   margin-top: 12px;

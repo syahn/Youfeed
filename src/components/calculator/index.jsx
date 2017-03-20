@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Card } from '../ui-components/General';
-import WidgetHeader from '../widgets/WidgetHeader';
+import { Card } from '../General';
+import WidgetHeader from '../Widgets/WidgetHeader';
 
 const CalculatorWrapper = styled(Card)`
   height: 375px;

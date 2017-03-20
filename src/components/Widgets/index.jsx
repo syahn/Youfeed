@@ -1,13 +1,12 @@
-/* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
-import Todo from '../todos/AppTodo';
-import Weather from '../weather/ViewWeather';
-import MemoBox from '../memo/MemoBox';
-import Calculator from '../calculator';
-import Pomodoro from '../pomodoro';
-import RandomQuote from '../randomquote';
-import PhotoFrame from '../photoframe/PhotoFrame';
+import Todo from '../Todo';
+// import Weather from '../weather/ViewWeather';
+import MemoBox from '../Memo';
+import Calculator from '../Calculator';
+import Pomodoro from '../Pomodoro';
+import RandomQuote from '../RandomQuote';
+import PhotoFrame from '../PhotoFrame';
 import Widget from './Widget';
 
 const propTypes = {
@@ -23,7 +22,7 @@ const Box = styled.div`
 function WidgetBox({ widgets, onMove }) {
   const widgetMapTable = {
     todo: <Todo />,
-    weather: <Weather />,
+    // weather: <Weather />,
     photo: <PhotoFrame />,
     memo: <MemoBox />,
     calculator: <Calculator />,

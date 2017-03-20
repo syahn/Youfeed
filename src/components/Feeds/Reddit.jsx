@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Selected from './Selected';
+import RedditFeed from './RedditFeed';
+import { CenterSpin } from '../General';
 import {
   selectReddit,
   fetchPostsIfNeeded,
   invalidateReddit
 } from '../../actions/feed/RedditActionCreator';
-import Selected from '../../components/feeds/Selected';
-import RedditFeed from '../../components/feeds/RedditFeed';
-import { CenterSpin } from '../../components/ui-components/General';
 
 class Reddit extends Component {
 

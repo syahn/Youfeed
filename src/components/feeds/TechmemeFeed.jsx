@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import { FeedCard, TagBox, Category } from '../ui-components/General';
 import styled from 'styled-components';
 import { Spin } from 'antd';
+import { FeedCard, TagBox, Category } from '../General';
 
 const FeedItemHeader = styled.h3`
   a {

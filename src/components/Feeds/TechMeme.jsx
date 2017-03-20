@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import TechmemeFeed from '../../components/feeds/TechmemeFeed';
+import TechmemeFeed from './TechmemeFeed';
 
 const propTypes = {
   posts: PropTypes.array.isRequired

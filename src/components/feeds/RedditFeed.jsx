@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import { FeedCard, PostHeader, Category, TagBox } from '../ui-components/General';
 import { Icon } from 'antd';
+import { FeedCard, PostHeader, Category, TagBox } from '../General';
 
 const Domain = styled.span`
   color: #868e96;

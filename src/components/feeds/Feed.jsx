@@ -1,9 +1,9 @@
-import React, {  } from 'react';
+import React, { PropTypes } from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import { PostHeader, FeedCard } from '../ui-components/General';
+import { PostHeader, FeedCard } from '../General';
 
 const propTypes = {
-
+  post: PropTypes.object
 };
 
 function Feed({ post }) {

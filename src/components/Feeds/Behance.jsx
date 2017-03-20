@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BehanceFeed from '../../components/feeds/BehanceFeed';
+import BehanceFeed from './BehanceFeed';
 
 const propTypes = {
 

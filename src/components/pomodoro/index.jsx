@@ -1,8 +1,8 @@
 /*eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
-import { Card } from '../ui-components/General';
-import WidgetHeader from '../widgets/WidgetHeader';
+import { Card } from '../General';
+import WidgetHeader from '../Widgets/WidgetHeader';
 
 const PomodoroContainer = styled(Card)`
   position: relative;

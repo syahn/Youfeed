@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import AuthContainer from '../authentication/AuthContainer';
+import AuthContainer from '../Authentication';
 
 import { Menu, Layout } from 'antd';
 const { Header } = Layout;

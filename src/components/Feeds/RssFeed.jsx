@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
 import { connect } from 'react-redux';
-import Feed from '../../components/feeds/Feed';
+import uuid from 'uuid';
+import Feed from '../Feeds/Feed';
+import { CenterSpin } from '../General';
 import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
-import { CenterSpin } from '../../components/ui-components/General';
 
 const propTypes = {
 
