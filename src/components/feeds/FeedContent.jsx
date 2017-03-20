@@ -12,7 +12,7 @@ const ContentWrapper = styled.div`
 `;
 
 const Tag = styled.div`
-  background: '#108EE9';
+  background: #108EE9;
   color: #fff;
   font-size: 12px;
   border-radius: 3px;
