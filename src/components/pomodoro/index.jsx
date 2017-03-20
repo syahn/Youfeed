@@ -80,7 +80,6 @@ class Pomodoro extends React.Component {
      this.audio = new Audio(soundLink);
   }
 
-
   initiateSession = () => {
     const {minutes, seconds, defaultTime, onPause} = this.state;
     let minutesToString = ('0' + (defaultTime-1)).slice(-2),
@@ -101,8 +100,6 @@ class Pomodoro extends React.Component {
       });
     }
     this.timerID = setInterval(() => this.tick(), 1000);
-
-
   }
 
   pauseSession = () => {
@@ -155,7 +152,6 @@ class Pomodoro extends React.Component {
         defaultTimeToString = '0' + (minutes-1).toString(),
         minutesToString = '0' + minutes.toString();
 
-
      if (seconds > 0){
       this.setState({
         seconds: secondsToString.slice(-2),
@@ -192,7 +188,11 @@ class Pomodoro extends React.Component {
     const { minutes, seconds } = this.state;
     return(
       <div>
-        <WidgetHeader name="Pomodoro Timer" type="fontawesome" icon="hourglass-o"/>
+        <WidgetHeader
+          name="Pomodoro Timer"
+          type="fontawesome"
+          icon="hourglass-o"
+        />
         <PomodoroContainer>
           <TimeView
             minutes={minutes}

@@ -10,13 +10,15 @@ import { forecastWeather } from './weather/weather';
 import { subscription } from './feeds/rss';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets';
-import { memo  } from './memo';
+import { memo } from './memo';
+import { taste } from './taste';
 import { ui } from './ui/ModalSignIn';
 
 const Reducer = combineReducers({
   auth,
   todos,
   memo,
+  taste,
   selectedReddit,
   postsByReddit,
   postsByHackerNews,

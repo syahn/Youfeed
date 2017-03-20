@@ -6,6 +6,7 @@ import Weather from '../weather/ViewWeather';
 import MemoBox from '../memo/MemoBox';
 import Calculator from '../calculator';
 import Pomodoro from '../pomodoro';
+import RandomQuote from '../randomquote';
 import PhotoFrame from '../photoframe/PhotoFrame';
 import Widget from './Widget';
 
@@ -26,7 +27,8 @@ function WidgetBox({ widgets, onMove }) {
     photo: <PhotoFrame />,
     memo: <MemoBox />,
     calculator: <Calculator />,
-    pomodoro: <Pomodoro />
+    pomodoro: <Pomodoro />,
+    randomquote: <RandomQuote />
   };
 
   const widgetList = widgets.map(widget => (
