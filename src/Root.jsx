@@ -4,8 +4,9 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from './stores/configureStore';
 import App from './components/App';
-import RssFeed from './components/Feeds/RssFeed';
+import Rss from './components/Feeds/Rss';
 import FeedBox from './components/Feeds/FeedBox';
+import FeedsByTime from './components/Feeds/FeedsByTime';
 import HackerNews from './components/Feeds/HackerNews';
 import Medium from './components/Feeds/Medium';
 import Behance from './components/Feeds/Behance';
@@ -29,13 +30,14 @@ class Root extends Component {
       <Router history={browserHistory}>
         <Route path="/" component={App}>
 					<IndexRoute component={FeedBox} />
+					<Route path="/feedsbytime" component={FeedsByTime} />
 					<Route path="/hacker-news" component={HackerNews} />
 					<Route path="/medium" component={Medium} />
 					<Route path="/behance" component={Behance} />
 					<Route path="/dribble" component={Dribble} />
 					<Route path="/techmeme" component={TechMeme} />
 					<Route path="/reddit" component={Reddit} />
-					<Route path="/(:subscription)" component={RssFeed} />
+					<Route path="/(:subscription)" component={Rss} />
 				</Route>
         <Route path="/about" component={About} />
         <Route path="*" component={NotFound} />

@@ -90,7 +90,9 @@ class FeedControl extends Component {
             </MenuItem>
             <MenuItem key='feedByTime'>
               <Icon type="clock-circle-o" />
-              Feeds By Time
+              <Link_ to='feedsbytime'>
+                <span>Feeds By Time</span>
+              </Link_>
             </MenuItem>
           </SubMenu>
           <SubMenu

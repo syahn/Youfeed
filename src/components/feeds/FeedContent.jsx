@@ -29,7 +29,7 @@ function FeedContent(props) {
     <ContentWrapper>
       <Tag color="blue">
         <Icon type="down-square" />
-        "News Feed"
+        News Feed
       </Tag>
       {props.children}
     </ContentWrapper>

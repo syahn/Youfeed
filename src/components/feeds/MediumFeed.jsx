@@ -32,7 +32,6 @@ const propTypes = {
 function MediumFeed({ posts }) {
   let list;
   if(posts.length > 0){
-    console.log(posts.length);
     list = posts.map(item => {
       let summary = '';
       if (item.content) {

@@ -27,6 +27,19 @@ export const FeedCard = styled.div`
   }
 `;
 
+export const PostCard = styled.div`
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 3px;
+  background: #fff;
+
+  img {
+    width: 100%;
+  }
+`;
+
 export const PostHeader = styled.span`
   display: flex;
   align-items: flex-start;
@@ -41,6 +54,14 @@ export const PostHeader = styled.span`
   img {
     width: 24px;
   }
+`;
+
+export const PostTitle = styled.div`
+  
+`;
+
+export const PostContent = styled.div`
+
 `;
 
 export const OriginalLink = styled.a`
