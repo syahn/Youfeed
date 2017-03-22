@@ -2,8 +2,11 @@ import { createReducer } from '../util';
 
 function retrievePosts(rssState = {}, action) {
   const { url, post } = action;
-  let newObj = { [url]: post };
-  return Object.assign({}, rssState, newObj);
+  if(action.post.items.length > 0) {
+    let newObj = { [url]: post };
+    return Object.assign({}, rssState, newObj);
+  }
+  return rssState;
 }
 
 // Slice reducer

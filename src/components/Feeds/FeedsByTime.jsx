@@ -90,12 +90,11 @@ class FeedsByTime extends Component {
 
     this.setState({ posts: newPosts });
 
+    this.setState(prevState => {
+      console.log('repv', prevState.posts);
+      return { posts: prevState.posts.concat(postMedium) };
+    });
 
-      this.setState(prevState => {
-        console.log('repv', prevState.posts);
-        return { posts: prevState.posts.concat(postMedium) };
-      });
-    
   }
 
   render() {

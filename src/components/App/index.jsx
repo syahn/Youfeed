@@ -45,6 +45,7 @@ const RightCol = styled.div`
 
 
 class App extends Component {
+
   componentWillReceiveProps(nextProps) {
     const {
       auth,

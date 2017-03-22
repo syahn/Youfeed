@@ -25,7 +25,6 @@ export const fetchPostsRss = subscriptionUrl => (dispatch, getState) => {
   let url = 'https://stream.superfeedr.com/?';
   const query = {
     'count': 20,
-    'wait': 'stream',
     'hub.mode': 'retrieve',
     'authorization': btoa([login, token].join(':')),
     'hub.callback[endpoint][url]': `https://youfeed.space/${auth.uid}/${subscriptionUrl}`,
@@ -36,19 +35,20 @@ export const fetchPostsRss = subscriptionUrl => (dispatch, getState) => {
   let source = new EventSource(url);
   source.addEventListener("notification", (e) => {
     let notification = JSON.parse(e.data);
+    console.log('notification',notification);
 
     notification.items.sort((x, y) => {
       return x.published - y.published;
     });
-
-    notification.items.forEach((item) => {
-      if(!item.source)
-        item.source = {
-          title: notification.title,
-          permalinkUrl: notification.permalinkUrl
-        };
-        dispatch(receivePosts(notification, subscriptionUrl));
-    });
+    //
+    // notification.items.forEach((item) => {
+    //   if(!item.source)
+    //     item.source = {
+    //       title: notification.title,
+    //       permalinkUrl: notification.permalinkUrl
+    //     };
+    // });
+    dispatch(receivePosts(notification, subscriptionUrl));
   });
 
   source.onerror = e => {

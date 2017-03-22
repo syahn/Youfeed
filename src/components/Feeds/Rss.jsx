@@ -1,80 +1,95 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
-import Feed from '../Feeds/Feed';
 import { CenterSpin } from '../General';
+import FeedTemplate from './FeedTemplate';
 import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
+import ReactHtmlParser from 'react-html-parser';
 
 const propTypes = {
-
+  params: PropTypes.object,
+  postsList: PropTypes.object,
+  subscription: PropTypes.array
 };
 
-class RssFeed extends Component {
+class Rss extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      posts: []
-    };
-    this.newPosts;
-  }
-
-  componentWillMount() {
-    const { params, postList, subscription } = this.props;
-    let postsElement;
-    for(let e of subscription) {
-      if(e.subscription.feed.title.indexOf(params.subscription) > -1) {
-        let posts = postList[e.subscription.feed.url].items;
-        postsElement = posts.map(post => (
-          <Feed
-            key={uuid()}
-            post={post}
-          />
-        ));
-        break;
-      }
+    const { params, postsList, subscription } = this.props;
+    let postRss = [];
+    for(let e of subscription){
+      const { title, url } = e.subscription.feed;
+      if(title.indexOf(params.subscription) > -1 && postsList[url]) {
+        postRss = postsList[url].items.map(post => ({
+          title: post.title,
+          author: post.actor.displayName,
+          logo: post.source.image,
+          image: '',
+          url: post.permalinkUrl,
+          siteUrl: '',
+          score: '',
+          time: post.published,
+          content: post.summary || post.content && ReactHtmlParser(post.content.split('</p>')[0]),
+          category: post.categories || []
+        }));
+      break;
     }
-    this.newPosts = postsElement;
-
+  }
+    this.state = {
+      posts: postRss,
+      fetched: postRss.length > 0
+    };
   }
 
   componentWillReceiveProps(nextProps) {
-    const { params, subscription } = this.props;
-    let postsElement;
-    if(params.subscription !== nextProps.params.subscription) {
-      for(let e of subscription) {
-        if(e.subscription.feed.title.indexOf(nextProps.params.subscription) > -1) {
-          let posts = nextProps.postList[e.subscription.feed.url].items;
-          postsElement = posts.map(post => (
-            <Feed
-              key={uuid()}
-              post={post}
-            />
-          ));
+    const { params, postsList, subscription } = this.props;
+    let { fetched } = this.state;
+
+    if((!fetched && postsList !== nextProps.postsList) || params !== nextProps.params) {
+      for(let e of subscription){
+        const { title, url } = e.subscription.feed;
+        if(title.indexOf(nextProps.params.subscription) > -1 && nextProps.postsList[url]) {
+          const postRss = nextProps.postsList[url].items.map(post => ({
+            title: post.title,
+            author: post.actor.displayName,
+            logo: post.source.image,
+            image: '',
+            url: post.permalinkUrl,
+            siteUrl: '',
+            score: '',
+            time: post.published,
+            content: post.summary || post.content && ReactHtmlParser(post.content.split('</p>')[0]),
+            category: post.categories || []
+          }));
+
+          this.setState({posts: postRss, fetched: true});
           break;
         }
       }
     }
-    this.newPosts = postsElement;
   }
 
-
   render() {
+    const { posts } = this.state;
     return(
       <div>
-        {this.newPosts || <CenterSpin size="large" />}
+        { posts.length > 0
+          ?
+          <FeedTemplate posts={posts} />
+          :
+          <CenterSpin size="large" /> }
       </div>
     );
   }
 }
 
-RssFeed.propTypes = propTypes;
+Rss.propTypes = propTypes;
 
 export default connect(
   state => ({
     subscription: state.subscription,
-    postList: state.postsByRSS
+    postsList: state.postsByRSS
   }), {
     onFetchPostsRss: fetchPostsRss
   }
-)(RssFeed);
+)(Rss);
