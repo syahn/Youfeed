@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Header from '../Header';
 import { getTodo } from '../../actions/todo/TodoActionCreators';
 import { getMemo } from '../../actions/memo/MemoActionCreator';
+import { getPersonal } from '../../actions/personal/PersonalActionCreator';
 import { editLayoutWidget, getWidget } from '../../actions/widget/WidgetActionCreator';
 import { fetchPostsHN } from '../../actions/feed/HackerNewsActionCreator';
 import { fetchPostsMedium } from '../../actions/feed/MediumActionCreator';
@@ -43,7 +44,6 @@ const RightCol = styled.div`
   width: 833px;
 `;
 
-
 class App extends Component {
 
   componentWillReceiveProps(nextProps) {
@@ -55,6 +55,7 @@ class App extends Component {
       onGetMemo,
       onGetWidget,
       onEditWidget,
+      onGetPersonal,
       onFetchPostsHN,
       onFetchPostsMedium,
       onFetchPostsBehance,
@@ -74,6 +75,7 @@ class App extends Component {
       onGetTodo();
       onGetMemo();
       onGetWidget();
+      onGetPersonal();
     }
 
     if (auth.status === 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
@@ -116,6 +118,7 @@ export default connect(
   }), {
   onGetTodo: getTodo,
   onGetMemo: getMemo,
+  onGetPersonal: getPersonal,
   onGetWidget: getWidget,
   onEditWidget: editLayoutWidget,
   onFetchPostsHN: fetchPostsHN,

@@ -10,6 +10,10 @@ function setCount(personalState, action) {
     {[action.subscription] : 0});
 }
 
+function getCount(personalState, action) {
+  return updateObject(personalState, action.val);
+}
+
 // Slice reducer
 export const personalization = createReducer({
   'medium': 0,
@@ -19,6 +23,7 @@ export const personalization = createReducer({
   'reddit': 0,
   'techmeme': 0
 }, {
-  'CLICK_SUBSCRIPTTION': addCount,
-  'SET_SUBSCRIPTTION': setCount,
+  'CLICK_PERSONALIZATION': addCount,
+  'SET_PERSONALIZATION': setCount,
+  'DOWNLOAD_PERSONALIZATION': getCount,
 });
