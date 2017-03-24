@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import FeedSubscript from './FeedSubscript';
@@ -51,9 +52,11 @@ class FeedControl extends Component {
     }
   }
 
-  handleClick = name => {
+  handleClick = val => {
     const { dispatch } = this.props;
-    dispatch(clickSubscription(name));
+    if(val.keyPath[1] !== 'newsFeed') {
+      dispatch(clickSubscription(val.key));
+    }
   }
 
   render(){

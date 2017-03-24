@@ -44,7 +44,7 @@ function ControlView({
   return(
     <Col>
     <Menu
-      onClick={e => handleClick(e.key)}
+      onClick={e => handleClick(e)}
       style={{ background: '#e9ecef'}}
       defaultOpenKeys={['newsFeed', 'rssList', 'youfeedList']}
       mode="inline"
