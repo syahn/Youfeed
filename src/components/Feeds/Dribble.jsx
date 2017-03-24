@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import DribbleFeed from './DribbleFeed';
+import FeedTemplate from './FeedTemplate';
 
 const propTypes = {
   posts: PropTypes.array,
@@ -10,8 +10,8 @@ const propTypes = {
 class Dribble extends Component {
   render() {
     const { posts } = this.props;
-
-    return <DribbleFeed posts={posts} />;
+        
+    return <FeedTemplate posts={posts} />;
   }
 }
 

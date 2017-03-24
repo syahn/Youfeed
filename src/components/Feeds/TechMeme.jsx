@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import TechmemeFeed from './TechmemeFeed';
+import FeedTemplate from './FeedTemplate';
 
 const propTypes = {
   posts: PropTypes.array.isRequired
@@ -10,7 +10,7 @@ class TechMeme extends Component {
   render() {
     const { posts } = this.props;
 
-    return <TechmemeFeed posts={posts}></TechmemeFeed>;
+    return <FeedTemplate posts={posts} />;
   }
 }
 

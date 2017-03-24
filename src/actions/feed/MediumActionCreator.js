@@ -2,6 +2,7 @@ import 'eventsource';
 import querystring from 'querystring';
 import C from '../../constants';
 import { superfeedrConfig } from '../../config';
+import ReactHtmlParser from 'react-html-parser';
 
 const requestPosts = () => ({
   type: C.REQUEST_POSTS_MEDIUM
@@ -35,18 +36,23 @@ export const fetchPostsMedium = () => dispatch => {
   source.addEventListener("notification", (e) => {
     let notification = JSON.parse(e.data);
 
-    notification.items.sort((x, y) => {
-      return x.published - y.published;
-    });
-
-    notification.items.forEach((item) => {
-      if(!item.source)
-        item.source = {
-          title: notification.title,
-          permalinkUrl: notification.permalinkUrl
-        };
-        dispatch(receivePosts(notification));
-    });
+    if(notification.items.length > 0) {
+      notification.items = notification.items.map(post => ({
+        title: post.title,
+        author: post.actor.displayName,
+        logo: post.source.image,
+        image: '',
+        url: post.permalinkUrl,
+        siteUrl: '',
+        score: '',
+        time: post.published,
+        content: post.content && ReactHtmlParser(post.content.split('</p>')[0]),
+        category: post.category || []
+      })).sort((x, y) => {
+        return y.time - x.time;
+      });
+      dispatch(receivePosts(notification));
+    }
   });
 
   source.onerror = e => {

@@ -29,7 +29,21 @@ const fetchPostItemHN = list => dispatch => {
   for (let i=0; i<10; i++){
     fetch(`https://hacker-news.firebaseio.com/v0/item/${list[i]}.json?print=pretty`)
       .then(response => response.json())
-      .then(post => dispatch(receivePosts(post, 'hackernews')))
+      .then(post => {
+        const newPost = {
+          title: post.title,
+          author: post.by,
+          logo: 'https://dl.dropbox.com/s/t8avm6wndwfxf04/hackerNews.svg?dl=0',
+          image: '',
+          url: `https://news.ycombinator.com/item?id=${post.id}`,
+          siteUrl: post.url,
+          score: post.score,
+          time: post.time,
+          content: '',
+          category: []
+        };
+        return dispatch(receivePosts(newPost, 'hackernews'));  
+      })
       .catch((error) => {
         console.log(error);
         dispatch(rejectPosts());

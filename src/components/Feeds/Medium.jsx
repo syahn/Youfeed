@@ -1,15 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import MediumFeed from './MediumFeed';
+import FeedTemplate from './FeedTemplate';
 
 const propTypes = {
-  dispatch: PropTypes.func
+  posts: PropTypes.array
 };
 
 class Medium extends Component {
   render() {
     const { posts } = this.props;
-    return <MediumFeed posts={posts} />;
+    console.log('posts',posts);
+    return <FeedTemplate posts={posts} />;
   }
 }
 

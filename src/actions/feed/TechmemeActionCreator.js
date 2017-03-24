@@ -36,18 +36,23 @@ export const fetchPostsTechmeme = () => dispatch => {
   source.addEventListener("notification", (e) => {
     let notification = JSON.parse(e.data);
 
-    notification.items.sort((x, y) => {
-      return x.published - y.published;
-    });
-
-    notification.items.forEach((item) => {
-      if(!item.source)
-        item.source = {
-          title: notification.title,
-          permalinkUrl: notification.permalinkUrl
-        };
-        dispatch(receivePosts(notification));
-    });
+    if(notification.items.length > 0) {
+      notification.items = notification.items.map(post => ({
+        title: post.title,
+        author: '',
+        logo: 'https://dl.dropbox.com/s/2byudsj3akgzkib/techmeme_size_328x328.jpg?dl=0',
+        image: '',
+        url: post.id,
+        siteUrl: '',
+        score: '',
+        time: post.published,
+        content: '',
+        category: []
+      })).sort((x, y) => {
+        return y.time - x.time;
+      });
+      dispatch(receivePosts(notification));
+    }
   });
 
   source.onerror = e => {

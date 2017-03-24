@@ -18,6 +18,7 @@ import FeedControl from '../Feeds/FeedControl';
 import FeedContent from '../Feeds/FeedContent';
 import WidgetControl from '../Widgets/WidgetControl';
 
+
 const { Footer } = Layout;
 
 const propTypes = {
@@ -64,19 +65,19 @@ class App extends Component {
       onFetchPostsRss
     } = this.props;
 
-    if (auth.status == 'AUTH_ANONYMOUS' && nextProps.auth.status == 'AUTH_LOGGED_IN') {
+    if (auth.status === 'AUTH_ANONYMOUS' && nextProps.auth.status === 'AUTH_LOGGED_IN') {
       onFetchListsRss(nextProps.auth);
-      onGetTodo();
-      onGetMemo();
-      onGetWidget();
-      onFetchPostsHN();
       onFetchPostsMedium();
+      onFetchPostsHN();
       onFetchPostsBehance();
       onFetchPostsDribble();
       onFetchPostsTechmeme();
+      onGetTodo();
+      onGetMemo();
+      onGetWidget();
     }
 
-    if (auth.status == 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
+    if (auth.status === 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
       onEditWidget(nextProps.widgets);
     }
 

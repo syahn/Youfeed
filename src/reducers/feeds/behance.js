@@ -1,7 +1,7 @@
 import { createReducer } from '../util';
 
 function retrievePost(behanceState, action) {
-  return action.post.projects;
+  return action.post;
 }
 
 // Slice reducer

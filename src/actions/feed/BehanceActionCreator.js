@@ -19,9 +19,22 @@ export const fetchPostsBehance = () => dispatch => {
   dispatch(requestPosts());
 
   return fetch(`https://crossorigin.me/https://www.behance.net/v2/projects?api_key=${behanceConfig.key}`)
-    .then( response => response.json())
-    .then( json => {
-      dispatch(receivePosts(json));
+    .then(response => response.json())
+    .then(posts => {
+      const newPosts = posts.projects.map(post => ({
+        title: post.name,
+        author: post.owners[0].display_name,
+        logo: post.features[0].site.icon,
+        image: post.covers.original,
+        url: post.url,
+        siteUrl: '',
+        score: post.stats.appreciations,
+        time: post.published_on,
+        content: '',
+        category: post.fields || []
+      }));
+
+      dispatch(receivePosts(newPosts));
     })
     .catch( error => {
       console.log(error);

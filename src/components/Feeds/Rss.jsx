@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { CenterSpin } from '../General';
 import FeedTemplate from './FeedTemplate';
 import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
-import ReactHtmlParser from 'react-html-parser';
+
 
 const propTypes = {
   params: PropTypes.object,
@@ -20,21 +20,11 @@ class Rss extends Component {
     for(let e of subscription){
       const { title, url } = e.subscription.feed;
       if(title.indexOf(params.subscription) > -1 && postsList[url]) {
-        postRss = postsList[url].items.map(post => ({
-          title: post.title,
-          author: post.actor.displayName,
-          logo: post.source.image,
-          image: '',
-          url: post.permalinkUrl,
-          siteUrl: '',
-          score: '',
-          time: post.published,
-          content: post.summary || post.content && ReactHtmlParser(post.content.split('</p>')[0]),
-          category: post.categories || []
-        }));
+        postRss = postsList[url].items;
       break;
+      }
     }
-  }
+
     this.state = {
       posts: postRss,
       fetched: postRss.length > 0
@@ -42,26 +32,13 @@ class Rss extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { params, postsList, subscription } = this.props;
+    const { params, subscription } = this.props;
     let { fetched } = this.state;
-
-    if((!fetched && postsList !== nextProps.postsList) || params !== nextProps.params) {
+    if(!fetched || (params.subscription !== nextProps.params.subscription)) {
       for(let e of subscription){
         const { title, url } = e.subscription.feed;
         if(title.indexOf(nextProps.params.subscription) > -1 && nextProps.postsList[url]) {
-          const postRss = nextProps.postsList[url].items.map(post => ({
-            title: post.title,
-            author: post.actor.displayName,
-            logo: post.source.image,
-            image: '',
-            url: post.permalinkUrl,
-            siteUrl: '',
-            score: '',
-            time: post.published,
-            content: post.summary || post.content && ReactHtmlParser(post.content.split('</p>')[0]),
-            category: post.categories || []
-          }));
-
+          const postRss = nextProps.postsList[url].items;
           this.setState({posts: postRss, fetched: true});
           break;
         }

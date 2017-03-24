@@ -2,6 +2,7 @@ import 'eventsource';
 import querystring from 'querystring';
 import C from '../../constants';
 import { superfeedrConfig } from '../../config';
+import ReactHtmlParser from 'react-html-parser';
 
 const requestPosts = () => ({
   type: C.REQUEST_POSTS_RSS
@@ -35,20 +36,24 @@ export const fetchPostsRss = subscriptionUrl => (dispatch, getState) => {
   let source = new EventSource(url);
   source.addEventListener("notification", (e) => {
     let notification = JSON.parse(e.data);
-    console.log('notification',notification);
 
-    notification.items.sort((x, y) => {
-      return x.published - y.published;
-    });
-    //
-    // notification.items.forEach((item) => {
-    //   if(!item.source)
-    //     item.source = {
-    //       title: notification.title,
-    //       permalinkUrl: notification.permalinkUrl
-    //     };
-    // });
-    dispatch(receivePosts(notification, subscriptionUrl));
+    if(notification.items.length > 0) {
+      notification.items = notification.items.map(post => ({
+        title: post.title,
+        author: post.auther,
+        logo: post.source.image,
+        image: '',
+        url: post.permalinkUrl,
+        siteUrl: '',
+        score: '',
+        time: post.published,
+        content: post.summary || post.content && ReactHtmlParser(post.content.split('</p>')[0]),
+        category: post.categories || []
+      })).sort((x, y) => {
+        return y.time - x.time;
+      });
+      dispatch(receivePosts(notification, subscriptionUrl));
+    }
   });
 
   source.onerror = e => {

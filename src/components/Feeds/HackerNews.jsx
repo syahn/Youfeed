@@ -1,22 +1,22 @@
 import React, { Component, PropTypes } from 'react';
-import HackerNewsFeed from './HackerNewsFeed';
+import FeedTemplate from './FeedTemplate';
 import { connect } from 'react-redux';
 
 
 const propTypes = {
-  items: PropTypes.array
+  posts: PropTypes.array
 };
 
 class HackerNews extends Component {
   render() {
-    const { items } = this.props;
+    const { posts } = this.props;
 
-    return <HackerNewsFeed posts={items} />;
+    return <FeedTemplate posts={posts} />;
   }
 }
 
 const mapStateToProps = state => ({
-  items: state.postsByHackerNews
+  posts: state.postsByHackerNews
 });
 
 HackerNews.propTypes = propTypes;

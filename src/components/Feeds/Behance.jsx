@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BehanceFeed from './BehanceFeed';
+import FeedTemplate from './FeedTemplate';
+import { CenterSpin } from '../General';
+
 
 const propTypes = {
 
@@ -9,7 +11,17 @@ const propTypes = {
 class Behance extends Component {
   render(){
     const { posts } = this.props;
-    return <BehanceFeed posts={posts} />;
+    const renderPosts = posts.length > 0
+      ?
+      <FeedTemplate posts={posts} />
+      :
+      <CenterSpin size="large" />;
+
+    return (
+      <div>
+        {renderPosts}
+      </div>
+    );
   }
 }
 
