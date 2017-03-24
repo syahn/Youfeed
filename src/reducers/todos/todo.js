@@ -27,23 +27,23 @@ function getTodo(todosState, action) {
 
 // Case reducer
 function toggleTodo(todosState, action) {
-    const newTodos = updateItemInArray(todosState, action.id, todo => {
-        return updateObject(todo, {completed : !todo.completed});
-    });
+  const newTodos = updateItemInArray(todosState, action.id, todo => {
+    return updateObject(todo, {completed : !todo.completed});
+  });
 
-    return newTodos;
+  return newTodos;
 }
 
 
 // Case reducer
 function deleteTodo(todosState, action) {
-    return deleteItemInArray(todosState, action.id);
+  return deleteItemInArray(todosState, action.id);
 }
 
 // Case reducer
 function editTodo(todosState, action) {
   const newTodos = updateItemInArray(todosState, action.id, todo => {
-      return updateObject(todo, {text : action.text, editing:!todo.editing});
+    return updateObject(todo, {text : action.text, editing:!todo.editing});
   });
 
   return newTodos;
@@ -52,7 +52,7 @@ function editTodo(todosState, action) {
 // Case reducer
 function editActivateTodo(todosState, action) {
   const newTodos = updateItemInArray(todosState, action.id, todo => {
-      return updateObject(todo, {editing : !todo.editing});
+    return updateObject(todo, {editing : !todo.editing});
   });
 
   return newTodos;
@@ -60,10 +60,10 @@ function editActivateTodo(todosState, action) {
 
 // Slice reducer
 export const todos = createReducer([], {
-    'ADD_TODO': addTodo,
-    'TOGGLE_TODO': toggleTodo,
-    'DELETE_TODO': deleteTodo,
-    'EDIT_TODO': editTodo,
-    'EDIT_ACTIVATE_TODO': editActivateTodo,
-    'GET_FULFILLED_TODO': getTodo
+  'ADD_TODO': addTodo,
+  'TOGGLE_TODO': toggleTodo,
+  'DELETE_TODO': deleteTodo,
+  'EDIT_TODO': editTodo,
+  'EDIT_ACTIVATE_TODO': editActivateTodo,
+  'GET_FULFILLED_TODO': getTodo
 });

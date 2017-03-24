@@ -6,6 +6,7 @@ import ui from './ui';
 import widget from './widget';
 import dnd from './dnd';
 import feed from './feed';
+import personalization from './personalization';
 
 export default Object.assign({},
 	auth,
@@ -15,5 +16,6 @@ export default Object.assign({},
 	dnd,
 	memo,
 	widget,
-	feed
+	feed,
+	personalization
 );

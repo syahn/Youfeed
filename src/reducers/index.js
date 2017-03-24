@@ -9,6 +9,7 @@ import { postsByBehance } from './feeds/behance';
 import { postsByDribble } from './feeds/dribble';
 import { forecastWeather } from './weather/weather';
 import { subscription } from './feeds/rss';
+import { personalization } from './personalization';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets';
 import { memo } from './memo';
@@ -30,6 +31,7 @@ const Reducer = combineReducers({
   postsByRSS,
   forecastWeather,
   subscription,
+  personalization,
   ui,
   widgets
 });

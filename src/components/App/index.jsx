@@ -18,7 +18,6 @@ import FeedControl from '../Feeds/FeedControl';
 import FeedContent from '../Feeds/FeedContent';
 import WidgetControl from '../Widgets/WidgetControl';
 
-
 const { Footer } = Layout;
 
 const propTypes = {

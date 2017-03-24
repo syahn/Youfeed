@@ -1,7 +1,6 @@
 import C from '../../constants';
 
 // Reusable utility functions
-
 export const auth = (state = {
 	username: null,
 	uid: null,
