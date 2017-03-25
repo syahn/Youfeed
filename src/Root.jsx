@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureStore from './stores/configureStore';
 import App from './components/App';
 import Rss from './components/Feeds/Rss';
-import FeedBox from './components/Feeds/FeedBox';
+import Personalized from './components/Feeds/Personalized';
 import FeedsByTime from './components/Feeds/FeedsByTime';
 import HackerNews from './components/Feeds/HackerNews';
 import Medium from './components/Feeds/Medium';
@@ -29,7 +29,7 @@ class Root extends Component {
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" component={App}>
-					<IndexRoute component={FeedBox} />
+					<IndexRoute component={Personalized} />
 					<Route path="/feedsbytime" component={FeedsByTime} />
 					<Route path="/hacker-news" component={HackerNews} />
 					<Route path="/medium" component={Medium} />

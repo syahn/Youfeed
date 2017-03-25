@@ -60,7 +60,9 @@ function ControlView({
       >
         <MenuItem key='feedByPersonalized'>
           <Icon type="user" />
-          Personalized Feeds
+          <Link_ to='/'>
+            <span>Personalized Feeds</span>
+          </Link_>
         </MenuItem>
         <MenuItem key='feedByTime'>
           <Icon type="clock-circle-o" />
