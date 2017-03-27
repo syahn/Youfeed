@@ -32,6 +32,10 @@ const MenuItem = styled(Menu.Item)`
   align-items: center;
 `;
 
+const SubMenu_ = styled(SubMenu)`
+  min-width: 245px;
+`;
+
 
 function ControlView({
   handleClick,
@@ -47,7 +51,7 @@ function ControlView({
       defaultOpenKeys={['newsFeed', 'rssList', 'youfeedList']}
       mode="inline"
     >
-      <SubMenu
+      <SubMenu_
         key="newsFeed"
         title={
           <Link_ to="/">
@@ -68,8 +72,8 @@ function ControlView({
             <span>Feeds By Time</span>
           </Link_>
         </MenuItem>
-      </SubMenu>
-      <SubMenu
+      </SubMenu_>
+      <SubMenu_
         key="rssList"
         title={
           <span>
@@ -97,8 +101,8 @@ function ControlView({
           </Popover>
         </MenuItem>
 
-      </SubMenu>
-      <SubMenu
+      </SubMenu_>
+      <SubMenu_
         key="youfeedList"
         title={
           <span>
@@ -119,7 +123,7 @@ function ControlView({
             </MenuItem>
           ))
         }
-      </SubMenu>
+      </SubMenu_>
     </Menu>
     </Col>
   );

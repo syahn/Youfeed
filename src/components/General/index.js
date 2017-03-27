@@ -78,7 +78,7 @@ export const TagBox = styled.div`
 `;
 
 export const ScoreTag = styled(Tag)`
-  margin: 4px 0 0 8px !important;
+  margin: 4px 8px 0 0 !important;
 `;
 
 export const Category = styled(Tag)`
