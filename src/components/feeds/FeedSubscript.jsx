@@ -46,9 +46,8 @@ class FeedSubscript extends Component {
     const query = {
       'hub.mode': 'subscribe',
       'hub.topic': `${urlAdded}`,
-      'format': 'json',
       'authorization': btoa([login, token].join(':')),
-      'hub.callback': `https://youfeed.space/${auth.uid}/${urlAdded}`
+      'hub.callback': `https://youfeed.space/${auth.uid}`
     };
     url = url + querystring.stringify(query);
     fetch(url, {

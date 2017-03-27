@@ -1,3 +1,4 @@
+/* eslint-disable */
 import 'eventsource';
 import querystring from 'querystring';
 import C from '../../constants';
@@ -16,7 +17,7 @@ const rejectLists = () => ({
   type: C.REJECT_SUBSCRIPTION_LIST
 });
 
-export const fetchListsRss = auth => (dispatch) => {
+export const fetchListsRss = auth => dispatch => {
   dispatch(requestLists());
   const { login, token } = superfeedrConfig;
 
@@ -25,7 +26,7 @@ export const fetchListsRss = auth => (dispatch) => {
   const query = {
     'hub.mode': 'list',
     'authorization': btoa([login, token].join(':')),
-    'search[endpoint][url]': `https://youfeed.space/${auth.uid}`
+    'search[endpoint][url]': `https://youfeed.space/${auth.uid}`,
   };
 
   url = url + querystring.stringify(query);

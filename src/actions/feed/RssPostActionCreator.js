@@ -1,3 +1,4 @@
+/* eslint-disable */
 import 'eventsource';
 import querystring from 'querystring';
 import C from '../../constants';
@@ -28,7 +29,7 @@ export const fetchPostsRss = subscriptionUrl => (dispatch, getState) => {
     'count': 20,
     'hub.mode': 'retrieve',
     'authorization': btoa([login, token].join(':')),
-    'hub.callback[endpoint][url]': `https://youfeed.space/${auth.uid}/${subscriptionUrl}`,
+    'hub.callback[feed][url]': subscriptionUrl,
   };
 
   url = url + querystring.stringify(query);
