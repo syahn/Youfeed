@@ -1,18 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import Todo from '../Todo';
-// import Weather from '../weather/ViewWeather';
 import MemoBox from '../Memo';
 import Calculator from '../Calculator';
 import Pomodoro from '../Pomodoro';
 import RandomQuote from '../RandomQuote';
-import PhotoFrame from '../PhotoFrame';
 import Widget from './Widget';
 
 const propTypes = {
-};
-
-const defaultProps = {
+  widgets: PropTypes.array.isRequired,
+  onMove: PropTypes.func.isRequired
 };
 
 const Box = styled.div`
@@ -22,8 +19,6 @@ const Box = styled.div`
 function WidgetBox({ widgets, onMove }) {
   const widgetMapTable = {
     todo: <Todo />,
-    // weather: <Weather />,
-    photo: <PhotoFrame />,
     memo: <MemoBox />,
     calculator: <Calculator />,
     pomodoro: <Pomodoro />,
@@ -59,6 +54,5 @@ function WidgetBox({ widgets, onMove }) {
 }
 
 WidgetBox.propTypes = propTypes;
-WidgetBox.defaultProps = defaultProps;
 
 export default WidgetBox;
