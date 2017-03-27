@@ -37,6 +37,7 @@ export const fetchPostsRss = subscriptionUrl => (dispatch, getState) => {
   let source = new EventSource(url);
   source.addEventListener("notification", (e) => {
     let notification = JSON.parse(e.data);
+    console.log(notification);
 
     if(notification.items.length > 0) {
       notification.items = notification.items.map(post => ({

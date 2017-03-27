@@ -46,7 +46,7 @@ class FeedControl extends Component {
 
     if(subscription.length === 0 && nextProps.subscription.length > 0) {
       nextProps.subscription.map(item => {
-        const name = item.subscription.feed.title.split(' ')[0];
+        const name = item.subscription.feed.title;
         dispatch(setSubscription(name));
       });
     }

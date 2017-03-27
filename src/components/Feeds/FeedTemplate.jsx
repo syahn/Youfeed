@@ -1,5 +1,6 @@
-/* eslint-disable */
-import React from 'react';
+import React, { PropTypes } from 'react';
+import uuid from 'uuid';
+import moment from 'moment';
 import {
   PostTitle,
   PostHeader,
@@ -7,16 +8,13 @@ import {
   PostContent,
   Category,
   TagBox,
+  Icon_,
+  ScoreTag,
   OriginalLink
 } from '../General';
-import uuid from 'uuid';
-import moment from 'moment';
 
 const propTypes = {
-
-};
-const defaultProps = {
-
+  posts: PropTypes.array
 };
 
 function FeedTemplate({ posts }) {
@@ -27,8 +25,14 @@ function FeedTemplate({ posts }) {
       return (
         <PostCard key={uuid()}>
           <PostTitle>
-            <PostHeader>
-              <img src={post.logo} />
+            <PostHeader logo={post.logo}>
+              <img src={post.logo} alt="" />
+              {post.score &&
+                <ScoreTag color="#108ee9">
+                  <Icon_ type="caret-up" />
+                  {post.score}
+                </ScoreTag>
+              }
               <a href={post.url} target="_blank">
                 {post.title}
               </a>
@@ -60,6 +64,5 @@ function FeedTemplate({ posts }) {
 }
 
 FeedTemplate.propTypes = propTypes;
-FeedTemplate.defaultProps = defaultProps;
 
 export default FeedTemplate;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import { Tag, Spin } from 'antd';
+import { Tag, Spin, Icon } from 'antd';
 
 export const Card = styled.div`
   position: relative;
@@ -52,12 +52,13 @@ export const PostHeader = styled.span`
   }
 
   img {
-    width: 24px;
+    margin: ${props => props.logo ? '3px 10px 0 0' : '0px'};
+    width: ${props => props.logo ? '24px' : '0px'};
   }
 `;
 
 export const PostTitle = styled.div`
-  
+
 `;
 
 export const PostContent = styled.div`
@@ -74,7 +75,10 @@ export const OriginalLink = styled.a`
 `;
 
 export const TagBox = styled.div`
-  text-align: right;
+`;
+
+export const ScoreTag = styled(Tag)`
+  margin: 4px 0 0 8px !important;
 `;
 
 export const Category = styled(Tag)`
@@ -90,4 +94,10 @@ export const CenterSpin = styled(Spin)`
   position: relative !important;
   left: 45%;
   top: 60px;
+`;
+
+export const Icon_ = styled(Icon)`
+  i {
+    margin-right: 3px;
+  }
 `;

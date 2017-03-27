@@ -11,13 +11,11 @@ const SubMenu = Menu.SubMenu;
 const propTypes = {
   subscription: PropTypes.array
 };
-const defaultProps = {
-
-};
 
 const Col = styled.div`
   margin: 11px 0;
   border: 1px solid;
+  max-width: 247px;
   border-radius: 3px;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   background: #fff;
@@ -82,7 +80,7 @@ function ControlView({
         {
           subscription.length > 0 &&
           subscription.map(item => {
-            const domain = item.subscription.feed.title.split(' ')[0];
+            const domain = item.subscription.feed.title;
             return (
               <MenuItem key={domain}>
                 <Icon type="book" />
@@ -128,6 +126,5 @@ function ControlView({
 }
 
 ControlView.propTypes = propTypes;
-ControlView.defaultProps = defaultProps;
 
 export default ControlView;
