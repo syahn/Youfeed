@@ -7,6 +7,9 @@ import { Menu, Layout } from 'antd';
 const { Header } = Layout;
 
 const Header_ = styled(Header)`
+  position: fixed;
+  width: 100%;
+  z-index: 2;
   border-bottom: 1px solid #e8e8e8;
   background: #fff;
   padding: 14px 101px;

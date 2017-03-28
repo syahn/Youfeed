@@ -32,6 +32,8 @@ const GlobalLayout = styled(Layout)`
 `;
 
 const ContentLayout = styled.div`
+  position: relative;
+  top: 63px;
   display: flex;
   justify-content: center;
   width: 1126px;
@@ -39,6 +41,8 @@ const ContentLayout = styled.div`
 `;
 
 const RightCol = styled.div`
+  position: relative;
+  left: 122px;
   display: flex;
   padding: 11px 0 0 11px;
   width: 833px;
