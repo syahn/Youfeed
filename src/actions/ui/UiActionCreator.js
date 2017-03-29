@@ -6,8 +6,6 @@ export const showModal = () => {
 	};
 };
 
-export const closeModal = () => {
-	return (dispatch) => {
-		dispatch({ type: C.CLOSE_MODAL });
-	};
+export const closeModal = () => dispatch => {
+	dispatch({ type: C.CLOSE_MODAL });
 };

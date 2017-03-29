@@ -1,65 +1,79 @@
+/*eslint-disable */
 import React from 'react';
 import { Modal, Button } from 'antd';
 import styled from 'styled-components';
+import facebook from '../../static/images/facebook.svg';
+import github from '../../static/images/github.svg';
+import google from '../../static/images/google.svg';
+import twitter from '../../static/images/twitter.svg';
 
 const UserStatus = styled.div`
   display: flex;
   height: 35px;
 `;
 
-const Auth = ({
+const LoginButton = styled(Button)`
+  display: flex;
+  margin: 12px 0;
+  align-items: center;
+  height: 65px;
+  width: 100%;
+  font-size: 24px;
+
+  img {
+    width: 36px;
+    margin: 0 10px 0 120px;
+  }
+  span {
+    left: 10px;
+  }
+
+`;
+
+function Auth({
   showModal,
   visible,
   confirmLoading,
   closeModal,
   openAuth
-}) => {
+}) {
+
+  const logoMap = {
+    facebook: facebook,
+    google: google,
+    twitter: twitter,
+    github: github
+  };
 
   return (
     <UserStatus>
-      <Button type="primary" onClick={showModal}>Log In</Button>
-      <Modal title="Title of the modal dialog"
+      <Button
+        type="primary"
+        onClick={showModal}
+      >
+        Log In
+      </Button>
+      <Modal
+        title="Log in"
         visible={visible}
         confirmLoading={confirmLoading}
         onCancel={closeModal}
         okText="Ok"
-        cancelText="Cancel"
-        closable={true}
         width={450}
       >
-        {/* TODO: Refactoring */}
-
-        <Button
-          type="ghost"
-          className="Button-auth Button-facebook"
-          onClick={()=>openAuth("facebook")}
-        >
-          Facebook
-        </Button>
-        <Button
-          type="ghost"
-          className="Button-auth Button-google"
-          onClick={()=>openAuth("google")}
-        >
-          Google
-        </Button>
-        <Button
-          type="ghost"
-          className="Button-auth Button-twitter"
-          onClick={()=>openAuth("twitter")}
-        >
-          Twitter
-        </Button>
-        <Button
-          type="ghost"
-          className="Button-auth Button-github"
-          onClick={()=>openAuth("github")}
-        >
-          Github
-        </Button>
+        {['facebook', 'google', 'twitter', 'github'].map(item => (
+          <LoginButton
+            key={item}
+            type="ghost"
+            onClick={()=>openAuth(item)}
+          >
+            <img src={logoMap[item]} alt='facebook' />
+            <span>{item[0].toUpperCase() + item.slice(1)}</span>
+          </LoginButton>
+        ))}
       </Modal>
     </UserStatus>
   );
-};
+}
 
 export default Auth;

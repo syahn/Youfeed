@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { showModal, closeModal } from '../../actions/ui/UiActionCreator';
@@ -29,28 +30,30 @@ class AuthContainer extends Component {
     logoutUser,
     openAuth,
     showModal,
+    closeModal,
     visible,
     confirmLoading
   }) => {
     const menu = (
-    <Menu>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">2nd menu item</a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">3d menu item</a>
-      </Menu.Item>
-    </Menu>
-  );
+      <Menu>
+        <Menu.Item>
+          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
+        </Menu.Item>
+        <Menu.Item>
+          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">2nd menu item</a>
+        </Menu.Item>
+        <Menu.Item>
+          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">3d menu item</a>
+        </Menu.Item>
+      </Menu>
+    );
 
-		switch (auth.status) {
-			case C.AUTH_LOGGED_IN: return (
-				<UserStatus>
-					<UserPhoto src="https://dl.dropbox.com/s/3xbifmxyi82vorw/photo.jpg?dl=0" alt={auth.username}/>
-					&nbsp;
+  	switch (auth.status) {
+  	  case C.AUTH_LOGGED_IN: return (
+  			<UserStatus>
+          {/* TODO: replace photo */}
+  				<UserPhoto src="https://dl.dropbox.com/s/3xbifmxyi82vorw/photo.jpg?dl=0" alt={auth.username}/>
+  				&nbsp;
           <Dropdown overlay={menu}>
             <Button_>
               <Icon type="appstore" />
@@ -59,14 +62,14 @@ class AuthContainer extends Component {
           <Button onClick={logoutUser}>
             Log out
           </Button>
-				</UserStatus>
-			);
-			case C.AUTH_AWAITING_RESPONSE: return (
-				<UserStatus>
-					<Button disabled>authenticating...</Button>
-				</UserStatus>
-			);
-			default: return (
+  			</UserStatus>
+  		);
+  		case C.AUTH_AWAITING_RESPONSE: return (
+  			<UserStatus>
+  				<Button disabled>authenticating...</Button>
+  			</UserStatus>
+  		);
+  		default: return (
         <Auth
           showModal={showModal}
           visible={visible}
@@ -74,8 +77,8 @@ class AuthContainer extends Component {
           closeModal={closeModal}
           openAuth={openAuth}
         />
-			);
-		}
+  		);
+  	}
 	}
 	render() {
 		return this.getJSX(this.props);
