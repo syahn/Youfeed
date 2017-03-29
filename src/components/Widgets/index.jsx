@@ -13,7 +13,6 @@ const propTypes = {
 };
 
 const Box = styled.div`
-  position: fixed;
   width: 310px;
 `;
 

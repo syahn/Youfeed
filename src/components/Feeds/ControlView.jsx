@@ -24,10 +24,6 @@ const Col = styled.div`
   height: 100%;
 `;
 
-const Menu_ = styled(Menu)`
-  background: '#e9ecef';
-`;
-
 const Logo = styled.img`
   width: 27px;
   height: 27px;
@@ -39,6 +35,7 @@ const MenuItem = styled(Menu.Item)`
 `;
 
 const SubMenu_ = styled(SubMenu)`
+  background: #E9ECEF;
   min-width: 245px;
 `;
 
@@ -50,7 +47,7 @@ function ControlView({
 }) {
   return(
     <Col>
-      <Menu_
+      <Menu
         onClick={e => handleClick(e)}
         defaultOpenKeys={['newsFeed', 'rssList', 'youfeedList']}
         mode="inline"
@@ -128,7 +125,7 @@ function ControlView({
             ))
           }
         </SubMenu_>
-      </Menu_>
+      </Menu>
     </Col>
   );
 }
