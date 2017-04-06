@@ -31,7 +31,7 @@ const fetchPosts = reddit => dispatch => {
           category: []
         };
       });
-
+      console.log(posts);
       return dispatch(receivePosts(posts));
     });
 };

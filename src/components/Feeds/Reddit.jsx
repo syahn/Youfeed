@@ -20,13 +20,9 @@ class Reddit extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { postsByReddit } = state;
-
-  return {
-    posts: postsByReddit.items || [],
-    isFetching: true,
-  };
-};
-
-export default connect(mapStateToProps)(Reddit);
+export default connect(
+  state => ({
+    posts: state.postsByReddit.items,
+    isFetching: state.postsByReddit.isFetching
+  })
+)(Reddit);

@@ -8,9 +8,6 @@ const propTypes = {
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired
 };
-const defaultProps = {
-
-};
 
 const widgetSource = {
   beginDrag(props) {
@@ -67,7 +64,6 @@ function Widget({
 }
 
 Widget.propTypes = propTypes;
-Widget.defaultProps = defaultProps;
 
 export default compose(DragSource(C.WIDGET, widgetSource, collectDrag),
                        DropTarget(C.WIDGET, widgetTarget, collectDrop))(Widget);

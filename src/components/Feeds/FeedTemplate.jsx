@@ -22,8 +22,7 @@ function FeedTemplate({ posts }) {
     <div>
     {posts.map(post => {
       const published = moment(post.time * 1000).fromNow();
-      let isFetched = post.category.length > 0;
-      
+
       return (
         <PostCard key={uuid()}>
           <PostTitle>
@@ -52,7 +51,7 @@ function FeedTemplate({ posts }) {
             {post.content}
           </PostContent>
           <TagBox>
-            {isFetched &&
+            {post.category.length > 0 &&
               post.category.map(tag => (
               <Category key={tag}>{tag}</Category>
             ))}

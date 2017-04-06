@@ -1,16 +1,19 @@
-/* eslint-disable */
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import FeedTemplate from './FeedTemplate';
-import ReactHtmlParser from 'react-html-parser';
+import { CenterSpin } from '../General';
 
 const propTypes = {
-
+  medium: PropTypes.array,
+  techMeme: PropTypes.array,
+  hackerNews: PropTypes.array,
+  behance: PropTypes.array,
+  dribble: PropTypes.array,
+  reddit: PropTypes.array,
+  rss: PropTypes.array
 };
-const defaultProps = {
 
-};
 
 class FeedsByTime extends Component {
 
@@ -22,6 +25,7 @@ class FeedsByTime extends Component {
       hackerNews,
       behance,
       dribble,
+      reddit,
       rss
     } = this.props;
 
@@ -31,23 +35,17 @@ class FeedsByTime extends Component {
       dribble,
       behance,
       hackerNews,
+      reddit,
       rss
     ].reduce((a, c) => a.concat(c), []).sort((x, y) => {
       return y.time - x.time;
-    });;
-
-    this.state = { posts: newPosts };
+    }).slice(0,30);
+    this.state = {
+      posts: newPosts || []
+    };
   }
 
   componentWillReceiveProps(nextProps) {
-    const {
-      medium,
-      techMeme,
-      hackerNews,
-      behance,
-      dribble,
-      rss
-    } = this.props;
 
     const newPosts = [
       nextProps.medium,
@@ -55,18 +53,23 @@ class FeedsByTime extends Component {
       nextProps.dribble,
       nextProps.behance,
       nextProps.hackerNews,
+      nextProps.reddit,
       nextProps.rss
-    ].reduce((a, c) => a.concat(c), []).sort((x, y) => {
-      return y.time - x.time;
-    });
-
+      ].reduce((a, c) => a.concat(c), []).sort((x, y) => {
+        return y.time - x.time;
+      }).slice(0,30);
     this.setState({ posts: newPosts });
   }
 
   render() {
     const { posts } = this.state;
     return(
-      <FeedTemplate posts={posts} />
+      <div>
+        {posts.length > 0
+          ? <FeedTemplate posts={posts} />
+          : <CenterSpin size="large" />
+        }
+      </div>
     );
   }
 }
@@ -80,6 +83,7 @@ export default connect(
     behance: state.postsByBehance,
     dribble: state.postsByDribble,
     medium: state.postsByMedium,
+    reddit: state.postsByReddit.items || [],
     rss: Object.keys(state.postsByRSS).reduce((a, c) =>
           a.concat(state.postsByRSS[c].items),[])
   })

@@ -1,12 +1,7 @@
 import C from '../../constants';
 
 
-const posts = action => {
-  let state = {
-    isFetching: false,
-    didInvalidate: false,
-    items: []
-  };
+const posts = (state, action) => {
   switch (action.type) {
     case C.INVALIDATE_REDDIT:
       return {
@@ -31,12 +26,16 @@ const posts = action => {
   }
 };
 
-export const postsByReddit = (state = {}, action) => {
+export const postsByReddit = (state = {
+  items: [],
+  isFetching: false,
+  didInvalidate: false
+}, action) => {
   switch (action.type) {
     case C.INVALIDATE_REDDIT:
     case C.RECEIVE_POSTS_REDDIT:
     case C.REQUEST_POSTS_REDDIT:
-      return posts(action);
+      return posts(state, action);
     default:
       return state;
   }
