@@ -9,7 +9,6 @@ const propTypes = {
 class Medium extends Component {
   render() {
     const { posts } = this.props;
-    console.log('posts',posts);
     return <FeedTemplate posts={posts} />;
   }
 }

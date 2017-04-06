@@ -1,33 +1,39 @@
 import fetch from 'isomorphic-fetch';
 import C from '../../constants';
 
-export const selectReddit = reddit => ({
-  type: C.SELECT_REDDIT,
-  reddit
-});
-
-// export const invalidateReddit = reddit => ({
-//   type: C.INVALIDATE_REDDIT,
-//   reddit
-// });
-
 export const requestPosts = reddit => ({
   type: C.REQUEST_POSTS_REDDIT,
   reddit
 });
 
-export const receivePosts = (reddit, json) => ({
+export const receivePosts = posts => ({
   type: C.RECEIVE_POSTS_REDDIT,
-  reddit,
-  posts: json.data.children.map(child => child.data),
-  receivedAt: Date.now()
+  posts: posts,
 });
 
 const fetchPosts = reddit => dispatch => {
   dispatch(requestPosts(reddit));
   return fetch(`https://www.reddit.com/r/${reddit}.json`)
     .then(response => response.json())
-    .then(json => dispatch(receivePosts(reddit, json)));
+    .then(json => {
+      const posts = json.data.children.map(child => {
+        const post = child.data;
+        return {
+          title: post.title,
+          author: post.author,
+          logo: '',
+          image: '',
+          url: `https://reddit.com/${post.permalink}`,
+          siteUrl: post.url,
+          score: post.ups,
+          time: post.created,
+          content: '',
+          category: []
+        };
+      });
+
+      return dispatch(receivePosts(posts));
+    });
 };
 
 const shouldFetchPosts = (state, reddit) => {
@@ -41,7 +47,8 @@ const shouldFetchPosts = (state, reddit) => {
   return posts.didInvalidate;
 };
 
-export const fetchPostsIfNeeded = reddit => (dispatch, getState) => {
+export const fetchPostsIfNeeded = () => (dispatch, getState) => {
+  const reddit = 'programming/top/';
   if (shouldFetchPosts(getState(), reddit)) {
     return dispatch(fetchPosts(reddit));
   }

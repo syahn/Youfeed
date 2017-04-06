@@ -1,11 +1,12 @@
 import C from '../../constants';
 
 
-const posts = (state = {
-  isFetching: false,
-  didInvalidate: false,
-  items: []
-}, action) => {
+const posts = action => {
+  let state = {
+    isFetching: false,
+    didInvalidate: false,
+    items: []
+  };
   switch (action.type) {
     case C.INVALIDATE_REDDIT:
       return {
@@ -24,33 +25,18 @@ const posts = (state = {
         isFetching: false,
         didInvalidate: false,
         items: action.posts,
-        lastUpdated: action.receivedAt
       };
     default:
       return state;
   }
 };
 
-export const selectedReddit = (state = 'programming/top/', action) => {
-  switch (action.type) {
-    case C.SELECT_REDDIT:
-      return action.reddit;
-    default:
-      return state;
-  }
-};
-
-
-
-export const postsByReddit = (state = { }, action) => {
+export const postsByReddit = (state = {}, action) => {
   switch (action.type) {
     case C.INVALIDATE_REDDIT:
     case C.RECEIVE_POSTS_REDDIT:
     case C.REQUEST_POSTS_REDDIT:
-      return {
-        ...state,
-        [action.reddit]: posts(state[action.reddit], action)
-      };
+      return posts(action);
     default:
       return state;
   }

@@ -13,6 +13,7 @@ import { fetchPostsMedium } from '../../actions/feed/MediumActionCreator';
 import { fetchPostsDribble } from '../../actions/feed/DribbleActionCreator';
 import { fetchPostsBehance } from '../../actions/feed/BehanceActionCreator';
 import { fetchPostsTechmeme } from '../../actions/feed/TechmemeActionCreator';
+import { fetchPostsIfNeeded } from '../../actions/feed/RedditActionCreator';
 import { fetchListsRss } from '../../actions/feed/RssListActionCreator';
 import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
 import FeedControl from '../Feeds/FeedControl';
@@ -65,12 +66,14 @@ class App extends Component {
       onFetchPostsBehance,
       onFetchPostsDribble,
       onFetchPostsTechmeme,
+      onFetchPostsReddit,
       onFetchListsRss,
       onFetchPostsRss
     } = this.props;
 
     if (auth.status === 'AUTH_ANONYMOUS' && nextProps.auth.status === 'AUTH_LOGGED_IN') {
       onFetchListsRss(nextProps.auth);
+      onFetchPostsReddit();
       onFetchPostsMedium();
       onFetchPostsHN();
       onFetchPostsBehance();
@@ -130,6 +133,7 @@ export default connect(
   onFetchPostsBehance: fetchPostsBehance,
   onFetchPostsDribble: fetchPostsDribble,
   onFetchPostsTechmeme: fetchPostsTechmeme,
+  onFetchPostsReddit: fetchPostsIfNeeded,
   onFetchListsRss: fetchListsRss,
   onFetchPostsRss: fetchPostsRss,
 })(App);
