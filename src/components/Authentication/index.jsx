@@ -51,7 +51,10 @@ class AuthContainer extends Component {
   	switch (auth.status) {
   	  case C.AUTH_LOGGED_IN: return (
   			<UserStatus>
-  				<UserPhoto src={auth.photoUrl} alt={auth.username}/>
+  				<UserPhoto
+            src={auth.photo}
+            alt={auth.username}
+          />
   				&nbsp;
           <Dropdown overlay={menu}>
             <Button_>
