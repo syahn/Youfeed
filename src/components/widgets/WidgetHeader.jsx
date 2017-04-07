@@ -15,6 +15,7 @@ const HeaderContainer = styled.div`
   font-size: 12px;
   border-radius: 3px;
   padding: 3px 8px;
+  cursor: move;
 `;
 
 const Name = styled.span`

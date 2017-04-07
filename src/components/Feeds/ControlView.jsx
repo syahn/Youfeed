@@ -1,11 +1,7 @@
-/* eslint-disable */
-
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import uuid from 'uuid';
 import { Link_ } from '../General';
 import { Icon, Menu, Popover, Button } from 'antd';
-
 const SubMenu = Menu.SubMenu;
 
 const propTypes = {

@@ -43,7 +43,6 @@ function collectDrop(connect) {
   };
 }
 
-
 function Widget({
   id,
   element,

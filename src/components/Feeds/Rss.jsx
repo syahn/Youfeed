@@ -4,7 +4,6 @@ import { CenterSpin } from '../General';
 import FeedTemplate from './FeedTemplate';
 import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
 
-
 const propTypes = {
   params: PropTypes.object,
   postsList: PropTypes.object,
