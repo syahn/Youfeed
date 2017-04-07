@@ -295,7 +295,6 @@ class App extends Component {
       <div>
         <WidgetHeader
           name="Calculator"
-          type="antd"
           icon="calculator"
         />
         <CalculatorWrapper>

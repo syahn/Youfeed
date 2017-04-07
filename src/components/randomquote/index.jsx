@@ -74,8 +74,7 @@ class RandomQuote extends Component {
       <div>
         <WidgetHeader
           name={modeName}
-          type="fontawesome"
-          icon="quote-left"
+          icon="solution"
         />
         <Card>
           { conditionalRender }

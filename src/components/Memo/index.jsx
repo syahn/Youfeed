@@ -8,14 +8,12 @@ function MemoBox() {
     <div>
       <WidgetHeader
         name="Memo"
-        type="antd"
         icon="copy"
       />
       <Card>
         <UpdateMemo />
       </Card>
     </div>
-
   );
 }
 

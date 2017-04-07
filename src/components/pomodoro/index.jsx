@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
 import { Card } from '../General';
@@ -39,14 +38,6 @@ const TimeControlContainer = styled.div`
   padding-top: 29px;
 `;
 
-const SettingContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 155px;
-  left: 98px;
-`;
-
 const Button = styled.div`
   display: inline-block;
   background: #fff;
@@ -81,7 +72,7 @@ class Pomodoro extends React.Component {
   }
 
   initiateSession = () => {
-    const {minutes, seconds, defaultTime, onPause} = this.state;
+    const {seconds, defaultTime, onPause} = this.state;
     let minutesToString = ('0' + (defaultTime-1)).slice(-2),
         secondsToString = ('0' + (seconds-1).toString()).slice(-2);
     if(onPause){
@@ -113,7 +104,6 @@ class Pomodoro extends React.Component {
   }
 
   stopSession = () => {
-    const { defaultTime } = this.state;
     clearInterval(this.timerID);
     this.setState({
       minutes : ('0' + this.state.defaultTime).slice(-2),
@@ -172,7 +162,7 @@ class Pomodoro extends React.Component {
             minutes : defaultBreak,
             seconds : '00',
             onBreak : true
-          })
+          });
         }
       } else {
         this.setState({
@@ -190,8 +180,7 @@ class Pomodoro extends React.Component {
       <div>
         <WidgetHeader
           name="Pomodoro Timer"
-          type="fontawesome"
-          icon="hourglass-o"
+          icon="hourglass"
         />
         <PomodoroContainer>
           <TimeView

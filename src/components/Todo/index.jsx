@@ -14,7 +14,6 @@ function AppTodo() {
     <div>
       <WidgetHeader
         name="Todo"
-        type="antd"
         icon="check-circle"
       />
       <Card>
