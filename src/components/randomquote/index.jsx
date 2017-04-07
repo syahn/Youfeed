@@ -40,8 +40,8 @@ class RandomQuote extends Component {
 
   componentWillMount() {
     const { mode } = this.props;
-    const urlProgramming = 'http://quotes.stormconsultancy.co.uk/quotes/random.json';
-    const urlDesign = 'http://quotesondesign.com/wp-json/posts';
+    const urlProgramming = 'https://quotes.stormconsultancy.co.uk/quotes/random.json';
+    const urlDesign = 'https://quotesondesign.com/wp-json/posts';
 
     let url = (mode === 'Programming') ? urlProgramming : urlDesign;
     this.getJson(url).then(e => {
