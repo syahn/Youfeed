@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 
-import './style.css';
-
-export default class About extends Component {
+class About extends Component {
   render() {
-    const { className, ...props } = this.props;
     return (
-      <div className={classnames('About', className)} {...props}>
+      <div>
         <h1>
           About
         </h1>
@@ -15,3 +11,5 @@ export default class About extends Component {
     );
   }
 }
+
+export default About;

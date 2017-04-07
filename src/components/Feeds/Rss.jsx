@@ -17,6 +17,7 @@ class Rss extends Component {
     super(props);
     const { params, postsList, subscription } = this.props;
     let postRss = [];
+
     for(let e of subscription){
       const { title, url } = e.subscription.feed;
       if(title.indexOf(params.subscription) > -1 && postsList[url]) {
@@ -33,6 +34,7 @@ class Rss extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { params, subscription } = this.props;
+
     let { fetched } = this.state;
     if(!fetched || (params.subscription !== nextProps.params.subscription)) {
       for(let e of subscription){

@@ -1,6 +1,7 @@
 // src/routes.js
+
 import React, { Component } from 'react';
-import { Router, IndexRoute, Route, browserHistory } from 'react-router';
+import { Router, IndexRoute, Route, browserHistory, Redirect } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from './stores/configureStore';
 import App from './components/App';
@@ -14,7 +15,7 @@ import Dribble from './components/Feeds/Dribble';
 import TechMeme from './components/Feeds/TechMeme';
 import Reddit from './components/Feeds/Reddit';
 import About from './components/about';
-import NotFound from './components/notfound';
+// import NotFound from './components/notfound';
 import { listenToAuth } from './actions/auth/AuthActionCreator';
 
 const store = configureStore();
@@ -30,6 +31,7 @@ class Root extends Component {
       <Router history={browserHistory}>
         <Route path="/" component={App}>
 					<IndexRoute component={Personalized} />
+					<Route path="/about" component={About} />
 					<Route path="/feedsbytime" component={FeedsByTime} />
 					<Route path="/hacker-news" component={HackerNews} />
 					<Route path="/medium" component={Medium} />
@@ -37,10 +39,10 @@ class Root extends Component {
 					<Route path="/dribble" component={Dribble} />
 					<Route path="/techmeme" component={TechMeme} />
 					<Route path="/reddit" component={Reddit} />
-					<Route path="/(:subscription)" component={Rss} />
+					<Route path="/rss/(:subscription)" component={Rss} />
+					<Redirect from='*' to='/' />
 				</Route>
-        <Route path="/about" component={About} />
-        <Route path="*" component={NotFound} />
+
       </Router>
     </Provider>
   );

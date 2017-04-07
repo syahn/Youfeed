@@ -1,12 +1,13 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { showModal, closeModal } from '../../actions/ui/UiActionCreator';
 import { openAuth, logoutUser } from '../../actions/auth/AuthActionCreator';
 import Auth from './Auth';
 import C from '../../constants';
 import styled from 'styled-components';
-import { Button, Dropdown, Menu, Icon } from 'antd';
+import { Button, Dropdown, Menu, Icon, Tooltip } from 'antd';
 
 const UserStatus = styled.div`
   display: flex;
@@ -37,13 +38,12 @@ class AuthContainer extends Component {
     const menu = (
       <Menu>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
+          <Link to="/about">About</Link>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">2nd menu item</a>
-        </Menu.Item>
-        <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">3d menu item</a>
+          <Tooltip title="Comming soon!">
+            <span>Setting</span>
+          </Tooltip>
         </Menu.Item>
       </Menu>
     );
@@ -51,7 +51,6 @@ class AuthContainer extends Component {
   	switch (auth.status) {
   	  case C.AUTH_LOGGED_IN: return (
   			<UserStatus>
-          {/* TODO: replace photo */}
   				<UserPhoto src={auth.photoUrl} alt={auth.username}/>
   				&nbsp;
           <Dropdown overlay={menu}>

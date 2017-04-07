@@ -89,7 +89,7 @@ function ControlView({
               return (
                 <MenuItem key={domain}>
                   <Icon type="book" />
-                  <Link_ to={`/${domain}`}>
+                  <Link_ to={`/rss/${domain}`}>
                     <span>{domain}</span>
                   </Link_>
                 </MenuItem>

@@ -6,7 +6,6 @@ import { closeModal } from '../ui/UiActionCreator';
 export const listenToAuth = () => (dispatch, getState) => {
 	auth.onAuthStateChanged((user) => {
 		if (user) {
-			console.log('user', user);
 			dispatch({
 				type: C.AUTH_LOGIN,
 				uid: user.uid,
