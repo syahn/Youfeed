@@ -3,20 +3,17 @@ import C from '../../constants';
 import { auth } from '../../firebaseApp';
 import { closeModal } from '../ui/UiActionCreator';
 
-
 export const listenToAuth = () => (dispatch, getState) => {
 	auth.onAuthStateChanged((user) => {
 		if (user) {
+			console.log('user', user);
 			dispatch({
 				type: C.AUTH_LOGIN,
 				uid: user.uid,
-				username: user.providerData[0].displayName,
-				photo: user.providerData[0].photoURL
+				username: user.displayName,
+				photo: user.photoURL
 			});
 			dispatch(closeModal());
-			// reload articles on auth update.
-			//const listenToArticlesDispatcher = listenToArticles();
-			//listenToArticlesDispatcher(dispatch, getState);
 		} else {
 			if (getState().auth.status !== C.AUTH_ANONYMOUS) {
 				dispatch({ type: C.AUTH_LOGOUT });
@@ -24,7 +21,6 @@ export const listenToAuth = () => (dispatch, getState) => {
 		}
 	});
 };
-
 
 export const openAuth = Provider => dispatch => {
 	let provider = undefined;

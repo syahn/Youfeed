@@ -19,7 +19,7 @@ const UserPhoto = styled.img`
 `;
 
 const Button_ = styled(Button)`
-  margin: 0 12px;
+  margin: 0 12px 0 8px;
   padding-right: 6px;
 `;
 
@@ -52,7 +52,7 @@ class AuthContainer extends Component {
   	  case C.AUTH_LOGGED_IN: return (
   			<UserStatus>
           {/* TODO: replace photo */}
-  				<UserPhoto src="https://dl.dropbox.com/s/3xbifmxyi82vorw/photo.jpg?dl=0" alt={auth.username}/>
+  				<UserPhoto src={auth.photoUrl} alt={auth.username}/>
   				&nbsp;
           <Dropdown overlay={menu}>
             <Button_>
