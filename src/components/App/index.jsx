@@ -43,7 +43,6 @@ const ContentLayout = styled.div`
 
 const RightCol = styled.div`
   position: relative;
-  left: 122px;
   display: flex;
   padding: 11px 0 0 11px;
   width: 833px;

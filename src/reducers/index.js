@@ -14,7 +14,7 @@ import { auth } from './authentication/auth';
 import { widgets } from './widgets';
 import { memo } from './memo';
 import { taste } from './taste';
-import { ui } from './ui/ModalSignIn';
+import { ui } from './ui';
 
 const Reducer = combineReducers({
   auth,

@@ -2,12 +2,12 @@ import { updateObject, createReducer } from '../util';
 
 function addCount(personalState, action) {
   return updateObject(personalState,
-    {[action.subscription] : personalState[action.subscription] + 1});
+    {[action.subscription]: personalState[action.subscription] + 1});
 }
 
 function setCount(personalState, action) {
   return updateObject(personalState,
-    {[action.subscription] : 0});
+    {[action.subscription]: 1});
 }
 
 function getCount(personalState, action) {

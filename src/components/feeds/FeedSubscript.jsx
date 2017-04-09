@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Icon, Button } from 'antd';
-import querystring from 'querystring';
+import { Icon, Button, message } from 'antd';
 import styled from 'styled-components';
-import { superfeedrConfig } from '../../config';
+import { requestSubscription } from '../../actions/feed/RssListActionCreator';
 
 const Form = styled.form`
   display: flex;
@@ -27,40 +26,51 @@ const Input = styled.input`
 `;
 
 const Button_ = styled(Button)`
-  height: 28px;
-  margin-left: 4px;
-  padding-top: 0;
-  padding-left: 13px;
-  padding-right: 12px;
+  padding-bottom: 1px;
+  margin-left: 8px;
+`;
+
+const Plus = styled.span`
+  display: ${props => props.loading ? 'none' : 'block'};
 `;
 
 const propTypes = {
-
+  auth: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  isSucceed: PropTypes.bool.isRequired,
+  onRequest: PropTypes.func.isRequired,
 };
 
 class FeedSubscript extends Component {
-  requestSubscription = (urlAdded) => {
-    const { login, token } = superfeedrConfig;
-    const { auth } = this.props;
-    let url = "https://push.superfeedr.com/?";
-    const query = {
-      'hub.mode': 'subscribe',
-      'hub.topic': `${urlAdded}`,
-      'authorization': btoa([login, token].join(':')),
-      'hub.callback': `https://youfeed.space/${auth.uid}`
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: this.props.loading,
+      isSucceed: this.props.isSucceed
     };
-    url = url + querystring.stringify(query);
-    fetch(url, {
-      method: 'POST',
-
-    })
-    .then(res => res.text())
-    .then(json => console.log('h',json));
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.requestSubscription(this.input.value);
+    const { onRequest, auth } = this.props;
+    onRequest(auth, this.input.value);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { isSucceed, loading } = this.props;
+    this.setState({
+      loading: nextProps.loading,
+    });
+    if(isSucceed !== nextProps.isSucceed && nextProps.isSucceed === true) {
+      this.setState({
+        loading: nextProps.loading,
+        isSucceed: nextProps.isSucceed
+      });
+      message.success('Subscription succeeded!');
+    }
+    if(loading === true && nextProps.isSucceed === false) {
+      message.error("Subscription failed");
+    }
   }
 
   render() {
@@ -75,9 +85,11 @@ class FeedSubscript extends Component {
         />
         <Button_
           type="primary"
+          shape="circle"
           htmlType="submit"
+          loading={this.state.loading}
         >
-          +
+          <Plus loading={this.state.loading}>+</Plus>
         </Button_>
       </Form>
     );
@@ -88,6 +100,10 @@ FeedSubscript.propTypes = propTypes;
 
 export default connect(
   state => ({
-    auth: state.auth
-  }),
-  )(FeedSubscript);
+    auth: state.auth,
+    loading: state.ui.newSubscription.loading,
+    isSucceed: state.ui.newSubscription.succeed,
+  }), {
+    onRequest: requestSubscription
+  }
+)(FeedSubscript);

@@ -9,7 +9,6 @@ const propTypes = {
 };
 
 const Col = styled.div`
-  position: fixed;
   left: 100px;
   margin: 11px 0;
   border: 1px solid;

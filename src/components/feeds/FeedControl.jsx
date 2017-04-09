@@ -54,7 +54,8 @@ class FeedControl extends Component {
 
   handleClick = val => {
     const { dispatch } = this.props;
-    if(val.keyPath[1] !== 'newsFeed') {
+    const exception = ['feedByPersonalized', 'subscription', 'feedByTime'];
+    if(exception.indexOf(val.key) < 0) {
       dispatch(clickSubscription(val.key));
     }
   }
