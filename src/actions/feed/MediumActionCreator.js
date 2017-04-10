@@ -3,6 +3,7 @@ import querystring from 'querystring';
 import C from '../../constants';
 import { superfeedrConfig } from '../../config';
 import ReactHtmlParser from 'react-html-parser';
+import medium from '../../static/images/medium.svg';
 
 const requestPosts = () => ({
   type: C.REQUEST_POSTS_MEDIUM
@@ -40,7 +41,7 @@ export const fetchPostsMedium = () => dispatch => {
       notification.items = notification.items.map(post => ({
         title: post.title,
         author: post.actor.displayName,
-        logo: post.source.image,
+        logo: medium,
         image: '',
         url: post.permalinkUrl,
         siteUrl: '',

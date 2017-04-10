@@ -1,8 +1,12 @@
-/* eslint-disable */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import FeedSubscript from './FeedSubscript';
 import ControlView from './ControlView';
+import hackerNews from '../../static/images/hackernews.svg';
+import medium from '../../static/images/medium.svg';
+import behance from '../../static/images/behance.svg';
+import dribble from '../../static/images/dribble.svg';
+import reddit from '../../static/images/reddit.svg';
 import {
   clickSubscription,
   setSubscription
@@ -15,30 +19,13 @@ const propTypes = {
 class FeedControl extends Component {
   state = {
     listOfSubscription: [
-      {
-        name: 'hacker-news',
-        logo: 'https://dl.dropbox.com/s/t8avm6wndwfxf04/hackerNews.svg?dl=0'
-      },
-      {
-        name: 'medium',
-        logo: 'https://dl.dropbox.com/s/lh0qk2agauwzjez/medium-m-color-100px.png?dl=0'
-      },
-      {
-        name: 'behance',
-        logo: 'https://dl.dropbox.com/s/ztbtx0mx7q3un9u/behance.png?dl=0'
-      },
-      {
-        name: 'dribble',
-        logo: 'https://dl.dropbox.com/s/089c3x5fquh8oe9/dribbble%20.svg?dl=0'
-      },
-      {
-        name: 'techmeme',
-        logo: 'https://dl.dropbox.com/s/2byudsj3akgzkib/techmeme_size_328x328.jpg?dl=0'
-      },
-      {
-        name: 'reddit',
-        logo: 'https://dl.dropbox.com/s/c7cacxajdx5s3sm/reddit.svg?dl=0'
-      }]
+      { name: 'hacker-news', logo: hackerNews },
+      { name: 'medium', logo: medium },
+      { name: 'behance', logo: behance },
+      { name: 'dribble', logo: dribble },
+      { name: 'techmeme', logo: 'https://dl.dropbox.com/s/2byudsj3akgzkib/techmeme_size_328x328.jpg?dl=0' },
+      { name: 'reddit', logo: reddit }
+    ]
   };
 
   componentWillReceiveProps(nextProps) {

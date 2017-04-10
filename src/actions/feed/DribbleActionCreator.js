@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import C from '../../constants';
 import { dribbleConfig } from '../../config';
+import dribble from '../../static/images/dribble.svg';
 
 const requestPosts = () => ({
   type: C.REQUEST_POSTS_DRIBBLE,
@@ -26,7 +27,7 @@ export const fetchPostsDribble = () => dispatch => {
         return {
           title: post.title,
           author: post.user.name,
-          logo: 'https://dl.dropbox.com/s/089c3x5fquh8oe9/dribbble%20.svg?dl=0',
+          logo: dribble,
           image: post.images.normal,
           url: post.html_url,
           siteUrl: '',

@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import C from '../../constants';
 import { behanceConfig } from '../../config';
+import behance from '../../static/images/behance.svg';
 
 const requestPosts = () => ({
   type: C.REQUEST_POSTS_BEHANCE,
@@ -24,7 +25,7 @@ export const fetchPostsBehance = () => dispatch => {
       const newPosts = posts.projects.map(post => ({
         title: post.name,
         author: post.owners[0].display_name,
-        logo: post.features[0].site.icon,
+        logo: behance,
         image: post.covers.original,
         url: post.url,
         siteUrl: '',

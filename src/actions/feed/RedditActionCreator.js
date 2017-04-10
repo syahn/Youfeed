@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import C from '../../constants';
+import redditLogo from '../../static/images/reddit.svg';
 
 export const requestPosts = reddit => ({
   type: C.REQUEST_POSTS_REDDIT,
@@ -18,20 +19,20 @@ const fetchPosts = reddit => dispatch => {
     .then(json => {
       const posts = json.data.children.map(child => {
         const post = child.data;
+        console.log('post', post);
         return {
           title: post.title,
           author: post.author,
-          logo: '',
+          logo: redditLogo,
           image: '',
           url: `https://reddit.com/${post.permalink}`,
           siteUrl: post.url,
-          score: post.ups,
+          score: post.score || post.ups || '0',
           time: post.created,
           content: '',
           category: []
         };
       });
-      console.log(posts);
       return dispatch(receivePosts(posts));
     });
 };

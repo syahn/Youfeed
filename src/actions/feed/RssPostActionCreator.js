@@ -1,9 +1,9 @@
-/* eslint-disable */
 import 'eventsource';
 import querystring from 'querystring';
 import C from '../../constants';
 import { superfeedrConfig } from '../../config';
 import ReactHtmlParser from 'react-html-parser';
+import rssLogo from '../../static/images/rss.svg';
 
 const requestPosts = () => ({
   type: C.REQUEST_POSTS_RSS
@@ -19,11 +19,9 @@ const rejectPosts = () => ({
   type: C.REJECT_POSTS_RSS
 });
 
-export const fetchPostsRss = subscriptionUrl => (dispatch, getState) => {
+export const fetchPostsRss = subscriptionUrl => dispatch => {
   dispatch(requestPosts());
   const { login, token } = superfeedrConfig;
-  const auth = getState().auth;
-
   let url = 'https://stream.superfeedr.com/?';
   const query = {
     'count': 20,
@@ -37,13 +35,12 @@ export const fetchPostsRss = subscriptionUrl => (dispatch, getState) => {
   let source = new EventSource(url);
   source.addEventListener("notification", (e) => {
     let notification = JSON.parse(e.data);
-    console.log(notification);
 
     if(notification.items.length > 0) {
       notification.items = notification.items.map(post => ({
         title: post.title,
         author: post.auther,
-        logo: post.source.image,
+        logo: post.source.image || rssLogo,
         image: '',
         url: post.permalinkUrl,
         siteUrl: '',

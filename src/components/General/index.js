@@ -74,11 +74,19 @@ export const OriginalLink = styled.a`
   }
 `;
 
+export const LinkContainer = styled.div`
+  text-align: right;
+`;
+
 export const TagBox = styled.div`
 `;
 
 export const ScoreTag = styled(Tag)`
   margin: 4px 8px 0 0 !important;
+
+  i {
+    margin-right: 4px;
+  }
 `;
 
 export const Category = styled(Tag)`

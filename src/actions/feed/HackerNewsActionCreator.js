@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import hackerNews from '../../static/images/hackernews.svg';
 import C from '../../constants';
 
 const requestPosts = () => ({
@@ -33,7 +34,7 @@ const fetchPostItemHN = list => dispatch => {
         const newPost = {
           title: post.title,
           author: post.by,
-          logo: 'https://dl.dropbox.com/s/t8avm6wndwfxf04/hackerNews.svg?dl=0',
+          logo: hackerNews,
           image: '',
           url: `https://news.ycombinator.com/item?id=${post.id}`,
           siteUrl: post.url,
@@ -42,7 +43,7 @@ const fetchPostItemHN = list => dispatch => {
           content: '',
           category: []
         };
-        return dispatch(receivePosts(newPost, 'hackernews'));  
+        return dispatch(receivePosts(newPost, 'hackernews'));
       })
       .catch((error) => {
         console.log(error);

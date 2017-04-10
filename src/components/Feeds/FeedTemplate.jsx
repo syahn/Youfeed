@@ -10,7 +10,8 @@ import {
   TagBox,
   Icon_,
   ScoreTag,
-  OriginalLink
+  OriginalLink,
+  LinkContainer
 } from '../General';
 
 const propTypes = {
@@ -31,7 +32,7 @@ function FeedTemplate({ posts }) {
               {post.score &&
                 <ScoreTag color="#108ee9">
                   <Icon_ type="caret-up" />
-                  {post.score}
+                  {post.score || '0'}
                 </ScoreTag>
               }
               <a href={post.url} target="_blank">
@@ -39,9 +40,11 @@ function FeedTemplate({ posts }) {
               </a>
             </PostHeader>
             {post.siteUrl &&
-              <OriginalLink href={`${post.siteUrl}`} target="_blank">
-                &#40;{post.siteUrl.split('/')[2]}&#41;
-              </OriginalLink>
+              <LinkContainer>
+                <OriginalLink href={`${post.siteUrl}`} target="_blank">
+                  &#40;{post.siteUrl.split('/')[2]}&#41;
+                </OriginalLink>
+              </LinkContainer>
             }
           </PostTitle>
           <PostContent>
