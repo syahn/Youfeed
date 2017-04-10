@@ -16,11 +16,19 @@ const UserStatus = styled.div `
 const UserPhoto = styled.img `
   width: 35px;
   border-radius: 50%;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Button_ = styled(Button)`
   margin: 0 12px 0 8px;
   padding-right: 6px;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 // Cotainer component determines which button state should show

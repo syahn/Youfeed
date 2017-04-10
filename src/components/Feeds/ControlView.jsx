@@ -19,7 +19,11 @@ const Col = styled.div`
   height: 100%;
 
   @media only screen and (max-width: 768px) {
-    display: none;
+    display: ${ props => props.isOpen || 'none'};
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 53px;
   }
 `;
 
@@ -40,12 +44,13 @@ const SubMenu_ = styled(SubMenu)`
 
 function ControlView({
   handleClick,
+  visibilityHamburger,
   subscription,
   addSubscription,
   listOfSubscription
 }) {
   return(
-    <Col>
+    <Col isOpen={visibilityHamburger}>
       <Menu
         onClick={e => handleClick(e)}
         defaultOpenKeys={['newsFeed', 'rssList', 'youfeedList']}

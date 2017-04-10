@@ -31,9 +31,6 @@ function FeedContent(props) {
         News Feed
       </Tag>
       {props.children}
-      {/* <BackTop
-        visibilityHeight='600'
-      /> */}
     </ContentWrapper>
   );
 }

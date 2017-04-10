@@ -9,7 +9,8 @@ export const ui = (state = {
 	newSubscription: {
 		succeed: false,
 		loading: false
-	}
+	},
+	visibilityHamburger: false
 }, action) => {
 	switch (action.type) {
     case C.SHOW_MODAL:
@@ -44,6 +45,10 @@ export const ui = (state = {
 					loading: false
 				}
 			});
+		case C.OPEN_HAMBURGER:
+			return updateObject(state, { 'visibilityHamburger': !state.visibilityHamburger });
+		case C.CLOSE_HAMBURGER:
+			return updateObject(state, { 'visibilityHamburger': false });
 		default:
 			return state;
 	}

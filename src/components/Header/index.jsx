@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import AuthContainer from '../Authentication';
-
-import { Menu, Layout } from 'antd';
+import { Menu, Layout, Icon, Button } from 'antd';
+import { openHamburger } from '../../actions/ui/UiActionCreator';
+import youfeedLogo from '../../static/images/logo_youfeed.svg';
 const { Header } = Layout;
 
 const HeaderContainer = styled(Header)`
@@ -26,6 +28,12 @@ const HeaderWrapper = styled.div`
 const Menu_ = styled(Menu)`
   float: right;
   border: none;
+`;
+
+const MiniMenu = styled(Button)`
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const MenuItem = styled(Menu.Item)`
@@ -52,6 +60,11 @@ const Description = styled.span`
 const LogoImage = styled.img`
   margin-right: 10px;
   width: 34px;
+
+  @media only screen and (max-width: 768px) {
+    margin-right: 0;
+    margin-left: 57px;
+  }
 `;
 
 const LogoBox = styled(Link)`
@@ -64,17 +77,27 @@ const LogoText = styled.div`
   flex-wrap: wrap;
   width: 98px;
   margin-top: 2px;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ openMenu }) => {
 
   return(
     <HeaderContainer>
       <HeaderWrapper>
+        <MiniMenu
+          href="#"
+          onClick={openMenu}
+        >
+          <Icon type="menu-unfold" />
+        </MiniMenu>
         <LogoBox to="/">
           <LogoImage
-            src="https://dl.dropbox.com/s/8n210f0q1w5f5nf/logo_youfeed.svg?dl=0"
-            alt="logo_youfeed"
+            src={youfeedLogo}
+            alt="logo"
           />
           <LogoText>
             <Logo>
@@ -95,4 +118,4 @@ const HeaderComponent = () => {
   );
 };
 
-export default HeaderComponent;
+export default connect(null, {openMenu: openHamburger})(HeaderComponent);

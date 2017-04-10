@@ -48,7 +48,7 @@ class FeedControl extends Component {
   }
 
   render(){
-    const { auth, subscription } = this.props;
+    const { auth, subscription, visibilityHamburger } = this.props;
     const { listOfSubscription } = this.state;
     const addSubscription = <FeedSubscript auth={auth}/>;
 
@@ -57,6 +57,7 @@ class FeedControl extends Component {
         handleClick={this.handleClick}
         subscription={subscription}
         addSubscription={addSubscription}
+        visibilityHamburger={visibilityHamburger}
         listOfSubscription={listOfSubscription}
       />
     );
@@ -66,5 +67,6 @@ class FeedControl extends Component {
 FeedControl.propTypes = propTypes;
 
 export default connect(state => ({
-  subscription: state.subscription
+  subscription: state.subscription,
+  visibilityHamburger: state.ui.visibilityHamburger
 }))(FeedControl);

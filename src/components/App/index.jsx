@@ -110,9 +110,7 @@ class App extends Component {
               <WidgetControl />
             </RightCol>
           </ContentLayout>
-        <BackTop_
-          visibilityHeight='900'
-        />
+        <BackTop_ visibilityHeight='900' />
       </GlobalLayout>
     );
   }
