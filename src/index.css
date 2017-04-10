@@ -20,8 +20,6 @@ html {
     }
 }
 
-
-
 .list-group-item-heading {
   padding: 10px 0;
     img {
@@ -104,11 +102,4 @@ html {
 
 .note:hover .delete {
   visibility: visible;
-}
-
-
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

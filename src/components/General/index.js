@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import { Tag, Spin, Icon } from 'antd';
+import { Tag, Spin, Icon, BackTop } from 'antd';
 
 export const Card = styled.div`
   position: relative;
@@ -108,4 +108,8 @@ export const Icon_ = styled(Icon)`
   i {
     margin-right: 3px;
   }
+`;
+
+export const BackTop_ = styled(BackTop)`
+  right: 8% !important;
 `;

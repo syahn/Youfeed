@@ -1,9 +1,9 @@
-/* eslint-disable */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Layout } from 'antd';
 import styled from 'styled-components';
+import { Layout } from 'antd';
 import Header from '../Header';
+import { BackTop_ } from '../General';
 import { getTodo } from '../../actions/todo/TodoActionCreators';
 import { getMemo } from '../../actions/memo/MemoActionCreator';
 import { getPersonal } from '../../actions/personal/PersonalActionCreator';
@@ -19,8 +19,6 @@ import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
 import FeedControl from '../Feeds/FeedControl';
 import FeedContent from '../Feeds/FeedContent';
 import WidgetControl from '../Widgets/WidgetControl';
-
-const { Footer } = Layout;
 
 const propTypes = {
   auth: PropTypes.object,
@@ -112,7 +110,9 @@ class App extends Component {
               <WidgetControl />
             </RightCol>
           </ContentLayout>
-        <Footer>footer</Footer>
+        <BackTop_
+          visibilityHeight='900'
+        />
       </GlobalLayout>
     );
   }
