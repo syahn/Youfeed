@@ -10,13 +10,17 @@ const propTypes = {
 
 const Col = styled.div`
   left: 100px;
-  margin: 11px 0;
+  margin: 11px 10px 0 0;
   border: 1px solid;
   max-width: 247px;
   border-radius: 3px;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   background: #fff;
   height: 100%;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Logo = styled.img`

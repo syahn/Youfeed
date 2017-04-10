@@ -7,8 +7,7 @@ const propTypes = {
 };
 
 const ContentWrapper = styled.div`
-  width: 512px;
-  padding-right: 10px;
+  width: 100%;
 `;
 
 const Tag = styled.div`

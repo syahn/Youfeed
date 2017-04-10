@@ -14,6 +14,11 @@ const propTypes = {
 
 const Box = styled.div`
   width: 310px;
+  margin-left: 10px;
+
+  @media only screen and (max-width: 1120px) {
+    display: none;
+  }
 `;
 
 function WidgetBox({ widgets, onMove }) {
@@ -34,22 +39,20 @@ function WidgetBox({ widgets, onMove }) {
   );
 
   return (
-    <div>
-      <Box>
-        <ul>
-          {widgetList.map(item => (
-            <Widget
-              key={item.id}
-              id={item.id}
-              list={widgets}
-              element={item.widget}
-              onMove={onMove}
-              type={item.type}
-            />
-          ))}
-        </ul>
-      </Box>
-    </div>
+    <Box>
+      <ul>
+        {widgetList.map(item => (
+          <Widget
+            key={item.id}
+            id={item.id}
+            list={widgets}
+            element={item.widget}
+            onMove={onMove}
+            type={item.type}
+          />
+        ))}
+      </ul>
+    </Box>
   );
 }
 

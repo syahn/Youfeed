@@ -6,13 +6,21 @@ import AuthContainer from '../Authentication';
 import { Menu, Layout } from 'antd';
 const { Header } = Layout;
 
-const Header_ = styled(Header)`
+const HeaderContainer = styled(Header)`
   position: fixed;
   width: 100%;
   z-index: 2;
   border-bottom: 1px solid #e8e8e8;
   background: #fff;
-  padding: 14px 101px;
+  padding: 0 !important;
+`;
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 86vw;
+  margin: 14px auto;
 `;
 
 const Menu_ = styled(Menu)`
@@ -49,7 +57,6 @@ const LogoImage = styled.img`
 const LogoBox = styled(Link)`
   display: flex;
   align-items: flex-start;
-  height: 0;
 `;
 
 const LogoText = styled.div`
@@ -62,27 +69,29 @@ const LogoText = styled.div`
 const HeaderComponent = () => {
 
   return(
-    <Header_>
-      <LogoBox to="/">
-        <LogoImage
-          src="https://dl.dropbox.com/s/8n210f0q1w5f5nf/logo_youfeed.svg?dl=0"
-          alt="logo_youfeed"
-        />
-        <LogoText>
-          <Logo>
-            Youfeed
-          </Logo>
-          <Description>
-            Feeds you need
-          </Description>
-        </LogoText>
-      </LogoBox>
-      <Menu_ mode="horizontal">
-        <MenuItem key="2">
-          <AuthContainer />
-        </MenuItem>
-      </Menu_>
-    </Header_>
+    <HeaderContainer>
+      <HeaderWrapper>
+        <LogoBox to="/">
+          <LogoImage
+            src="https://dl.dropbox.com/s/8n210f0q1w5f5nf/logo_youfeed.svg?dl=0"
+            alt="logo_youfeed"
+          />
+          <LogoText>
+            <Logo>
+              Youfeed
+            </Logo>
+            <Description>
+              Feeds you need
+            </Description>
+          </LogoText>
+        </LogoBox>
+        <Menu_ mode="horizontal">
+          <MenuItem key="2">
+            <AuthContainer />
+          </MenuItem>
+        </Menu_>
+      </HeaderWrapper>
+    </HeaderContainer>
   );
 };
 

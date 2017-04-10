@@ -37,15 +37,19 @@ const ContentLayout = styled.div`
   top: 63px;
   display: flex;
   justify-content: center;
-  width: 1126px;
+  width: 86vw;
   margin: 0 auto;
+
+  @media only screen and (max-width: 1120px) {
+    width: 86%;
+  }
 `;
 
 const RightCol = styled.div`
   position: relative;
   display: flex;
-  padding: 11px 0 0 11px;
-  width: 833px;
+  padding-top: 11px;
+  width: 100%;
 `;
 
 class App extends Component {
