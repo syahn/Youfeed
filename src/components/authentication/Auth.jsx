@@ -25,9 +25,9 @@ const LoginButton = styled(Button)`
     margin: 0 10px 0 120px;
   }
   span {
+    position: relative;
     left: 10px;
   }
-
 `;
 
 function Auth({
