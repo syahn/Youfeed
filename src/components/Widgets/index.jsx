@@ -9,7 +9,7 @@ import Widget from './Widget';
 // import { BackTop } from 'antd';
 
 const propTypes = {
-  widgets: PropTypes.array.isRequired,
+  widgets: PropTypes.array,
   onMove: PropTypes.func.isRequired
 };
 

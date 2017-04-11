@@ -14,7 +14,7 @@ class YoufeedFeed extends Component {
     onClickPost(route.path.slice(1));
   }
 
-  render(){
+  render() {
     const { posts } = this.props;
     const renderPosts = posts.length > 0
       ? <FeedTemplate
@@ -43,7 +43,7 @@ const mapStateToProps = (state, props) => {
     postsByTechmeme,
     postsByMedium
   } = state;
-  console.log('props', props);
+
   const map = {
     '/behance': postsByBehance,
     '/hacker-news': postsByHackerNews,

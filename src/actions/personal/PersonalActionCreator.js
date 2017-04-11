@@ -3,31 +3,33 @@ import { database, auth } from '../../firebaseApp';
 import C from '../../constants';
 
 export const clickSubscription = name => dispatch => {
-  dispatch(updateCategory(name));
+  dispatch(updateCategoryCount(name));
   dispatch(addCategoryCount(name));
 };
 
 export const clickPost = name => dispatch => {
-  // dispatch(updatePost(name));
+  dispatch(updatePostCount(name));
   dispatch(addPostCount(name));
 };
 
-
-const updatePost = name => (dispatch, getState) => {
+const updatePostCount = name => (dispatch, getState) => {
   const { personalization } = getState();
 
-  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/postClick/`);
-  newRef.set(personalization[name] + 1)
+  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/postClick`);
+  newRef.set(personalization[name].postClick + 1)
   .catch((error) => {
     console.log(error);
   });
 };
 
-const updateCategory = name => (dispatch, getState) => {
+const updateCategoryCount = name => (dispatch, getState) => {
   const { personalization } = getState();
 
-  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/categoryClick/`);
-  newRef.set(personalization[name] + 1)
+  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/`);
+  newRef.set(Object.assign(personalization[name], {
+      categoryClick: personalization[name].categoryClick + 1,
+      postClick: personalization[name].postClick || 0
+    }))
   .catch((error) => {
     console.log(error);
   });
@@ -46,7 +48,7 @@ export const getPersonal = () => dispatch => {
 };
 
 const downloadPersonal = val => ({
-  type: C.DOWNLOAD_CATEGORY,
+  type: C.DOWNLOAD_COUNT,
   val
 });
 

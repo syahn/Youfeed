@@ -40,5 +40,5 @@ export const personalization = createReducer({
   'CLICK_CATEGORY': addCategoryCount,
   'CLICK_POST': addPostCount,
   'SET_CATEGORY': setCategoryCount,
-  'DOWNLOAD_CATEGORY': getCount,
+  'DOWNLOAD_COUNT': getCount,
 });
