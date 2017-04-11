@@ -87,7 +87,7 @@ const mapStateToProps = state => {
   };
 
   for(let i in postsByRSS) {
-    const title = postsByRSS[i].title.split(' ')[0];
+    const title = postsByRSS[i].title;
     count[title] = Math.floor(personalization[title].postClick / totalCategoryCount * 50);
   }
 
@@ -107,8 +107,7 @@ const mapStateToProps = state => {
     dribble: sortedDribble,
     medium: sortedMedium,
     reddit: sortedReddit,
-    rss: sortedRss,
-    count: count
+    rss: sortedRss
   };
 };
 

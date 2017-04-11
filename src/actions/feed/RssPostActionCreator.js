@@ -40,7 +40,7 @@ export const fetchPostsRss = subscriptionUrl => dispatch => {
       notification.items = notification.items.map(post => ({
         title: post.title,
         author: post.auther,
-        logo: post.source.image || rssLogo,
+        logo: rssLogo,
         image: '',
         url: post.permalinkUrl,
         siteUrl: '',
