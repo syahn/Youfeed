@@ -6,11 +6,12 @@ export const ui = (state = {
 	signInModalconfirmLoading: false,
 	signInModalText:'Content of the modal dialog',
 	visibilityFilter: 'SHOW_ALL',
+	visibilityHamburger: false,
+	currentFeed: 'Personalized Feeds',
 	newSubscription: {
 		succeed: false,
 		loading: false
-	},
-	visibilityHamburger: false
+	}
 }, action) => {
 	switch (action.type) {
     case C.SHOW_MODAL:
@@ -49,6 +50,8 @@ export const ui = (state = {
 			return updateObject(state, { 'visibilityHamburger': !state.visibilityHamburger });
 		case C.CLOSE_HAMBURGER:
 			return updateObject(state, { 'visibilityHamburger': false });
+		case C.CLICK_PERSONALIZATION:
+			return updateObject(state, { 'currentFeed': action.subscription });
 		default:
 			return state;
 	}

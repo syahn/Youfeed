@@ -61,7 +61,7 @@ function ControlView({
           title={
             <Link_ to="/">
               <Icon type="inbox" />
-              News Feed
+              News Feeds
             </Link_>
           }
         >

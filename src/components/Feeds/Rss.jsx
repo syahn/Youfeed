@@ -21,7 +21,7 @@ class Rss extends Component {
       const { title, url } = e.subscription.feed;
       if(title.indexOf(params.subscription) > -1 && postsList[url]) {
         postRss = postsList[url].items;
-      break;
+        break;
       }
     }
 

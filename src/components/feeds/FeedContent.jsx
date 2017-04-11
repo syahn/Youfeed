@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import { Icon } from 'antd';
@@ -27,14 +28,18 @@ const Tag = styled.div`
   }
 `;
 
-function FeedContent(props) {
+function FeedContent({ currentFeed, children }) {
+  const routes = children.props.routes;
+  if(!routes[1].path) currentFeed = 'Personalized Feeds';
+  if(routes[1].path === '/feedsbytime') currentFeed = 'Feeds By Time';
+
   return(
     <ContentWrapper>
       <Tag color="blue">
         <Icon type="down-square" />
-        News Feed
+        <span>News Feeds: {currentFeed}</span>
       </Tag>
-      {props.children}
+      {children}
     </ContentWrapper>
   );
 }

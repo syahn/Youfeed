@@ -117,7 +117,7 @@ class App extends Component {
           <ContentLayout>
             <FeedControl />
             <RightCol>
-              <FeedContent>
+              <FeedContent currentFeed={this.props.currentFeed}>
                 {this.props.children}
               </FeedContent>
               <WidgetControl />
@@ -135,19 +135,20 @@ export default connect(
   state => ({
     auth: state.auth,
     widgets: state.widgets,
-    subscription: state.subscription
+    subscription: state.subscription,
+    currentFeed: state.ui.currentFeed
   }), {
-  onGetTodo: getTodo,
-  onGetMemo: getMemo,
-  onGetPersonal: getPersonal,
-  onGetWidget: getWidget,
-  onEditWidget: editLayoutWidget,
-  onFetchPostsHN: fetchPostsHN,
-  onFetchPostsMedium: fetchPostsMedium,
-  onFetchPostsBehance: fetchPostsBehance,
-  onFetchPostsDribble: fetchPostsDribble,
-  onFetchPostsTechmeme: fetchPostsTechmeme,
-  onFetchPostsReddit: fetchPostsIfNeeded,
-  onFetchListsRss: fetchListsRss,
-  onFetchPostsRss: fetchPostsRss,
+    onGetTodo: getTodo,
+    onGetMemo: getMemo,
+    onGetPersonal: getPersonal,
+    onGetWidget: getWidget,
+    onEditWidget: editLayoutWidget,
+    onFetchPostsHN: fetchPostsHN,
+    onFetchPostsMedium: fetchPostsMedium,
+    onFetchPostsBehance: fetchPostsBehance,
+    onFetchPostsDribble: fetchPostsDribble,
+    onFetchPostsTechmeme: fetchPostsTechmeme,
+    onFetchPostsReddit: fetchPostsIfNeeded,
+    onFetchListsRss: fetchListsRss,
+    onFetchPostsRss: fetchPostsRss,
 })(App);
