@@ -7,7 +7,11 @@ const propTypes = {
 };
 
 const ContentWrapper = styled.div`
-  width: 100%;
+  width: 523px;
+
+  @media only screen and (max-width: 1120px) {
+    width: 100%;
+  }
 `;
 
 const Tag = styled.div`

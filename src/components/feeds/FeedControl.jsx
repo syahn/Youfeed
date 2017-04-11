@@ -40,9 +40,9 @@ class FeedControl extends Component {
   }
 
   handleClick = val => {
-    const { dispatch } = this.props;
+    const { dispatch, auth } = this.props;
     const exception = ['feedByPersonalized', 'subscription', 'feedByTime'];
-    if(exception.indexOf(val.key) < 0) {
+    if( auth.status === 'AUTH_LOGGED_IN' && exception.indexOf(val.key) < 0) {
       dispatch(clickSubscription(val.key));
     }
   }
@@ -67,6 +67,7 @@ class FeedControl extends Component {
 FeedControl.propTypes = propTypes;
 
 export default connect(state => ({
+  auth: state.auth,
   subscription: state.subscription,
   visibilityHamburger: state.ui.visibilityHamburger
 }))(FeedControl);

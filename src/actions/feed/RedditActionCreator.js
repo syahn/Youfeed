@@ -19,7 +19,6 @@ const fetchPosts = reddit => dispatch => {
     .then(json => {
       const posts = json.data.children.map(child => {
         const post = child.data;
-        console.log('post', post);
         return {
           title: post.title,
           author: post.author,

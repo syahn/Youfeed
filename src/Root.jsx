@@ -42,7 +42,6 @@ class Root extends Component {
 					<Route path="/rss/(:subscription)" component={Rss} />
 					<Redirect from='*' to='/' />
 				</Route>
-
       </Router>
     </Provider>
   );

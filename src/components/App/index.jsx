@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Layout } from 'antd';
@@ -52,6 +53,24 @@ const RightCol = styled.div`
 
 class App extends Component {
 
+  componentWillMount() {
+    const {
+      onFetchPostsHN,
+      onFetchPostsMedium,
+      onFetchPostsBehance,
+      onFetchPostsDribble,
+      onFetchPostsTechmeme,
+      onFetchPostsReddit
+    } = this.props;
+
+    onFetchPostsReddit();
+    onFetchPostsMedium();
+    onFetchPostsHN();
+    onFetchPostsBehance();
+    onFetchPostsDribble();
+    onFetchPostsTechmeme();
+  }
+
   componentWillReceiveProps(nextProps) {
     const {
       auth,
@@ -62,35 +81,29 @@ class App extends Component {
       onGetWidget,
       onEditWidget,
       onGetPersonal,
-      onFetchPostsHN,
-      onFetchPostsMedium,
-      onFetchPostsBehance,
-      onFetchPostsDribble,
-      onFetchPostsTechmeme,
-      onFetchPostsReddit,
       onFetchListsRss,
       onFetchPostsRss
     } = this.props;
 
+
     if (auth.status === 'AUTH_ANONYMOUS' && nextProps.auth.status === 'AUTH_LOGGED_IN') {
       onFetchListsRss(nextProps.auth);
-      onFetchPostsReddit();
-      onFetchPostsMedium();
-      onFetchPostsHN();
-      onFetchPostsBehance();
-      onFetchPostsDribble();
-      onFetchPostsTechmeme();
       onGetTodo();
       onGetMemo();
       onGetWidget();
       onGetPersonal();
     }
 
+    if (auth.status === 'AUTH_LOGGED_IN' && nextProps.auth.status === 'AUTH_ANONYMOUS') {
+      window.location.reload();
+      browserHistory.push('/feedsbytime');
+    }
+
     if (auth.status === 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){
       onEditWidget(nextProps.widgets);
     }
 
-    if(subscription.length === 0 && nextProps.subscription.length > 0) {
+    if (subscription.length === 0 && nextProps.subscription.length > 0) {
       for(let item of nextProps.subscription) {
         onFetchPostsRss(item.subscription.feed.url);
       }

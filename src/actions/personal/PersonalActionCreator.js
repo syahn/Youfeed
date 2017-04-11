@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { database, auth } from '../../firebaseApp';
 import C from '../../constants';
 
