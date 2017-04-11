@@ -19,7 +19,9 @@ export const fetchListsRss = auth => dispatch => {
   url = url + querystring.stringify(query);
 
   return fetch(url).then(res => res.json())
-  .then(json => dispatch(receiveLists(json)))
+  .then(json => {
+    dispatch(receiveLists(json));
+  })
   .catch = e => {
     console.log(e);
     dispatch(rejectLists());
@@ -39,9 +41,9 @@ export const requestSubscription = (auth, urlAdded) => dispatch => {
   url = url + querystring.stringify(query);
   fetch(url, { method: 'POST' })
   .then(res => {
-    console.log('res', res, 'json', res.text());
     if(res.ok) {
       dispatch(succeedSubscription());
+      window.location.reload();
     } else {
       dispatch(rejectItem());
     }
