@@ -48,5 +48,5 @@ export const updateMemoRejectedAction = () => ({
 });
 
 export const getMemoRejectedAction = () => ({
-  type: C.GET_REJECTED_MEMO
+  type: C.UPDATE_REJECTED_MEMO
 });
