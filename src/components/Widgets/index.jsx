@@ -6,7 +6,6 @@ import Calculator from '../Calculator';
 import Pomodoro from '../Pomodoro';
 import RandomQuote from '../RandomQuote';
 import Widget from './Widget';
-// import { BackTop } from 'antd';
 
 const propTypes = {
   widgets: PropTypes.array,
@@ -52,9 +51,6 @@ function WidgetBox({ widgets, onMove }) {
             type={item.type}
           />
         ))}
-        {/* <BackTop
-          visibilityHeight='600'
-        /> */}
       </ul>
     </Box>
   );

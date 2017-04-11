@@ -1,3 +1,4 @@
+import uuid from 'uuid';
 import { createReducer, swapIndices } from '../util';
 /**
  * Case reducer
@@ -15,7 +16,7 @@ function addWidget(widgetState, action){
  * Set list of widgets from db
  */
 function getWidget(widgetState, action){
-  return action.widgets;
+  return action.widgets || widgetState;
 }
 
 /**
@@ -34,7 +35,14 @@ function moveWidget(widgetState, action){
 }
 
 
-export const widgets = createReducer([], {
+export const widgets = createReducer(
+  [
+    {type: 'todo', id: uuid()},
+    {type: 'randomquote', id: uuid()},
+    {type: 'memo', id: uuid()},
+    {type: 'calculator', id: uuid()},
+    {type: 'pomodoro', id: uuid()},
+  ], {
   'ADD_WIDGET': addWidget,
   'MOVE_WIDGET': moveWidget,
   'SET_WIDGET': getWidget

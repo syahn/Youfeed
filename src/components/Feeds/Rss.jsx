@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { CenterSpin } from '../General';
 import FeedTemplate from './FeedTemplate';
 import { fetchPostsRss } from '../../actions/feed/RssPostActionCreator';
+import { clickPost } from '../../actions/personal/PersonalActionCreator';
 
 const propTypes = {
   params: PropTypes.object,
@@ -11,7 +12,6 @@ const propTypes = {
 };
 
 class Rss extends Component {
-
   constructor(props) {
     super(props);
     const { params, postsList, subscription } = this.props;
@@ -47,15 +47,23 @@ class Rss extends Component {
     }
   }
 
+  handleClick = () => {
+    const { params, onClickPost } = this.props;
+    onClickPost(params.subscription);
+  }
+
   render() {
     const { posts } = this.state;
-    return(
+    const renderPosts = posts.length > 0
+      ? <FeedTemplate
+          posts={posts}
+          clickPost={this.handleClick}
+        />
+      : <CenterSpin size="large" />;
+
+    return (
       <div>
-        { posts.length > 0
-          ?
-          <FeedTemplate posts={posts} />
-          :
-          <CenterSpin size="large" /> }
+        {renderPosts}
       </div>
     );
   }
@@ -68,6 +76,7 @@ export default connect(
     subscription: state.subscription,
     postsList: state.postsByRSS
   }), {
-    onFetchPostsRss: fetchPostsRss
+    onFetchPostsRss: fetchPostsRss,
+    onClickPost: clickPost
   }
 )(Rss);

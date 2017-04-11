@@ -27,7 +27,7 @@ const updateCategoryCount = name => (dispatch, getState) => {
 
   let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/`);
   newRef.set(Object.assign(personalization[name], {
-      categoryClick: personalization[name].categoryClick + 1,
+      categoryClick: personalization[name].categoryClick || 1,
       postClick: personalization[name].postClick || 0
     }))
   .catch((error) => {
