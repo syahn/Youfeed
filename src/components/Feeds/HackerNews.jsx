@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import FeedTemplate from './FeedTemplate';
 import { connect } from 'react-redux';
+import { clickPost } from '../../actions/personal/PersonalActionCreator';
 
 
 const propTypes = {
@@ -8,17 +9,28 @@ const propTypes = {
 };
 
 class HackerNews extends Component {
-  render() {
-    const { posts } = this.props;
+  handleClick = () => {
+    const { route, onClickPost } = this.props;
+    onClickPost(route.path.slice(1));
+  }
 
-    return <FeedTemplate posts={posts} />;
+  render() {
+    const { posts, route } = this.props;
+    console.log(this.props, posts, this.props.params);
+    return (
+      <FeedTemplate
+        posts={posts}
+        clickPost={this.handleClick}
+      />;
+    )
   }
 }
 
-const mapStateToProps = state => ({
-  posts: state.postsByHackerNews
-});
+const mapStateToProps = ;
 
 HackerNews.propTypes = propTypes;
 
-export default connect(mapStateToProps)(HackerNews);
+export default connect(state =>
+  ({ posts: state.postsByHackerNews }),
+  { onClickPost: clickPost }
+)(HackerNews);

@@ -50,7 +50,7 @@ export const ui = (state = {
 			return updateObject(state, { 'visibilityHamburger': !state.visibilityHamburger });
 		case C.CLOSE_HAMBURGER:
 			return updateObject(state, { 'visibilityHamburger': false });
-		case C.CLICK_PERSONALIZATION:
+		case C.CLICK_CATEGORY:
 			return updateObject(state, { 'currentFeed': action.subscription });
 		default:
 			return state;
