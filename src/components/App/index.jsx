@@ -111,14 +111,18 @@ class App extends Component {
   }
 
   render() {
+    const { auth, currentFeed, children } = this.props;
     return (
       <GlobalLayout>
         <Header />
           <ContentLayout>
             <FeedControl />
             <RightCol>
-              <FeedContent currentFeed={this.props.currentFeed}>
-                {this.props.children}
+              <FeedContent
+                auth={auth}
+                currentFeed={currentFeed}
+              >
+                {children}
               </FeedContent>
               <WidgetControl />
             </RightCol>

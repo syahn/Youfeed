@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import { Icon } from 'antd';
@@ -28,10 +27,15 @@ const Tag = styled.div`
   }
 `;
 
-function FeedContent({ currentFeed, children }) {
+function FeedContent({ currentFeed, auth, children }) {
   const routes = children.props.routes;
   if(!routes[1].path) currentFeed = 'Personalized Feeds';
-  if(routes[1].path === '/feedsbytime') currentFeed = 'Feeds By Time';
+  else if(routes[1].path === '/feedsbytime') currentFeed = 'Feeds By Time';
+  else if(auth.status === 'AUTH_ANONYMOUS') {
+    let rawFeed = routes[1].path.split('/')[1];
+    currentFeed = rawFeed[0].toUpperCase() + rawFeed.slice(1);
+  }
+  else currentFeed = currentFeed[0].toUpperCase() + currentFeed.slice(1);
 
   return(
     <ContentWrapper>
