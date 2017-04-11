@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { database, auth } from '../../firebaseApp';
 import C from '../../constants';
 
@@ -7,7 +8,7 @@ export const clickSubscription = name => dispatch => {
 };
 
 export const clickPost = name => dispatch => {
-  dispatch(updatePost(name));
+  // dispatch(updatePost(name));
   dispatch(addPostCount(name));
 };
 
@@ -15,7 +16,7 @@ export const clickPost = name => dispatch => {
 const updatePost = name => (dispatch, getState) => {
   const { personalization } = getState();
 
-  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/postClick`);
+  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/postClick/`);
   newRef.set(personalization[name] + 1)
   .catch((error) => {
     console.log(error);
@@ -25,7 +26,7 @@ const updatePost = name => (dispatch, getState) => {
 const updateCategory = name => (dispatch, getState) => {
   const { personalization } = getState();
 
-  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/categoryClick`);
+  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/categoryClick/`);
   newRef.set(personalization[name] + 1)
   .catch((error) => {
     console.log(error);

@@ -1,29 +1,44 @@
 import { updateObject, createReducer } from '../util';
 
-function addCount(personalState, action) {
+function addCategoryCount(personalState, action) {
   return updateObject(personalState,
-    {[action.subscription]: personalState[action.subscription] + 1});
+    {[action.subscription]: {
+      postClick: personalState[action.subscription].postClick,
+      categoryClick: personalState[action.subscription].categoryClick + 1
+    }});
 }
 
-function setCount(personalState, action) {
+function addPostCount(personalState, action) {
   return updateObject(personalState,
-    {[action.subscription]: 1});
+    {[action.post]: {
+      postClick: personalState[action.post].postClick + 1,
+      categoryClick: personalState[action.post].categoryClick
+    }});
+}
+
+function setCategoryCount(personalState, action) {
+  return updateObject(personalState,
+    {[action.subscription]: {
+      categoryClick: 1,
+      postClick: 0
+    }});
 }
 
 function getCount(personalState, action) {
   return updateObject(personalState, action.val);
 }
-s
+
 // Slice reducer
 export const personalization = createReducer({
-  'medium': 0,
-  'hacker-news': 0,
-  'behance': 0,
-  'dribble': 0,
-  'reddit': 0,
-  'techmeme': 0
+  'medium': { postClick: 0, categoryClick: 0 },
+  'hacker-news': { postClick: 0, categoryClick: 0 },
+  'behance': { postClick: 0, categoryClick: 0 },
+  'dribble': { postClick: 0, categoryClick: 0 },
+  'reddit': { postClick: 0, categoryClick: 0 },
+  'techmeme': { postClick: 0, categoryClick: 0 }
 }, {
-  'CLICK_CATEGORY': addCount,
-  'SET_CATEGORY': setCount,
+  'CLICK_CATEGORY': addCategoryCount,
+  'CLICK_POST': addPostCount,
+  'SET_CATEGORY': setCategoryCount,
   'DOWNLOAD_CATEGORY': getCount,
 });

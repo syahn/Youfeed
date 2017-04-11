@@ -18,7 +18,7 @@ const propTypes = {
   posts: PropTypes.array
 };
 
-function FeedTemplate({ posts }) {
+function FeedTemplate({ posts, clickPost }) {
   return(
     <div>
     {posts.map(post => {
@@ -35,13 +35,13 @@ function FeedTemplate({ posts }) {
                   {post.score || '0'}
                 </ScoreTag>
               }
-              <a href={post.url} target="_blank">
+              <a href={post.url} onClick={clickPost} target="_blank">
                 {post.title}
               </a>
             </PostHeader>
             {post.siteUrl &&
               <LinkContainer>
-                <OriginalLink href={`${post.siteUrl}`} target="_blank">
+                <OriginalLink href={`${post.siteUrl}`} onClick={clickPost} target="_blank">
                   &#40;{post.siteUrl.split('/')[2]}&#41;
                 </OriginalLink>
               </LinkContainer>

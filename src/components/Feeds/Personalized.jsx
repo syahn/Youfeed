@@ -97,7 +97,7 @@ export default connect(
     let sortedBehance = postsByBehance.sort((x,y) => y.score - x.score).slice(0, count.behance);
     let sortedHackerNews = postsByHackerNews.sort((x,y) => y.score - x.score).slice(0, count.hackerNews);
     let sortedDribble = postsByDribble.sort((x,y) => y.score - x.score).slice(0, count.dribble);
-    let sortedReddit = postsByReddit.items.sort((x,y) => y.score - x.score).slice(0, count.reddit);
+    let sortedReddit = postsByReddit.sort((x,y) => y.score - x.score).slice(0, count.reddit);
     let sortedRss = Object.keys(postsByRSS).reduce((a, c) =>
                       a.concat(postsByRSS[c].items.slice(0, count[postsByRSS[c].title.split(' ')[0]])),[]);
 
