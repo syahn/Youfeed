@@ -85,6 +85,10 @@ class App extends Component {
       onFetchPostsRss
     } = this.props;
 
+    if(auth.status === 'AUTH_ANONYMOUS') {
+      browserHistory.push('/feedsbytime');
+    }
+
     if (auth.status === 'AUTH_ANONYMOUS' && nextProps.auth.status === 'AUTH_LOGGED_IN') {
       onFetchListsRss(nextProps.auth);
       onGetTodo();
