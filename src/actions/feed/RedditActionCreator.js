@@ -20,6 +20,7 @@ const fetchPosts = reddit => dispatch => {
       const posts = json.data.children.map(child => {
         const post = child.data;
         return {
+          provider: 'Reddit',
           title: post.title,
           author: post.author,
           logo: redditLogo,

@@ -53,8 +53,12 @@ class Personalized extends Component {
 
   render() {
     const { posts } = this.state;
+
     return(
-      <FeedTemplate posts={posts} />
+      <FeedTemplate
+        posts={posts}
+        showProvider='true'
+      />
     );
   }
 }

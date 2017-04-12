@@ -39,6 +39,7 @@ export const fetchPostsMedium = () => dispatch => {
 
     if(notification.items.length > 0) {
       notification.items = notification.items.map(post => ({
+        provider: 'Medium',
         title: post.title,
         author: post.actor.displayName,
         logo: medium,

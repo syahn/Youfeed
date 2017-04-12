@@ -32,6 +32,7 @@ const fetchPostItemHN = list => dispatch => {
       .then(response => response.json())
       .then(post => {
         const newPost = {
+          provider: 'Hacker News',
           title: post.title,
           author: post.by,
           logo: hackerNews,

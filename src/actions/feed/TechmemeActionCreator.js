@@ -38,6 +38,7 @@ export const fetchPostsTechmeme = () => dispatch => {
 
     if(notification.items.length > 0) {
       notification.items = notification.items.map(post => ({
+        provider: 'Techmeme',
         title: post.title,
         author: '',
         logo: 'https://dl.dropbox.com/s/2byudsj3akgzkib/techmeme_size_328x328.jpg?dl=0',

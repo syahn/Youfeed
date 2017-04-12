@@ -20,12 +20,9 @@ export const fetchPostsBehance = () => dispatch => {
   dispatch(requestPosts());
 
   return $.getJSON(`https://www.behance.net/v2/projects?client_id=${behanceConfig.key}&callback=?`)
-    // .then(response => {
-    //   console.log(response, response.json());
-    //   return response.json();
-    // })
     .done(posts => {
       const newPosts = posts.projects.map(post => ({
+        provider: 'Behance',
         title: post.name,
         author: post.owners[0].display_name,
         logo: behance,

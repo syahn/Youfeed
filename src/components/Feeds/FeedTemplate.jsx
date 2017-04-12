@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import uuid from 'uuid';
 import moment from 'moment';
 import {
+  TitleContainer,
   PostTitle,
   PostHeader,
   PostCard,
@@ -9,7 +10,7 @@ import {
   Category,
   TagBox,
   Icon_,
-  ScoreTag,
+  Tag_,
   OriginalLink,
   LinkContainer
 } from '../General';
@@ -18,7 +19,7 @@ const propTypes = {
   posts: PropTypes.array
 };
 
-function FeedTemplate({ posts, clickPost, provider }) {
+function FeedTemplate({ posts, clickPost, showProvider }) {
   return(
     <div>
     {posts.map(post => {
@@ -26,20 +27,20 @@ function FeedTemplate({ posts, clickPost, provider }) {
 
       return (
         <PostCard key={uuid()}>
-          <PostTitle>
+          <TitleContainer>
             <PostHeader logo={post.logo}>
               <img src={post.logo} alt="" />
               {post.score &&
-                <ScoreTag color="#108ee9">
+                <Tag_ color="#108ee9">
                   <Icon_ type="caret-up" />
                   {post.score || '0'}
-                </ScoreTag>
-              }
-              <span>: {provider}</span>
+                </Tag_>}
+              {showProvider &&
+                <Tag_>{post.provider}</Tag_>}
             </PostHeader>
-            <a href={post.url} onClick={clickPost} target="_blank">
+            <PostTitle href={post.url} onClick={clickPost} target="_blank">
               {post.title}
-            </a>
+            </PostTitle>
             {post.siteUrl &&
               <LinkContainer>
                 <OriginalLink href={`${post.siteUrl}`} onClick={clickPost} target="_blank">
@@ -47,7 +48,7 @@ function FeedTemplate({ posts, clickPost, provider }) {
                 </OriginalLink>
               </LinkContainer>
             }
-          </PostTitle>
+          </TitleContainer>
           <PostContent>
             {post.image &&
               <img src={post.image} alt='' />

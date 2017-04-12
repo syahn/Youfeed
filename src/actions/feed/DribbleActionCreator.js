@@ -25,6 +25,7 @@ export const fetchPostsDribble = () => dispatch => {
       const newPosts = posts.map(post => {
         let published = new Date(post.created_at);
         return {
+          provider: 'Dribble',
           title: post.title,
           author: post.user.name,
           logo: dribble,
