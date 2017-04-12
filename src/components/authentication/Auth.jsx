@@ -33,10 +33,10 @@ const LoginModal = styled(Button)`
 `;
 
 const LoginButton = styled(Button)`
-  padding: 6px 4px;
+  padding: 6px 8px;
 
   @media only screen and (max-width: 768px) {
-    font-size: 10px;
+    font-size: 11px;
   }
 `;
 
@@ -67,7 +67,7 @@ function Auth({
         type="primary"
         onClick={showModal}
       >
-        login
+        Login
       </LoginButton>
       <Modal
         title="Join & Login"
