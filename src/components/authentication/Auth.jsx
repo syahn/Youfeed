@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import { Modal, Button } from 'antd';
 import styled from 'styled-components';
@@ -22,12 +21,21 @@ const LoginButton = styled(Button)`
 
   img {
     width: 36px;
-    margin: 0 10px 0 120px;
+
+    @media only screen and (max-width: 768px) {
+      margin: 0;
+    }
   }
   span {
     position: relative;
     left: 10px;
   }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
 `;
 
 function Auth({
@@ -54,7 +62,7 @@ function Auth({
         Log In
       </Button>
       <Modal
-        title="Log in"
+        title="Join & Login"
         visible={visible}
         confirmLoading={confirmLoading}
         onCancel={closeModal}
@@ -67,8 +75,10 @@ function Auth({
             type="ghost"
             onClick={()=>openAuth(item)}
           >
-            <img src={logoMap[item]} alt='facebook' />
-            <span>{item[0].toUpperCase() + item.slice(1)}</span>
+            <Wrapper>
+              <img src={logoMap[item]} alt='facebook' />
+              <span>{item[0].toUpperCase() + item.slice(1)}</span>
+            </Wrapper>
           </LoginButton>
         ))}
       </Modal>
