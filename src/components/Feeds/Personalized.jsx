@@ -32,7 +32,7 @@ class Personalized extends Component {
       dribble,
       reddit,
       rss
-    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time);
+    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,30);
 
     this.state = { posts: newPosts };
   }
@@ -46,7 +46,7 @@ class Personalized extends Component {
       nextProps.dribble,
       nextProps.reddit,
       nextProps.rss
-    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time);
+    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,30);
 
     this.setState({ posts: newPosts });
   }

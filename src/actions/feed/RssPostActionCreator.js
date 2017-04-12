@@ -38,7 +38,7 @@ export const fetchPostsRss = subscriptionUrl => dispatch => {
 
     if(notification.items.length > 0) {
       notification.items = notification.items.map(post => ({
-        provider: post.title,
+        provider: notification.title,
         title: post.title,
         author: post.auther,
         logo: rssLogo,

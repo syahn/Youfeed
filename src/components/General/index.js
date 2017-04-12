@@ -47,13 +47,15 @@ export const PostHeader = styled.span`
 
   img {
     margin: ${props => props.logo ? '3px 10px 0 0' : '0px'};
-    width: ${props => props.logo ? '24px' : '0px'};
+    width: ${props => props.logo ? '22px' : '0px'};
   }
 `;
 
 export const PostTitle = styled.a`
-  font-size: 20px;
+  display: inline-block;
+  font-size: 21px;
   font-weight: 600;
+  margin-bottom: 7px;
   color: #495057;
 `;
 
