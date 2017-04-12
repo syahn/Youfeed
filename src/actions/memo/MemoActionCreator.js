@@ -5,7 +5,8 @@ export const getMemo = () => dispatch => {
   return database.ref(`/memo/${auth.currentUser.uid}/`)
   .once('value')
   .then(snap => {
-    dispatch(downloadMemo(snap.val().text));
+    let value = snap.val() ? snap.val().text : '';
+    dispatch(downloadMemo(value));
   })
   .catch((error) => {
     console.log(error);

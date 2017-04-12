@@ -33,7 +33,7 @@ class Personalized extends Component {
       reddit,
       rss
     ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,30);
-
+    console.log('constructor', newPosts);
     this.state = { posts: newPosts };
   }
 
@@ -46,7 +46,7 @@ class Personalized extends Component {
       nextProps.dribble,
       nextProps.reddit,
       nextProps.rss
-    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,30);
+    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time);
 
     this.setState({ posts: newPosts });
   }
@@ -78,7 +78,11 @@ const mapStateToProps = state => {
     auth
   } = state;
 
-  if(auth.status === 'AUTH_ANONYMOUS') {
+  let totalClickCount = Object.keys(personalization).reduce((a,c) => {
+    return a + personalization[c].postClick;
+  }, 0);
+
+  if(auth.status === 'AUTH_ANONYMOUS' || totalClickCount < 1) {
     return {
       hackerNews: postsByHackerNews,
       techMeme: postsByTechmeme,
