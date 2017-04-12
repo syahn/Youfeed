@@ -1,6 +1,23 @@
 import React, { PropTypes } from 'react';
 import uuid from 'uuid';
 import moment from 'moment';
+import { Tag, Icon } from 'antd';
+import styled from 'styled-components';
+
+const FeedTag = styled(Tag)`
+  margin: 4px 8px 0 0 !important;
+
+  i {
+    margin-right: 4px;
+  }
+`;
+
+const FeedIcon = styled(Icon)`
+  i {
+    margin-right: 3px;
+  }
+`;
+
 import {
   TitleContainer,
   PostTitle,
@@ -9,8 +26,6 @@ import {
   PostContent,
   Category,
   TagBox,
-  Icon_,
-  Tag_,
   OriginalLink,
   LinkContainer
 } from '../General';
@@ -31,12 +46,12 @@ function FeedTemplate({ posts, clickPost, showProvider }) {
             <PostHeader logo={post.logo}>
               <img src={post.logo} alt="" />
               {post.score &&
-                <Tag_ color="#108ee9">
-                  <Icon_ type="caret-up" />
+                <FeedTag color="#108ee9">
+                  <FeedIcon type="caret-up" />
                   {post.score || '0'}
-                </Tag_>}
+                </FeedTag>}
               {showProvider &&
-                <Tag_>{post.provider}</Tag_>}
+                <FeedTag>{post.provider}</FeedTag>}
             </PostHeader>
             <PostTitle href={post.url} onClick={clickPost} target="_blank">
               {post.title}

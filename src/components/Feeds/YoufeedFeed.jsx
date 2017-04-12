@@ -18,7 +18,7 @@ class YoufeedFeed extends Component {
     const { posts } = this.props;
     const renderPosts = posts.length > 0
       ? <FeedTemplate
-          posts={this.props.posts}
+          posts={this.props.posts.slice(0, 10)}
           showProvider='true'
           clickPost={this.handleClick}
         />

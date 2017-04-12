@@ -32,8 +32,8 @@ class Personalized extends Component {
       dribble,
       reddit,
       rss
-    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,30);
-    console.log('constructor', newPosts);
+    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,10);
+
     this.state = { posts: newPosts };
   }
 
@@ -46,7 +46,7 @@ class Personalized extends Component {
       nextProps.dribble,
       nextProps.reddit,
       nextProps.rss
-    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time);
+    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,10);
 
     this.setState({ posts: newPosts });
   }
@@ -90,7 +90,7 @@ const mapStateToProps = state => {
       dribble: postsByDribble,
       medium: postsByMedium,
       reddit: postsByReddit,
-      rss: Object.keys(postsByRSS).reduce((a, c) => a.concat(postsByRSS[c].items),[])
+      rss: Object.keys(postsByRSS).reduce((a, c) => a.concat(postsByRSS[c].items),[]).slice(0,10)
     };
   }
 
@@ -99,17 +99,17 @@ const mapStateToProps = state => {
   }, 0);
 
   let count = {
-    medium: Math.floor(personalization['medium'].postClick / totalCategoryCount * 50),
-    techMeme: Math.floor(personalization['techmeme'].postClick / totalCategoryCount * 50),
-    behance: Math.floor(personalization['behance'].postClick / totalCategoryCount * 50),
-    dribble: Math.floor(personalization['dribble'].postClick / totalCategoryCount * 50),
-    hackerNews: Math.floor(personalization['hacker-news'].postClick / totalCategoryCount * 50),
-    reddit: Math.floor(personalization['reddit'].postClick / totalCategoryCount * 50),
+    medium: Math.floor(personalization['medium'].postClick / totalCategoryCount * 100),
+    techMeme: Math.floor(personalization['techmeme'].postClick / totalCategoryCount * 100),
+    behance: Math.floor(personalization['behance'].postClick / totalCategoryCount * 100),
+    dribble: Math.floor(personalization['dribble'].postClick / totalCategoryCount * 100),
+    hackerNews: Math.floor(personalization['hacker-news'].postClick / totalCategoryCount * 100),
+    reddit: Math.floor(personalization['reddit'].postClick / totalCategoryCount * 100),
   };
 
   for(let i in postsByRSS) {
     const title = postsByRSS[i].title;
-    count[title] = Math.floor(personalization[title].postClick / totalCategoryCount * 50);
+    count[title] = Math.floor(personalization[title].postClick / totalCategoryCount * 100);
   }
 
   let sortedMedium = postsByMedium.sort((a,b) => a.time - b.time).slice(0, count.medium);

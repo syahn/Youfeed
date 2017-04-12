@@ -39,7 +39,7 @@ class FeedsByTime extends Component {
       rss
     ].reduce((a, c) => a.concat(c), []).sort((x, y) => {
       return y.time - x.time;
-    }).slice(0,30);
+    }).slice(0,10);
     this.state = {
       posts: newPosts || []
     };
@@ -57,7 +57,7 @@ class FeedsByTime extends Component {
       nextProps.rss
       ].reduce((a, c) => a.concat(c), []).sort((x, y) => {
         return y.time - x.time;
-      }).slice(0,30);
+      }).slice(0,10);
     this.setState({ posts: newPosts });
   }
 
