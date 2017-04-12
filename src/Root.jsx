@@ -1,5 +1,6 @@
 // src/routes.js
-/* eslint-disable */
+import * as es6Promise from 'es6-promise';
+es6Promise.polyfill();
 import React, { Component } from 'react';
 import { Router, IndexRoute, Route, browserHistory, Redirect } from 'react-router';
 import { Provider } from 'react-redux';

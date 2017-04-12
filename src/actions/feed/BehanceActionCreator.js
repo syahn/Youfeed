@@ -1,7 +1,7 @@
-import fetch from 'isomorphic-fetch';
 import C from '../../constants';
 import { behanceConfig } from '../../config';
 import behance from '../../static/images/behance.svg';
+import $ from 'jquery';
 
 const requestPosts = () => ({
   type: C.REQUEST_POSTS_BEHANCE,
@@ -19,9 +19,12 @@ const rejectPosts = () => ({
 export const fetchPostsBehance = () => dispatch => {
   dispatch(requestPosts());
 
-  return fetch(`https://crossorigin.me/https://www.behance.net/v2/projects?api_key=${behanceConfig.key}`)
-    .then(response => response.json())
-    .then(posts => {
+  return $.getJSON(`https://www.behance.net/v2/projects?client_id=${behanceConfig.key}&callback=?`)
+    // .then(response => {
+    //   console.log(response, response.json());
+    //   return response.json();
+    // })
+    .done(posts => {
       const newPosts = posts.projects.map(post => ({
         title: post.name,
         author: post.owners[0].display_name,
@@ -37,7 +40,7 @@ export const fetchPostsBehance = () => dispatch => {
 
       dispatch(receivePosts(newPosts));
     })
-    .catch( error => {
+    .fail( error => {
       console.log(error);
       dispatch(rejectPosts());
     });
