@@ -1,10 +1,18 @@
 /* eslint-disable */
 import { database, auth } from '../../firebaseApp';
 import C from '../../constants';
+import { closeHamburger } from '../ui/UiActionCreator';
 
-export const clickSubscription = name => dispatch => {
-  dispatch(updateCategoryCount(name));
-  dispatch(addCategoryCount(name));
+export const clickSubscription = name => (dispatch, getState) => {
+  const { visibilityHamburger } = getState().ui;
+  const exceptionCount = ['feedByTime', 'feedByPersonalized'];
+  if(visibilityHamburger === true) {
+    dispatch(closeHamburger(name));
+  }
+  if(exceptionCount.indexOf(name) < 0) {
+    dispatch(updateCategoryCount(name));
+    dispatch(addCategoryCount(name));
+  }
 };
 
 export const clickPost = name => dispatch => {

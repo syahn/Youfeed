@@ -59,10 +59,10 @@ function ControlView({
         <SubMenu_
           key="newsFeed"
           title={
-            <Link_ to="/">
+            <div>
               <Icon type="inbox" />
-              News Feeds
-            </Link_>
+              <span>News Feed</span>
+            </div>
           }
         >
           <MenuItem key='feedByPersonalized'>
