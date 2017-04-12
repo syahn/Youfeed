@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import styled from 'styled-components';
+import C from '../../constants';
+import Auth from './Auth';
+import { LoginButton } from '../General';
+import {Button, Dropdown, Menu, Icon, Tooltip} from 'antd';
 import {showModal, closeModal} from '../../actions/ui/UiActionCreator';
 import {openAuth, logoutUser} from '../../actions/auth/AuthActionCreator';
-import Auth from './Auth';
-import C from '../../constants';
-import styled from 'styled-components';
-import {Button, Dropdown, Menu, Icon, Tooltip} from 'antd';
 
 const UserStatus = styled.div `
   display: flex;
@@ -66,9 +67,9 @@ class AuthContainer extends Component {
                 <Icon type="appstore"/>
               </Button_>
             </Dropdown>
-            <Button onClick={logoutUser}>
+            <LoginButton onClick={logoutUser}>
               Log out
-            </Button>
+            </LoginButton>
           </UserStatus>
         );
       case C.AUTH_AWAITING_RESPONSE:

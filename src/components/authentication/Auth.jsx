@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
 import styled from 'styled-components';
+import { LoginButton } from '../General';
 import facebook from '../../static/images/facebook.svg';
 import github from '../../static/images/github.svg';
 import google from '../../static/images/google.svg';
@@ -29,14 +30,6 @@ const LoginModal = styled(Button)`
   span {
     position: relative;
     left: 10px;
-  }
-`;
-
-const LoginButton = styled(Button)`
-  padding: 6px 8px;
-
-  @media only screen and (max-width: 768px) {
-    font-size: 11px;
   }
 `;
 

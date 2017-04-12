@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import { Tag, Spin, Icon, BackTop } from 'antd';
+import { Tag, Spin, Icon, BackTop, Button } from 'antd';
 
 export const Card = styled.div`
   position: relative;
@@ -115,4 +115,14 @@ export const Icon_ = styled(Icon)`
 
 export const BackTop_ = styled(BackTop)`
   right: 8% !important;
+`;
+
+export const LoginButton = styled(Button)`
+  width: 46px;
+  padding: 6px 8px;
+
+  @media only screen and (max-width: 768px) {
+    padding: 6px 4px;
+    font-size: 10px;
+  }
 `;
