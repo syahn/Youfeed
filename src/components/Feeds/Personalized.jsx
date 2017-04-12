@@ -21,7 +21,7 @@ class Personalized extends Component {
       behance,
       dribble,
       reddit,
-      rss,
+      rss
     } = this.props;
 
     const newPosts = [
@@ -70,8 +70,21 @@ const mapStateToProps = state => {
     postsByDribble,
     postsByReddit,
     postsByMedium,
-    postsByRSS
+    postsByRSS,
+    auth
   } = state;
+
+  if(auth.status === 'AUTH_ANONYMOUS') {
+    return {
+      hackerNews: postsByHackerNews,
+      techMeme: postsByTechmeme,
+      behance: postsByBehance,
+      dribble: postsByDribble,
+      medium: postsByMedium,
+      reddit: postsByReddit,
+      rss: Object.keys(postsByRSS).reduce((a, c) => a.concat(postsByRSS[c].items),[])
+    };
+  }
 
   let totalCategoryCount = Object.keys(personalization).reduce((a,c) => {
     return a + personalization[c].categoryClick;

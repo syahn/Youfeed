@@ -85,10 +85,6 @@ class App extends Component {
       onFetchPostsRss
     } = this.props;
 
-    if(auth.status === 'AUTH_ANONYMOUS') {
-      browserHistory.push('/feedsbytime');
-    }
-
     if (auth.status === 'AUTH_ANONYMOUS' && nextProps.auth.status === 'AUTH_LOGGED_IN') {
       onFetchListsRss(nextProps.auth);
       onGetTodo();
@@ -99,7 +95,7 @@ class App extends Component {
 
     if (auth.status === 'AUTH_LOGGED_IN' && nextProps.auth.status === 'AUTH_ANONYMOUS') {
       window.location.reload();
-      browserHistory.push('/feedsbytime');
+      browserHistory.push('/');
     }
 
     if (auth.status === 'AUTH_LOGGED_IN' && widgets !== nextProps.widgets){

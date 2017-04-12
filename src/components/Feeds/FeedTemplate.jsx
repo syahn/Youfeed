@@ -35,7 +35,7 @@ function FeedTemplate({ posts, clickPost, provider }) {
                   {post.score || '0'}
                 </ScoreTag>
               }
-              {provider}
+              <span>: {provider}</span>
             </PostHeader>
             <a href={post.url} onClick={clickPost} target="_blank">
               {post.title}

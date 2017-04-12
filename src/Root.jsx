@@ -11,7 +11,6 @@ import Personalized from './components/Feeds/Personalized';
 import FeedsByTime from './components/Feeds/FeedsByTime';
 import YoufeedFeed from './components/Feeds/YoufeedFeed';
 import About from './components/about';
-// import NotFound from './components/notfound';
 import { listenToAuth } from './actions/auth/AuthActionCreator';
 
 const store = configureStore();

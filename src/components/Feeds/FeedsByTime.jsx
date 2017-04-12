@@ -83,7 +83,7 @@ export default connect(
     behance: state.postsByBehance,
     dribble: state.postsByDribble,
     medium: state.postsByMedium,
-    reddit: state.postsByReddit.items || [],
+    reddit: state.postsByReddit,
     rss: Object.keys(state.postsByRSS).reduce((a, c) =>
           a.concat(state.postsByRSS[c].items),[])
   })
