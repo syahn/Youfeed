@@ -63,7 +63,7 @@ const LogoImage = styled.img`
 
   @media only screen and (max-width: 768px) {
     margin-right: 0;
-    margin-left: 57px;
+    margin-left: 27px;
   }
 `;
 

@@ -11,7 +11,7 @@ const UserStatus = styled.div`
   height: 35px;
 `;
 
-const LoginButton = styled(Button)`
+const LoginModal = styled(Button)`
   display: flex;
   margin: 12px 0;
   align-items: center;
@@ -29,6 +29,14 @@ const LoginButton = styled(Button)`
   span {
     position: relative;
     left: 10px;
+  }
+`;
+
+const LoginButton = styled(Button)`
+  padding: 6px 4px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 10px;
   }
 `;
 
@@ -55,12 +63,12 @@ function Auth({
 
   return (
     <UserStatus>
-      <Button
+      <LoginButton
         type="primary"
         onClick={showModal}
       >
-        Log In
-      </Button>
+        login
+      </LoginButton>
       <Modal
         title="Join & Login"
         visible={visible}
@@ -70,7 +78,7 @@ function Auth({
         width={450}
       >
         {['facebook', 'google', 'twitter', 'github'].map(item => (
-          <LoginButton
+          <LoginModal
             key={item}
             type="ghost"
             onClick={()=>openAuth(item)}
@@ -79,7 +87,7 @@ function Auth({
               <img src={logoMap[item]} alt='facebook' />
               <span>{item[0].toUpperCase() + item.slice(1)}</span>
             </Wrapper>
-          </LoginButton>
+          </LoginModal>
         ))}
       </Modal>
     </UserStatus>
