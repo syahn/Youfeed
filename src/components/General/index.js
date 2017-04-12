@@ -118,10 +118,10 @@ export const BackTop_ = styled(BackTop)`
 `;
 
 export const LoginButton = styled(Button)`
-  width: 46px;
   padding: 6px 8px;
 
   @media only screen and (max-width: 768px) {
+    width: 46px;
     padding: 6px 4px;
     font-size: 10px;
   }
