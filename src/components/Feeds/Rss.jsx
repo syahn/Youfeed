@@ -57,6 +57,7 @@ class Rss extends Component {
     const renderPosts = posts.length > 0
       ? <FeedTemplate
           posts={posts}
+          showProvider='true'
           clickPost={this.handleClick}
         />
       : <CenterSpin size="large" />;

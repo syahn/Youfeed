@@ -15,11 +15,11 @@ class YoufeedFeed extends Component {
   }
 
   render() {
-    const { posts, location } = this.props;
+    const { posts } = this.props;
     const renderPosts = posts.length > 0
       ? <FeedTemplate
           posts={this.props.posts}
-          provider={location.pathname}
+          showProvider='true'
           clickPost={this.handleClick}
         />
       : <CenterSpin size="large" />;

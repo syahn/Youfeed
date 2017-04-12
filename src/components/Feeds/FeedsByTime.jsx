@@ -66,7 +66,10 @@ class FeedsByTime extends Component {
     return(
       <div>
         {posts.length > 0
-          ? <FeedTemplate posts={posts} />
+          ? <FeedTemplate
+              posts={posts}
+              showProvider='true'
+            />
           : <CenterSpin size="large" />
         }
       </div>
