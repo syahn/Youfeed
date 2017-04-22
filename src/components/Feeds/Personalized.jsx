@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import FeedTemplate from './FeedTemplate';
+/* eslint-disable */
+import React, { Component, PropTypes } from "react";
+import { connect } from "react-redux";
+import FeedTemplate from "./FeedTemplate";
 
 const propTypes = {
   medium: PropTypes.array,
@@ -14,59 +15,29 @@ const propTypes = {
 class Personalized extends Component {
   constructor(props) {
     super(props);
-    const {
-      medium,
-      techMeme,
-      hackerNews,
-      behance,
-      dribble,
-      reddit,
-      rss
-    } = this.props;
-
-    const newPosts = [
-      medium,
-      techMeme,
-      hackerNews,
-      behance,
-      dribble,
-      reddit,
-      rss
-    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,10);
-
-    this.state = { posts: newPosts };
+    this.state = {
+      posts: this.props.feeds.sort((a, b) => b.time - a.time).slice(0, 10)
+    };
   }
 
   componentWillReceiveProps(nextProps) {
-    const newPosts = [
-      nextProps.medium,
-      nextProps.techMeme,
-      nextProps.hackerNews,
-      nextProps.behance,
-      nextProps.dribble,
-      nextProps.reddit,
-      nextProps.rss
-    ].reduce((a, c) => a.concat(c), []).sort((a,b) => b.time - a.time).slice(0,10);
-
-    this.setState({ posts: newPosts });
+    if (nextProps.feeds) {
+      this.setState({
+        posts: nextProps.feeds.sort((a, b) => b.time - a.time).slice(0, 10)
+      });
+    }
   }
 
   render() {
     const { posts } = this.state;
-
-    return(
-      <FeedTemplate
-        posts={posts}
-        showProvider='true'
-      />
-    );
+    return <FeedTemplate posts={posts} showProvider="true" />;
   }
 }
 
 FeedTemplate.propTypes = propTypes;
 
 const mapStateToProps = state => {
-  const {
+  let {
     personalization,
     postsByHackerNews,
     postsByTechmeme,
@@ -78,58 +49,93 @@ const mapStateToProps = state => {
     auth
   } = state;
 
-  let totalClickCount = Object.keys(personalization).reduce((a,c) => {
-    return a + personalization[c].postClick;
-  }, 0);
+  let totalClickCount = Object.keys(personalization).reduce(
+    (a, c) => a + personalization[c].postClick,
+    0
+  );
 
-  if(auth.status === 'AUTH_ANONYMOUS' || totalClickCount < 1) {
-    return {
-      hackerNews: postsByHackerNews,
-      techMeme: postsByTechmeme,
-      behance: postsByBehance,
-      dribble: postsByDribble,
-      medium: postsByMedium,
-      reddit: postsByReddit,
-      rss: Object.keys(postsByRSS).reduce((a, c) => a.concat(postsByRSS[c].items),[]).slice(0,10)
-    };
+  if (auth.status === "AUTH_ANONYMOUS" || totalClickCount < 1) {
+    postsByRSS = Object.keys(postsByRSS).reduce(
+      (a, c) => a.concat(postsByRSS[c].items),
+      []
+    );
+    const feeds = [
+      ...postsByReddit,
+      ...postsByHackerNews,
+      ...postsByTechmeme,
+      ...postsByBehance,
+      ...postsByDribble,
+      ...postsByMedium
+    ];
+
+    return { feeds: feeds };
   }
 
-  let totalCategoryCount = Object.keys(personalization).reduce((a,c) => {
-    return a + personalization[c].categoryClick;
-  }, 0);
+  const totalCategoryCount = Object.keys(personalization).reduce(
+    (a, c) => a + personalization[c].categoryClick,
+    0
+  );
 
   let count = {
-    medium: Math.floor(personalization['medium'].postClick / totalCategoryCount * 100),
-    techMeme: Math.floor(personalization['techmeme'].postClick / totalCategoryCount * 100),
-    behance: Math.floor(personalization['behance'].postClick / totalCategoryCount * 100),
-    dribble: Math.floor(personalization['dribble'].postClick / totalCategoryCount * 100),
-    hackerNews: Math.floor(personalization['hacker-news'].postClick / totalCategoryCount * 100),
-    reddit: Math.floor(personalization['reddit'].postClick / totalCategoryCount * 100),
+    medium: Math.floor(
+      personalization["medium"].postClick / totalCategoryCount * 100
+    ),
+    techMeme: Math.floor(
+      personalization["techmeme"].postClick / totalCategoryCount * 100
+    ),
+    behance: Math.floor(
+      personalization["behance"].postClick / totalCategoryCount * 100
+    ),
+    dribble: Math.floor(
+      personalization["dribble"].postClick / totalCategoryCount * 100
+    ),
+    hackerNews: Math.floor(
+      personalization["hacker-news"].postClick / totalCategoryCount * 100
+    ),
+    reddit: Math.floor(
+      personalization["reddit"].postClick / totalCategoryCount * 100
+    )
   };
 
-  for(let i in postsByRSS) {
+  for (let i in postsByRSS) {
     const title = postsByRSS[i].title;
-    count[title] = Math.floor(personalization[title].postClick / totalCategoryCount * 100);
+    count[title] = Math.floor(
+      personalization[title].postClick / totalCategoryCount * 100
+    );
   }
 
-  let sortedMedium = postsByMedium.sort((a,b) => a.time - b.time).slice(0, count.medium);
-  let sortedTechMeme = postsByTechmeme.sort((a,b) => a.time - b.time).slice(0, count.techMeme);
-  let sortedBehance = postsByBehance.sort((x,y) => y.score - x.score).slice(0, count.behance);
-  let sortedHackerNews = postsByHackerNews.sort((x,y) => y.score - x.score).slice(0, count.hackerNews);
-  let sortedDribble = postsByDribble.sort((x,y) => y.score - x.score).slice(0, count.dribble);
-  let sortedReddit = postsByReddit.sort((x,y) => y.score - x.score).slice(0, count.reddit);
-  let sortedRss = Object.keys(postsByRSS).reduce((a, c) =>
-                    a.concat(postsByRSS[c].items.slice(0, count[postsByRSS[c].title.split(' ')[0]])),[]).sort((a,b) => a.time - b.time);
+  const feedsByProvider = [
+    ["youfeed", postsByMedium, "medium", "time"],
+    ["youfeed", postsByTechmeme, "techmeme", "time"],
+    ["youfeed", postsByBehance, "behance", "score"],
+    ["youfeed", postsByHackerNews, "hackerNews", "score"],
+    ["youfeed", postsByDribble, "dribble", "score"],
+    ["youfeed", postsByReddit, "reddit", "score"],
+    ["rss", postsByRSS, "rss", "time"]
+  ];
 
-  return {
-    hackerNews: sortedHackerNews,
-    techMeme: sortedTechMeme,
-    behance: sortedBehance,
-    dribble: sortedDribble,
-    medium: sortedMedium,
-    reddit: sortedReddit,
-    rss: sortedRss
-  };
+  const totalFeeds = feedsByProvider.reduce((acc, item) => {
+    const [type, feeds, provider, metric] = item;
+    if (type === "youfeed") {
+      return acc.concat(
+        feeds.sort((a, b) => a[metric] - b[metric]).slice(0, count[provider])
+      );
+    } else {
+      return acc.concat(
+        Object.keys(feeds)
+          .reduce(
+            (prev, rssProvider) =>
+              prev.concat(
+                feeds[rssProvider].items.slice(0, count[feeds[rssProvider]])
+              ),
+            []
+          )
+          .sort((a, b) => a[metric] - b[metric])
+      );
+    }
+  }, []);
+
+  return { feeds: totalFeeds };
 };
 
 export default connect(mapStateToProps)(Personalized);
