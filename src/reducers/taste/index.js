@@ -1,3 +1,2 @@
 
-/* eslint-disable */
-export const taste = (state = { interest: 'Programming' }, action = {}) => state;
+export const taste = (state = { interest: 'Design' }) => state;
