@@ -55,14 +55,17 @@ class App extends Component {
 
   componentWillMount() {
     const {
+      auth,
       onFetchPostsHN,
       onFetchPostsMedium,
       onFetchPostsBehance,
       onFetchPostsDribble,
       onFetchPostsTechmeme,
-      onFetchPostsReddit
+      onFetchPostsReddit,
+      onFetchListsRss
     } = this.props;
-
+    
+    onFetchListsRss(auth);
     onFetchPostsReddit();
     onFetchPostsMedium();
     onFetchPostsHN();

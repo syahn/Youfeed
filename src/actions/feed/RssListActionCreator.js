@@ -1,8 +1,8 @@
 /* eslint-disable */
-import 'eventsource';
-import querystring from 'querystring';
-import C from '../../constants';
-import { superfeedrConfig } from '../../config';
+import "eventsource";
+import querystring from "querystring";
+import C from "../../constants";
+import { superfeedrConfig } from "../../config";
 
 export const fetchListsRss = auth => dispatch => {
   dispatch(requestLists());
@@ -11,21 +11,21 @@ export const fetchListsRss = auth => dispatch => {
   // It should be push.superfeedr.com, but it can escape SOP
   let url = "https://stream.superfeedr.com/?";
   const query = {
-    'hub.mode': 'list',
-    'authorization': btoa([login, token].join(':')),
-    'search[endpoint][url]': `https://youfeed.space/${auth.uid}`,
+    "hub.mode": "list",
+    authorization: btoa([login, token].join(":")),
+    "search[endpoint][url]": auth.status === "AUTH_ANONYMOUS"
+      ? `https://youfeed.space/anonymous`
+      : `https://youfeed.space/${auth.uid}`
   };
 
   url = url + querystring.stringify(query);
 
-  return fetch(url).then(res => res.json())
-  .then(json => {
+  return (fetch(url).then(res => res.json()).then(json => {
     dispatch(receiveLists(json));
-  })
-  .catch = e => {
+  }).catch = e => {
     console.log(e);
     dispatch(rejectLists());
-  };
+  });
 };
 
 export const requestSubscription = (auth, urlAdded) => dispatch => {
@@ -33,23 +33,21 @@ export const requestSubscription = (auth, urlAdded) => dispatch => {
   const { login, token } = superfeedrConfig;
   let url = "https://push.superfeedr.com/?";
   const query = {
-    'hub.mode': 'subscribe',
-    'hub.topic': `${urlAdded}`,
-    'authorization': btoa([login, token].join(':')),
-    'hub.callback': `https://youfeed.space/${auth.uid}`
+    "hub.mode": "subscribe",
+    "hub.topic": `${urlAdded}`,
+    authorization: btoa([login, token].join(":")),
+    "hub.callback": `https://youfeed.space/${auth.uid}`
   };
   url = url + querystring.stringify(query);
-  fetch(url, { method: 'POST' })
-  .then(res => {
-    if(res.ok) {
+  fetch(url, { method: "POST" }).then(res => {
+    if (res.ok) {
       dispatch(succeedSubscription());
       window.location.reload();
     } else {
       dispatch(rejectItem());
     }
   });
-}
-
+};
 
 const requestLists = () => ({
   type: C.REQUEST_SUBSCRIPTION_LIST
@@ -57,7 +55,7 @@ const requestLists = () => ({
 
 const receiveLists = lists => ({
   type: C.RECEIVE_SUBSCRIPTION_LIST,
-  lists,
+  lists
 });
 
 const rejectLists = () => ({
@@ -69,7 +67,7 @@ const requestItem = () => ({
 });
 
 const succeedSubscription = () => ({
-  type: C.SUCCEED_SUBSCRIPTION_ITEM,
+  type: C.SUCCEED_SUBSCRIPTION_ITEM
 });
 
 const rejectItem = () => ({
