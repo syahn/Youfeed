@@ -26,7 +26,7 @@ export const fetchPostsBehance = () => dispatch => {
         title: post.name,
         author: post.owners[0].display_name,
         logo: behance,
-        image: post.covers.original,
+        image: post.covers['404'],
         url: post.url,
         siteUrl: '',
         score: post.stats.appreciations,
