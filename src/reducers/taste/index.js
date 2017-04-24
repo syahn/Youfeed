@@ -1,2 +1,2 @@
 
-export const taste = (state = { interest: 'Design' }) => state;
+export const taste = (state = { interest: 'Programming' }) => state;

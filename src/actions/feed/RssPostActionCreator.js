@@ -1,3 +1,4 @@
+/* eslint-disable */
 import "eventsource";
 import querystring from "querystring";
 import C from "../../constants";
@@ -22,25 +23,23 @@ const rejectPosts = () => ({
 export const fetchPostsRss = subscriptionUrl => dispatch => {
   dispatch(requestPosts());
   const { login, token } = superfeedrConfig;
-  let url = "https://stream.superfeedr.com/?";
+  let url = "https://push.superfeedr.com/?";
   const query = {
     count: 20,
+    format: "json",
     "hub.mode": "retrieve",
     authorization: btoa([login, token].join(":")),
     "hub.callback[feed][url]": subscriptionUrl
   };
 
   url = url + querystring.stringify(query);
-
-  let source = new EventSource(url);
-  source.addEventListener("notification", e => {
-    let notification = JSON.parse(e.data);
-
-    if (notification.items.length > 0) {
-      notification.items = notification.items
+  return (fetch(url)
+    .then(res => res.json())
+    .then(json => {
+      json.items = json.items
         .map(post => {
           return {
-            provider: notification.title,
+            provider: json.title,
             title: post.title,
             author: post.auther,
             logo: rssLogo,
@@ -49,21 +48,18 @@ export const fetchPostsRss = subscriptionUrl => dispatch => {
             siteUrl: "",
             score: "",
             time: post.published,
-            content: 
-              post.summary && ReactHtmlParser(post.summary.split("</p>")[0]) ||
-              post.content && ReactHtmlParser(post.content.split("</p>")[0]),
+            content: (post.summary &&
+              ReactHtmlParser(post.summary.split("</p>")[0])) ||
+              (post.content && ReactHtmlParser(post.content.split("</p>")[0])),
             category: post.categories || []
           };
         })
         .sort((x, y) => {
           return y.time - x.time;
         });
-      dispatch(receivePosts(notification, subscriptionUrl));
-    }
-  });
-
-  source.onerror = e => {
+      dispatch(receivePosts(json, subscriptionUrl));
+    }).catch = e => {
     console.log(e);
     dispatch(rejectPosts());
-  };
+  });
 };

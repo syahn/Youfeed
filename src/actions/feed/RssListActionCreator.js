@@ -8,11 +8,10 @@ export const fetchListsRss = auth => dispatch => {
   dispatch(requestLists());
   const { login, token } = superfeedrConfig;
 
-  // It should be push.superfeedr.com, but it can escape SOP
-  let url = "https://stream.superfeedr.com/?";
+  let url = "https://push.superfeedr.com/?";
   const query = {
     "hub.mode": "list",
-    authorization: btoa([login, token].join(":")),
+    "authorization": btoa([login, token].join(":")),
     "search[endpoint][url]": auth.status === "AUTH_ANONYMOUS"
       ? `https://youfeed.space/anonymous`
       : `https://youfeed.space/${auth.uid}`
@@ -35,7 +34,7 @@ export const requestSubscription = (auth, urlAdded) => dispatch => {
   const query = {
     "hub.mode": "subscribe",
     "hub.topic": `${urlAdded}`,
-    authorization: btoa([login, token].join(":")),
+    "authorization": btoa([login, token].join(":")),
     "hub.callback": `https://youfeed.space/${auth.uid}`
   };
   url = url + querystring.stringify(query);

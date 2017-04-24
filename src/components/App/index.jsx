@@ -105,7 +105,7 @@ class App extends Component {
       onEditWidget(nextProps.widgets);
     }
 
-    if (subscription.length === 0 && nextProps.subscription.length > 0) {
+    if (subscription !== nextProps.subscription) {
       for(let item of nextProps.subscription) {
         onFetchPostsRss(item.subscription.feed.url);
       }
