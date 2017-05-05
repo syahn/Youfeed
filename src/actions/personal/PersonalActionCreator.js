@@ -14,7 +14,6 @@ export const clickSubscription = name => (dispatch, getState) => {
     console.log("update");
     dispatch(addCategoryCount(name));
     dispatch(updateCategoryCount(name));
-    
   }
 };
 

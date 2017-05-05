@@ -42,7 +42,7 @@ class FeedControl extends Component {
   handleClick = val => {
     const { dispatch, auth } = this.props;
     const exception = ['subscription'];
-    if( auth.status === 'AUTH_LOGGED_IN' && exception.indexOf(val.key) < 0) {
+    if( auth.status === 'AUTH_LOGGED_IN' && ~exception.indexOf(val.key)) {
       dispatch(clickSubscription(val.key));
     }
   }

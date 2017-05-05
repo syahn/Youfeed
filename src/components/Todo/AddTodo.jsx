@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { appendTodo } from '../../actions/todo/TodoActionCreators';
-import { Button } from 'antd';
-import styled from 'styled-components';
+import React from "react";
+import { connect } from "react-redux";
+import { appendTodo } from "../../actions/todo/TodoActionCreators";
+import { Button } from "antd";
+import styled from "styled-components";
 
 const Form = styled.form`
   display: flex;
@@ -38,22 +38,22 @@ function AddTodo({ dispatch }) {
   return (
     <Form
       onSubmit={e => {
-      e.preventDefault();
-      if (!input.value.trim()) {
-        return;
-      }
-      dispatch(appendTodo(input.value));
-      input.value = '';
-    }}>
+        e.preventDefault();
+        if (!input.value.trim()) {
+          return;
+        }
+        dispatch(appendTodo(input.value));
+        input.value = "";
+      }}
+    >
       <Input
         placeholder=" Add todo"
         spellcheck="false"
-        innerRef={ node => { input = node; }}
+        innerRef={node => {
+          input = node;
+        }}
       />
-      <AddButton
-        htmlType="submit"
-        shape="circle"
-      >
+      <AddButton htmlType="submit" shape="circle">
         +
       </AddButton>
     </Form>

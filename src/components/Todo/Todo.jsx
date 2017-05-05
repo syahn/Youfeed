@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Editable from './Editable';
-import { Checkbox } from 'antd';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import Editable from "./Editable";
+import { Checkbox } from "antd";
+import styled from "styled-components";
 
 const TodoItem = styled.div`
   display: flex;
@@ -19,19 +19,18 @@ const TodoItem = styled.div`
 const DeleteButton = styled.button`
   display: none;
   border: none;
-  background: #fff;
+  background: #E9ECEF; 
   outline: none;
   margin-left: 3px;
 `;
 
 const TodoText = styled.li`
-  text-decoration: ${props => props.completed ? 'line-through' : 'none'}
+  text-decoration: ${props => (props.completed ? "line-through" : "none")}
 `;
 
 class Todo extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -48,20 +47,9 @@ class Todo extends Component {
 
     return (
       <TodoItem>
-        <Checkbox
-          defaultChecked={completed}
-          onClick={onToggle}
-        />
-        <TodoText
-          onClick={onEditActivate}
-          completed={completed}
-        >
-          <Editable
-            editing={editing}
-            onEdit={onEdit}
-            text={text}
-            id={id}
-          />
+        <Checkbox defaultChecked={completed} onClick={onToggle} />
+        <TodoText onClick={onEditActivate} completed={completed}>
+          <Editable editing={editing} onEdit={onEdit} text={text} id={id} />
         </TodoText>
         <DeleteButton
           className="todo__delete"

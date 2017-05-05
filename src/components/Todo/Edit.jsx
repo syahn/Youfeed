@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
 const EditInput = styled.input`
   width: 219px;
@@ -12,17 +12,17 @@ const EditInput = styled.input`
 class Edit extends Component {
   checkEnter = e => {
     const value = e.target.value;
-    if(e.key === 'Enter') {
+    if (e.key === "Enter") {
       this.props.onEdit(value);
     }
-  }
+  };
 
   finishEdit = e => {
     const value = e.target.value;
-    if(this.props.editing){
+    if (this.props.editing) {
       this.props.onEdit(value);
     }
-  }
+  };
 
   render() {
     return (
