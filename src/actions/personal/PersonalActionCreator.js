@@ -18,8 +18,8 @@ export const clickSubscription = name => (dispatch, getState) => {
 };
 
 export const clickPost = name => dispatch => {
-  dispatch(updatePostCount(name));
   dispatch(addPostCount(name));
+  if (auth.currentUser) dispatch(updatePostCount(name));
 };
 
 const updatePostCount = name => (dispatch, getState) => {
