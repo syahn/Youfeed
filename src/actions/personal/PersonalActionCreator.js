@@ -11,9 +11,10 @@ export const clickSubscription = name => (dispatch, getState) => {
     dispatch(closeHamburger(name));
   }
   if (exceptionCount.indexOf(name) < 0) {
-    console.log('update');
-    dispatch(updateCategoryCount(name));
+    console.log("update");
     dispatch(addCategoryCount(name));
+    dispatch(updateCategoryCount(name));
+    
   }
 };
 
@@ -35,7 +36,7 @@ const updatePostCount = name => (dispatch, getState) => {
 
 const updateCategoryCount = name => (dispatch, getState) => {
   const { personalization } = getState();
-  
+
   let newRef = database.ref(
     `/personalization/${auth.currentUser.uid}/${name}/`
   );

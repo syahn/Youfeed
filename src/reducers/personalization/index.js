@@ -1,28 +1,39 @@
-import { updateObject, createReducer } from '../util';
+import { updateObject, createReducer } from "../util";
 
-function addCategoryCount(personalState, action) {
-  return updateObject(personalState,
-    {[action.subscription]: {
-      postClick: personalState[action.subscription].postClick,
-      categoryClick: personalState[action.subscription].categoryClick + 1
-    }});
+function addCategoryCount(state, action) {
+  if (state.hasOwnProperty(action.subscription)) {
+    return updateObject(state, {
+      [action.subscription]: {
+        postClick: state[action.subscription].postClick,
+        categoryClick: state[action.subscription].categoryClick + 1
+      }
+    });
+  } else {
+    return updateObject(state, {
+      [action.subscription]: {
+        postClick: 0,
+        categoryClick: 1
+      }
+    });
+  }
 }
 
 function addPostCount(personalState, action) {
-  return updateObject(personalState,
-    {[action.post]: {
+  return updateObject(personalState, {
+    [action.post]: {
       postClick: personalState[action.post].postClick + 1,
       categoryClick: personalState[action.post].categoryClick
-    }});
+    }
+  });
 }
 
 function setCategoryCount(personalState, action) {
-  console.log(action);
-  return updateObject(personalState,
-    {[action.subscription]: {
+  return updateObject(personalState, {
+    [action.subscription]: {
       categoryClick: 1,
       postClick: 0
-    }});
+    }
+  });
 }
 
 function getCount(personalState, action) {
@@ -30,16 +41,19 @@ function getCount(personalState, action) {
 }
 
 // Slice reducer
-export const personalization = createReducer({
-  'medium': { postClick: 0, categoryClick: 0 },
-  'hacker-news': { postClick: 0, categoryClick: 0 },
-  'behance': { postClick: 0, categoryClick: 0 },
-  'dribble': { postClick: 0, categoryClick: 0 },
-  'reddit': { postClick: 0, categoryClick: 0 },
-  'techmeme': { postClick: 0, categoryClick: 0 }
-}, {
-  'CLICK_CATEGORY': addCategoryCount,
-  'CLICK_POST': addPostCount,
-  'SET_CATEGORY': setCategoryCount,
-  'DOWNLOAD_COUNT': getCount,
-});
+export const personalization = createReducer(
+  {
+    medium: { postClick: 0, categoryClick: 0 },
+    "hacker-news": { postClick: 0, categoryClick: 0 },
+    behance: { postClick: 0, categoryClick: 0 },
+    dribble: { postClick: 0, categoryClick: 0 },
+    reddit: { postClick: 0, categoryClick: 0 },
+    techmeme: { postClick: 0, categoryClick: 0 }
+  },
+  {
+    CLICK_CATEGORY: addCategoryCount,
+    CLICK_POST: addPostCount,
+    SET_CATEGORY: setCategoryCount,
+    DOWNLOAD_COUNT: getCount
+  }
+);

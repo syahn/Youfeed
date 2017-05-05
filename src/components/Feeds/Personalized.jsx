@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import FeedTemplate from "./FeedTemplate";
@@ -99,6 +98,7 @@ const mapStateToProps = state => {
 
   for (let i in postsByRSS) {
     const title = postsByRSS[i].title;
+    console.log(title);
     count[title] = Math.floor(
       personalization[title].postClick / totalCategoryCount * 100
     );
