@@ -1,15 +1,17 @@
 /* eslint-disable */
-import { database, auth } from '../../firebaseApp';
-import C from '../../constants';
-import { closeHamburger } from '../ui/UiActionCreator';
+import { database, auth } from "../../firebaseApp";
+import C from "../../constants";
+import { closeHamburger } from "../ui/UiActionCreator";
 
 export const clickSubscription = name => (dispatch, getState) => {
   const { visibilityHamburger } = getState().ui;
-  const exceptionCount = ['feedByTime', 'feedByPersonalized'];
-  if(visibilityHamburger === true) {
+  const exceptionCount = ["feedByTime", "feedByPersonalized"];
+
+  if (visibilityHamburger === true) {
     dispatch(closeHamburger(name));
   }
-  if(exceptionCount.indexOf(name) < 0) {
+  if (exceptionCount.indexOf(name) < 0) {
+    console.log('update');
     dispatch(updateCategoryCount(name));
     dispatch(addCategoryCount(name));
   }
@@ -23,36 +25,43 @@ export const clickPost = name => dispatch => {
 const updatePostCount = name => (dispatch, getState) => {
   const { personalization } = getState();
 
-  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/postClick`);
-  newRef.set(personalization[name].postClick + 1)
-  .catch((error) => {
+  let newRef = database.ref(
+    `/personalization/${auth.currentUser.uid}/${name}/postClick`
+  );
+  newRef.set(personalization[name].postClick + 1).catch(error => {
     console.log(error);
   });
 };
 
 const updateCategoryCount = name => (dispatch, getState) => {
   const { personalization } = getState();
-
-  let newRef = database.ref(`/personalization/${auth.currentUser.uid}/${name}/`);
-  newRef.set(Object.assign(personalization[name], {
-      categoryClick: personalization[name].categoryClick || 1,
-      postClick: personalization[name].postClick || 0
-    }))
-  .catch((error) => {
-    console.log(error);
-  });
+  
+  let newRef = database.ref(
+    `/personalization/${auth.currentUser.uid}/${name}/`
+  );
+  newRef
+    .set(
+      Object.assign(personalization[name], {
+        categoryClick: personalization[name].categoryClick || 1,
+        postClick: personalization[name].postClick || 0
+      })
+    )
+    .catch(error => {
+      console.log(error);
+    });
 };
 
 export const getPersonal = () => dispatch => {
   dispatch(downloadRequestAction());
-  return database.ref(`/personalization/${auth.currentUser.uid}/`)
-  .once('value', snap => {
-    dispatch(downloadPersonal(snap.val()));
-  })
-  .catch((error) => {
-    console.log(error);
-    dispatch(downloadRejectAction());
-  });
+  return database
+    .ref(`/personalization/${auth.currentUser.uid}/`)
+    .once("value", snap => {
+      dispatch(downloadPersonal(snap.val()));
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch(downloadRejectAction());
+    });
 };
 
 const downloadPersonal = val => ({
@@ -61,11 +70,11 @@ const downloadPersonal = val => ({
 });
 
 const downloadRequestAction = () => ({
-  type: C.DOWNLOAD_REQUEST_CATEGORY,
+  type: C.DOWNLOAD_REQUEST_CATEGORY
 });
 
 const downloadRejectAction = () => ({
-  type: C.DOWNLOAD_REJECT_CATEGORY,
+  type: C.DOWNLOAD_REJECT_CATEGORY
 });
 
 export const setSubscription = name => ({

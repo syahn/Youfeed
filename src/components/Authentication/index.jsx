@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router';
-import styled from 'styled-components';
-import C from '../../constants';
-import Auth from './Auth';
-import { LoginButton } from '../General';
-import {Button, Dropdown, Menu, Icon, Tooltip} from 'antd';
-import {showModal, closeModal} from '../../actions/ui/UiActionCreator';
-import {openAuth, logoutUser} from '../../actions/auth/AuthActionCreator';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router";
+import styled from "styled-components";
+import C from "../../constants";
+import Auth from "./Auth";
+import { LoginButton } from "../General";
+import { Button, Dropdown, Menu, Icon, Tooltip } from "antd";
+import { showModal, closeModal } from "../../actions/ui/UiActionCreator";
+import { openAuth, logoutUser } from "../../actions/auth/AuthActionCreator";
 
-const UserStatus = styled.div `
+const UserStatus = styled.div`
   display: flex;
   height: 35px;
 `;
 
-const UserPhoto = styled.img `
+const UserPhoto = styled.img`
   width: 35px;
   border-radius: 50%;
 
@@ -60,11 +60,14 @@ class AuthContainer extends Component {
       case C.AUTH_LOGGED_IN:
         return (
           <UserStatus>
-            <UserPhoto src={auth.photo} alt={auth.username}/>
+            <UserPhoto
+              src={"https://dl.dropbox.com/s/3xbifmxyi82vorw/photo.jpg?dl=0"}
+              alt={auth.username}
+            />
             &nbsp;
             <Dropdown overlay={menu}>
               <Button_>
-                <Icon type="appstore"/>
+                <Icon type="appstore" />
               </Button_>
             </Dropdown>
             <LoginButton onClick={logoutUser}>
@@ -86,17 +89,22 @@ class AuthContainer extends Component {
             confirmLoading={confirmLoading}
             closeModal={closeModal}
             openAuth={openAuth}
-          />);
+          />
+        );
     }
-  }
+  };
   render() {
     return this.getJSX(this.props);
   }
-
 }
 
-const mapStateToProps = (state) => {
-  return {auth: state.auth, visible: state.ui.signInModalVisible, confirmLoading: state.ui.signInModalconfirmLoading, modalText: state.ui.signInModalText};
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    visible: state.ui.signInModalVisible,
+    confirmLoading: state.ui.signInModalconfirmLoading,
+    modalText: state.ui.signInModalText
+  };
 };
 
 const mapDispatchToProps = {

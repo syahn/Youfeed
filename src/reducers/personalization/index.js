@@ -17,6 +17,7 @@ function addPostCount(personalState, action) {
 }
 
 function setCategoryCount(personalState, action) {
+  console.log(action);
   return updateObject(personalState,
     {[action.subscription]: {
       categoryClick: 1,

@@ -16,14 +16,14 @@ class Personalized extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: this.props.feeds.sort((a, b) => b.time - a.time).slice(0, 10)
+      posts: this.props.feeds.sort((a, b) => b.time - a.time).slice(0, 30)
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.feeds) {
       this.setState({
-        posts: nextProps.feeds.sort((a, b) => b.time - a.time).slice(0, 10)
+        posts: nextProps.feeds.sort((a, b) => b.time - a.time).slice(0, 30)
       });
     }
   }

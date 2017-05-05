@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
-import styled from 'styled-components';
-import { Icon } from 'antd';
+import React, { PropTypes } from "react";
+import styled from "styled-components";
+import { Icon } from "antd";
 
 const propTypes = {
   children: PropTypes.node.isRequired
@@ -29,15 +29,14 @@ const Tag = styled.div`
 
 function FeedContent({ currentFeed, auth, children }) {
   const routes = children.props.routes;
-  if(!routes[1].path) currentFeed = 'Personalized Feeds';
-  else if(routes[1].path === '/feedsbytime') currentFeed = 'Feeds By Time';
-  else if(auth.status === 'AUTH_ANONYMOUS') {
-    let rawFeed = routes[1].path.split('/')[1];
+  if (!routes[1].path) currentFeed = "Personalized Feeds";
+  else if (routes[1].path === "/feedsbytime") currentFeed = "Feeds By Time";
+  else if (auth.status === "AUTH_ANONYMOUS") {
+    let rawFeed = routes[1].path.split("/")[1];
     currentFeed = rawFeed[0].toUpperCase() + rawFeed.slice(1);
-  }
-  else currentFeed = currentFeed[0].toUpperCase() + currentFeed.slice(1);
+  } else currentFeed = currentFeed[0].toUpperCase() + currentFeed.slice(1);
 
-  return(
+  return (
     <ContentWrapper>
       <Tag color="blue">
         <Icon type="down-square" />

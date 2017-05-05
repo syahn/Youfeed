@@ -1,11 +1,11 @@
-import React from 'react';
-import { Modal, Button } from 'antd';
-import styled from 'styled-components';
-import { LoginButton } from '../General';
-import facebook from '../../static/images/facebook.svg';
-import github from '../../static/images/github.svg';
-import google from '../../static/images/google.svg';
-import twitter from '../../static/images/twitter.svg';
+import React from "react";
+import { Modal, Button } from "antd";
+import styled from "styled-components";
+import { LoginButton } from "../General";
+import facebook from "../../static/images/facebook.svg";
+import github from "../../static/images/github.svg";
+import google from "../../static/images/google.svg";
+import twitter from "../../static/images/twitter.svg";
 
 const UserStatus = styled.div`
   display: flex;
@@ -39,14 +39,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-function Auth({
-  showModal,
-  visible,
-  confirmLoading,
-  closeModal,
-  openAuth
-}) {
-
+function Auth({ showModal, visible, confirmLoading, closeModal, openAuth }) {
   const logoMap = {
     facebook: facebook,
     google: google,
@@ -56,10 +49,7 @@ function Auth({
 
   return (
     <UserStatus>
-      <LoginButton
-        type="primary"
-        onClick={showModal}
-      >
+      <LoginButton type="primary" onClick={showModal}>
         Login
       </LoginButton>
       <Modal
@@ -70,14 +60,10 @@ function Auth({
         okText="Ok"
         width={450}
       >
-        {['facebook', 'google', 'twitter', 'github'].map(item => (
-          <LoginModal
-            key={item}
-            type="ghost"
-            onClick={()=>openAuth(item)}
-          >
+        {["facebook", "google", "twitter", "github"].map(item => (
+          <LoginModal key={item} type="ghost" onClick={() => openAuth(item)}>
             <Wrapper>
-              <img src={logoMap[item]} alt='facebook' />
+              <img src={logoMap[item]} alt="facebook" />
               <span>{item[0].toUpperCase() + item.slice(1)}</span>
             </Wrapper>
           </LoginModal>
