@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { Component, PropTypes } from "react";
 import { browserHistory } from "react-router";
 import { connect } from "react-redux";
@@ -68,7 +69,7 @@ class App extends Component {
     } = this.props;
 
     onFetchListsRss(auth);
-    onFetchPostsReddit();
+    // onFetchPostsReddit();
     onFetchPostsMedium();
     onFetchPostsHN();
     onFetchPostsBehance();
@@ -96,7 +97,7 @@ class App extends Component {
     ) {
       onFetchListsRss(nextProps.auth);
       onGetTodo();
-      onGetMemo();
+      // onGetMemo();
       onGetWidget();
       onGetPersonal();
     }

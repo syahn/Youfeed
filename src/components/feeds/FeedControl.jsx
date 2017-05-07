@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import FeedSubscript from './FeedSubscript';
@@ -24,7 +25,7 @@ class FeedControl extends Component {
       { name: 'behance', logo: behance },
       { name: 'dribble', logo: dribble },
       { name: 'techmeme', logo: 'https://dl.dropbox.com/s/2byudsj3akgzkib/techmeme_size_328x328.jpg?dl=0' },
-      { name: 'reddit', logo: reddit }
+      // { name: 'reddit', logo: reddit }
     ]
   };
 

@@ -71,7 +71,8 @@ function FeedTemplate({ posts, clickPost, showProvider }) {
               {post.content}
             </PostContent>
             <TagBox>
-              {post.category.length > 0 &&
+              {post.category &&
+                post.category.length > 0 &&
                 post.category.map(tag => <Category key={tag}>{tag}</Category>)}
             </TagBox>
             {published}
