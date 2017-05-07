@@ -60,10 +60,7 @@ class AuthContainer extends Component {
       case C.AUTH_LOGGED_IN:
         return (
           <UserStatus>
-            <UserPhoto
-              src={"https://dl.dropbox.com/s/3xbifmxyi82vorw/photo.jpg?dl=0"}
-              alt={auth.username}
-            />
+            <UserPhoto src={auth.photo} alt={auth.username} />
             &nbsp;
             <Dropdown overlay={menu}>
               <Button_>
