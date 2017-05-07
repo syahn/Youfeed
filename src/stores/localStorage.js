@@ -1,10 +1,8 @@
-import initialState from '../database';
-
-export const loadState = () => {
+export const loadState = uid => {
   try {
-    const serializedState = localStorage.getItem('state');
+    const serializedState = localStorage.getItem(uid);
     if (serializedState === null) {
-      return initialState;
+      return "";
     }
     return JSON.parse(serializedState);
   } catch (err) {
@@ -12,11 +10,11 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state) => {
+export const saveState = (uid, state) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
+    localStorage.setItem(uid, serializedState);
   } catch (err) {
-    // Ignore writing
+    return undefined; 
   }
 };

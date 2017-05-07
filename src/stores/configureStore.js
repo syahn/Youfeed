@@ -1,29 +1,32 @@
-import { createStore, applyMiddleware } from 'redux';
-// import throttle from 'lodash/throttle';
-import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
-import rootReducer from '../reducers/index';
-// import { saveState, loadState } from './localStorage';
-import initialState from '../database';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, applyMiddleware } from "redux";
+// import throttle from "lodash/throttle";
+import thunkMiddleware from "redux-thunk";
+import createLogger from "redux-logger";
+import rootReducer from "../reducers/index";
+// import { loadState } from "./localStorage";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 function configureStore() {
-  // const persistedState = loadState();
+  
   const loggerMiddleware = createLogger();
   const store = createStore(
-      rootReducer,
-      initialState,
-      composeWithDevTools(
-        applyMiddleware(
-          thunkMiddleware,
-          loggerMiddleware
-        )
-      )
+    rootReducer,
+    
+    composeWithDevTools(applyMiddleware(thunkMiddleware, loggerMiddleware))
   );
 
-  // store.subscribe(throttle(() => {
-  //   saveState(store.getState());
-  // }, 1000));
+  // store.subscribe(
+  //   throttle(() => {
+  //     const state = store.getState();
+  //     if (state.auth.uid) {
+  //       const widgetState = {
+  //         memo: state.memo,
+  //         todo: state.todos
+  //       };
+  //       saveState(state.auth.ui, widgetState);
+  //     }
+  //   }, 1000)
+  // );
 
   return store;
 }

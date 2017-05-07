@@ -19,13 +19,9 @@ class Personalized extends Component {
     const totalFeeds = feedsByProvider
       .reduce((acc, item) => {
         const { feeds, provider, metric } = item;
-        return auth.status === "AUTH_ANONYMOUS"
-          ? acc.concat(feeds)
-          : acc.concat(
-              feeds
-                .sort((a, b) => a[metric] - b[metric])
-                .slice(0, count[provider])
-            );
+        return acc.concat(
+          feeds.sort((a, b) => a[metric] - b[metric]).slice(0, count[provider])
+        );
       }, [])
       .sort((a, b) => b.time - a.time);
     this.state = {
@@ -37,26 +33,21 @@ class Personalized extends Component {
     const { auth, feedsByProvider, count } = this.props;
     let shouldUpdated = false;
     for (let i = 0; i < feedsByProvider.length; i++) {
-      const { feeds: currFeeds } = feedsByProvider[i];
-      const { feeds: nextFeeds } = nextProps.feedsByProvider[i];
+      const { feeds: currFeeds } = feedsByProvider[i],
+        { feeds: nextFeeds } = nextProps.feedsByProvider[i];
       if (currFeeds.length === nextFeeds.length) {
         shouldUpdated = true;
         break;
       }
     }
-
     if (shouldUpdated) {
-      let totalFeeds = nextProps.feedsByProvider.reduce((acc, item) => {
-        const { feeds, provider, metric } = item;
-        return auth.status === "AUTH_ANONYMOUS"
-          ? acc.concat(feeds)
-          : acc.concat(
-              feeds
-                .sort((a, b) => a[metric] - b[metric])
-                .slice(0, count[provider])
-            );
+      const totalFeeds = nextProps.feedsByProvider.reduce((acc, item) => {
+        return acc.concat(
+          item.feeds
+            .sort((a, b) => a[item.metric] - b[item.metric])
+            .slice(0, count[item.provider])
+        );
       }, []);
-      
       this.setState({ posts: totalFeeds.sort((a, b) => b.time - a.time) });
     }
   }
@@ -87,30 +78,30 @@ const mapStateToProps = state => {
     0
   );
 
-  let count = {};
-  [
+  const count = [
     "medium",
     "techmeme",
     "behance",
     "dribble",
     "hacker-news",
     "rss"
-  ].forEach(provider => {
+  ].reduce((acc, provider) => {
     if (provider !== "rss") {
       const { postClick, categoryClick } = personalization[provider];
-      count[provider] = Math.floor(
+      return (acc[provider] = Math.floor(
         (postClick + categoryClick) / totalCategoryCount * 100
-      );
+      )), acc;
     } else {
       for (let i in postsByRSS) {
         const provider = postsByRSS[i].title;
         const { postClick, categoryClick } = personalization[provider];
-        count[provider] = Math.floor(
+        acc[provider] = Math.floor(
           (postClick + categoryClick) / totalCategoryCount * 100
         );
       }
+      return acc;
     }
-  });
+  }, {});
 
   const feedsByProvider = [
     { feeds: postsByMedium, provider: "medium", metric: "time" },

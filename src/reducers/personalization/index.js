@@ -37,18 +37,18 @@ function setCategoryCount(personalState, action) {
 }
 
 function getCount(personalState, action) {
-  return updateObject(personalState, action.val);
+  console.log(action);
+  return updateObject({}, action.val);
 }
 
 // Slice reducer
 export const personalization = createReducer(
   {
-    medium: { postClick: 0, categoryClick: 0 },
+    "medium": { postClick: 0, categoryClick: 0 },
     "hacker-news": { postClick: 0, categoryClick: 0 },
-    behance: { postClick: 0, categoryClick: 0 },
-    dribble: { postClick: 0, categoryClick: 0 },
-    reddit: { postClick: 0, categoryClick: 0 },
-    techmeme: { postClick: 0, categoryClick: 0 }
+    "behance": { postClick: 0, categoryClick: 0 },
+    "dribble": { postClick: 0, categoryClick: 0 },
+    "techmeme": { postClick: 0, categoryClick: 0 }
   },
   {
     CLICK_CATEGORY: addCategoryCount,

@@ -7,7 +7,6 @@ import { Layout } from "antd";
 import Header from "../Header";
 import { BackTop_ } from "../General";
 import { getTodo } from "../../actions/todo/TodoActionCreators";
-import { getMemo } from "../../actions/memo/MemoActionCreator";
 import { getPersonal } from "../../actions/personal/PersonalActionCreator";
 import { fetchPostsHN } from "../../actions/feed/HackerNewsActionCreator";
 import { fetchPostsMedium } from "../../actions/feed/MediumActionCreator";
@@ -64,12 +63,10 @@ class App extends Component {
       onFetchPostsBehance,
       onFetchPostsDribble,
       onFetchPostsTechmeme,
-      onFetchPostsReddit,
       onFetchListsRss
     } = this.props;
 
     onFetchListsRss(auth);
-    // onFetchPostsReddit();
     onFetchPostsMedium();
     onFetchPostsHN();
     onFetchPostsBehance();
@@ -83,7 +80,6 @@ class App extends Component {
       widgets,
       subscription,
       onGetTodo,
-      onGetMemo,
       onGetWidget,
       onEditWidget,
       onGetPersonal,
@@ -97,7 +93,6 @@ class App extends Component {
     ) {
       onFetchListsRss(nextProps.auth);
       onGetTodo();
-      // onGetMemo();
       onGetWidget();
       onGetPersonal();
     }
@@ -152,7 +147,6 @@ export default connect(
   }),
   {
     onGetTodo: getTodo,
-    onGetMemo: getMemo,
     onGetPersonal: getPersonal,
     onGetWidget: getWidget,
     onEditWidget: editLayoutWidget,

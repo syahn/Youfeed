@@ -12,14 +12,12 @@ import { subscription } from './feeds/rss';
 import { personalization } from './personalization';
 import { auth } from './authentication/auth';
 import { widgets } from './widgets';
-import { memo } from './memo';
 import { taste } from './taste';
 import { ui } from './ui';
 
 const Reducer = combineReducers({
   auth,
   todos,
-  memo,
   taste,
   postsByReddit,
   postsByHackerNews,

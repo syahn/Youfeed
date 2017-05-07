@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import { editMemo } from "../../actions/memo/MemoActionCreator";
 import Memo from "./Memo";
 
-const mapStateToProps = state => ({ memo: state.memo.text });
+const mapStateToProps = state => ({ auth: state.auth });
 
-export default connect(mapStateToProps, { onUpdateMemo: editMemo })(Memo);
+export default connect(mapStateToProps)(Memo);
