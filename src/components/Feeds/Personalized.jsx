@@ -32,21 +32,23 @@ class Personalized extends Component {
     let shouldUpdated = false;
     for (let i = 0; i < feedsByProvider.length; i++) {
       const { feeds: currFeeds } = feedsByProvider[i],
-            { feeds: nextFeeds } = nextProps.feedsByProvider[i];
+        { feeds: nextFeeds } = nextProps.feedsByProvider[i];
       if (currFeeds.length === nextFeeds.length) {
         shouldUpdated = true;
         break;
       }
     }
     if (shouldUpdated) {
-      const totalFeeds = feedsByProvider.reduce((acc, item) => {
-        const { feeds, metric, provider } = item;
-        return acc.concat(
-          feeds
-            .sort((a, b) => a[metric] - b[metric])
-            .slice(0, count[provider])
-        );
-      }, []).sort((a, b) => b.time - a.time);
+      const totalFeeds = feedsByProvider
+        .reduce((acc, item) => {
+          const { feeds, metric, provider } = item;
+          return acc.concat(
+            feeds
+              .sort((a, b) => a[metric] - b[metric])
+              .slice(0, count[provider])
+          );
+        }, [])
+        .sort((a, b) => b.time - a.time);
       this.setState({ posts: totalFeeds });
     }
   }
@@ -92,7 +94,7 @@ const mapStateToProps = state => {
       )), acc;
     } else {
       for (let i in postsByRSS) {
-        const provider = postsByRSS[i].title;
+        const provider = postsByRSS[i].title.replace(/\./g, "");
         const { postClick, categoryClick } = personalization[provider];
         acc[provider] = Math.floor(
           (postClick + categoryClick) / totalCategoryCount * 100

@@ -37,8 +37,16 @@ function setCategoryCount(personalState, action) {
 }
 
 function getCount(personalState, action) {
-  console.log(action);
   return updateObject({}, action.val);
+}
+
+function initializeCount(personalState, action) {
+  return updateObject(personalState, {
+    [action.subscription]: {
+      categoryClick: 0,
+      postClick: 0
+    }
+  });
 }
 
 // Slice reducer
@@ -54,6 +62,7 @@ export const personalization = createReducer(
     CLICK_CATEGORY: addCategoryCount,
     CLICK_POST: addPostCount,
     SET_CATEGORY: setCategoryCount,
-    DOWNLOAD_COUNT: getCount
+    DOWNLOAD_COUNT: getCount,
+    INITIALIZE_CATEGORY: initializeCount
   }
 );

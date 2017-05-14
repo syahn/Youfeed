@@ -5,13 +5,12 @@ import { closeHamburger } from "../ui/UiActionCreator";
 
 export const clickSubscription = name => (dispatch, getState) => {
   const { visibilityHamburger } = getState().ui;
-  const exceptionCount = ["feedByTime", "feedByPersonalized"];
+  const exception = ["feedByTime", "feedByPersonalized"];
 
   if (visibilityHamburger === true) {
     dispatch(closeHamburger(name));
   }
-  if (exceptionCount.indexOf(name) < 0) {
-    console.log("update");
+  if (exception.indexOf(name) < 0) {
     dispatch(addCategoryCount(name));
     dispatch(updateCategoryCount(name));
   }
@@ -79,6 +78,11 @@ const downloadRejectAction = () => ({
 
 export const setSubscription = name => ({
   type: C.SET_CATEGORY,
+  subscription: name
+});
+
+export const initializeCategoryCount = name => ({
+  type: C.INITIALIZE_CATEGORY,
   subscription: name
 });
 

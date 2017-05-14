@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { PropTypes } from "react";
 import styled from "styled-components";
 import { Link_ } from "../General";
@@ -47,7 +48,9 @@ function ControlView({
   visibilityHamburger,
   subscription,
   addSubscription,
-  listOfSubscription
+  listOfSubscription,
+  onInitializeCategory,
+  personalization
 }) {
   return (
     <Col isOpen={visibilityHamburger}>
@@ -90,6 +93,7 @@ function ControlView({
           {subscription.length > 0 &&
             subscription.map(item => {
               const domain = item.subscription.feed.title;
+
               return (
                 <MenuItem key={domain}>
                   <Icon type="book" />
@@ -100,7 +104,11 @@ function ControlView({
               );
             })}
           <MenuItem key="subscription">
-            <Popover content={addSubscription} trigger="click">
+            <Popover 
+              title="Please enter RSS/ATOM URL"
+              content={addSubscription} 
+              trigger="click"
+            >
               <Button>+ Add subscription</Button>
             </Popover>
           </MenuItem>
