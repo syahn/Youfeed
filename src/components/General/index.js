@@ -93,7 +93,7 @@ export const Tag_ = styled(Tag)`
 `;
 
 export const Category = styled(Tag)`
-  margin: 4px 0;
+  margin: 4px;
 `;
 
 export const Link_ = styled(Link)`
