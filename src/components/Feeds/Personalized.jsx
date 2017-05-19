@@ -16,14 +16,20 @@ class Personalized extends Component {
   constructor(props) {
     super(props);
     const { feedsByProvider, count, auth } = this.props;
-    const totalFeeds = feedsByProvider
-      .reduce((acc, item) => {
-        const { feeds, provider, metric } = item;
-        return acc.concat(
-          feeds.sort((a, b) => a[metric] - b[metric]).slice(0, count[provider])
-        );
-      }, [])
-      .sort((a, b) => b.time - a.time);
+
+    const totalFeeds = feedsByProvider.reduce((acc, item) => {
+      const { feeds, provider, metric } = item;
+      return auth.uid
+        ? acc
+            .concat(
+              feeds
+                .sort((a, b) => a[metric] - b[metric])
+                .slice(0, count[provider])
+            )
+            .sort((a, b) => b.time - a.time)
+        : acc.concat(feeds).sort((a, b) => b.time - a.time);
+    }, []);
+
     this.state = { posts: totalFeeds };
   }
 
@@ -39,16 +45,19 @@ class Personalized extends Component {
       }
     }
     if (shouldUpdated) {
-      const totalFeeds = feedsByProvider
-        .reduce((acc, item) => {
-          const { feeds, metric, provider } = item;
-          return acc.concat(
-            feeds
-              .sort((a, b) => a[metric] - b[metric])
-              .slice(0, count[provider])
-          );
-        }, [])
-        .sort((a, b) => b.time - a.time);
+      const totalFeeds = feedsByProvider.reduce((acc, item) => {
+        const { feeds, metric, provider } = item;
+        return auth.uid
+          ? acc
+              .concat(
+                feeds
+                  .sort((a, b) => a[metric] - b[metric])
+                  .slice(0, count[provider])
+              )
+              .sort((a, b) => b.time - a.time)
+          : acc.concat(feeds).sort((a, b) => b.time - a.time);
+      }, []);
+
       this.setState({ posts: totalFeeds });
     }
   }
@@ -68,7 +77,6 @@ const mapStateToProps = state => {
     postsByTechmeme,
     postsByBehance,
     postsByDribble,
-    postsByReddit,
     postsByMedium,
     postsByRSS,
     auth
