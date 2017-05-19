@@ -1,14 +1,14 @@
-import fetch from 'isomorphic-fetch';
-import hackerNews from '../../static/images/hackernews.svg';
-import C from '../../constants';
+import fetch from "isomorphic-fetch";
+import hackerNews from "../../static/images/hackernews.svg";
+import C from "../../constants";
 
 const requestPosts = () => ({
-  type: C.REQUEST_POSTS_HACKERNEWS,
+  type: C.REQUEST_POSTS_HACKERNEWS
 });
 
 const receivePosts = post => ({
   type: C.RECEIVE_POSTS_HACKERNEWS,
-  post,
+  post
 });
 
 const rejectPosts = () => ({
@@ -17,36 +17,40 @@ const rejectPosts = () => ({
 
 export const fetchPostsHN = () => dispatch => {
   dispatch(requestPosts());
-  return fetch(`https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`)
+  return fetch(
+    `https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty`
+  )
     .then(response => response.json())
     .then(list => dispatch(fetchPostItemHN(list)))
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
       dispatch(rejectPosts());
     });
 };
 
 const fetchPostItemHN = list => dispatch => {
-  for (let i=0; i<10; i++){
-    fetch(`https://hacker-news.firebaseio.com/v0/item/${list[i]}.json?print=pretty`)
+  for (let i = 0; i < 10; i++) {
+    fetch(
+      `https://hacker-news.firebaseio.com/v0/item/${list[i]}.json?print=pretty`
+    )
       .then(response => response.json())
       .then(post => {
         const newPost = {
-          provider: 'Hacker News',
+          provider: "Hacker News",
           title: post.title,
           author: post.by,
           logo: hackerNews,
-          image: '',
+          image: "",
           url: `https://news.ycombinator.com/item?id=${post.id}`,
           siteUrl: post.url,
           score: post.score,
           time: post.time,
-          content: '',
+          content: "",
           category: []
         };
-        return dispatch(receivePosts(newPost, 'hackernews'));
+        return dispatch(receivePosts(newPost, "hackernews"));
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
         dispatch(rejectPosts());
       });

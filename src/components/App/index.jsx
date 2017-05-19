@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { Component, PropTypes } from "react";
 import { browserHistory } from "react-router";
 import { connect } from "react-redux";
@@ -13,7 +12,6 @@ import { fetchPostsMedium } from "../../actions/feed/MediumActionCreator";
 import { fetchPostsDribble } from "../../actions/feed/DribbleActionCreator";
 import { fetchPostsBehance } from "../../actions/feed/BehanceActionCreator";
 import { fetchPostsTechmeme } from "../../actions/feed/TechmemeActionCreator";
-import { fetchPostsIfNeeded } from "../../actions/feed/RedditActionCreator";
 import { fetchListsRss } from "../../actions/feed/RssListActionCreator";
 import { fetchPostsRss } from "../../actions/feed/RssPostActionCreator";
 import FeedControl from "../Feeds/FeedControl";
@@ -155,7 +153,6 @@ export default connect(
     onFetchPostsBehance: fetchPostsBehance,
     onFetchPostsDribble: fetchPostsDribble,
     onFetchPostsTechmeme: fetchPostsTechmeme,
-    onFetchPostsReddit: fetchPostsIfNeeded,
     onFetchListsRss: fetchListsRss,
     onFetchPostsRss: fetchPostsRss
   }
