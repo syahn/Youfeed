@@ -1,4 +1,4 @@
-# Bamsemi: Personalized feed aggregator
+# Youfeed: Personalized feed aggregator
 
 ## Online
 
