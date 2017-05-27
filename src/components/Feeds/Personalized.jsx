@@ -112,7 +112,7 @@ const mapStateToProps = state => {
       return acc || 1;
     }
   }, {});
-  console.log('count', count);
+  
   const feedsByProvider = [
     { feeds: postsByMedium, provider: "medium", metric: "time" },
     { feeds: postsByTechmeme, provider: "techmeme", metric: "time" },
