@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import FeedTemplate from "./FeedTemplate";
@@ -34,7 +33,8 @@ class Personalized extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { auth, feedsByProvider, count } = this.props;
+    const { auth, feedsByProvider } = this.props;
+    
     let shouldUpdated = false;
     for (let i = 0; i < feedsByProvider.length; i++) {
       const { feeds: currFeeds } = feedsByProvider[i],
@@ -47,17 +47,18 @@ class Personalized extends Component {
     if (shouldUpdated) {
       const totalFeeds = feedsByProvider.reduce((acc, item) => {
         const { feeds, metric, provider } = item;
+
         return auth.uid
           ? acc
               .concat(
                 feeds
                   .sort((a, b) => a[metric] - b[metric])
-                  .slice(0, count[provider])
+                  .slice(0, nextProps.count[provider])
               )
               .sort((a, b) => b.time - a.time)
           : acc.concat(feeds).sort((a, b) => b.time - a.time);
       }, []);
-
+      
       this.setState({ posts: totalFeeds });
     }
   }
@@ -99,7 +100,7 @@ const mapStateToProps = state => {
       const { postClick, categoryClick } = personalization[provider];
       return (acc[provider] = Math.floor(
         (postClick + categoryClick) / totalCategoryCount * 100
-      )), acc;
+      )), acc  || 1;
     } else {
       for (let i in postsByRSS) {
         const provider = postsByRSS[i].title.replace(/\./g, "");
@@ -108,10 +109,10 @@ const mapStateToProps = state => {
           (postClick + categoryClick) / totalCategoryCount * 100
         );
       }
-      return acc;
+      return acc || 1;
     }
   }, {});
-
+  console.log('count', count);
   const feedsByProvider = [
     { feeds: postsByMedium, provider: "medium", metric: "time" },
     { feeds: postsByTechmeme, provider: "techmeme", metric: "time" },

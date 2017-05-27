@@ -37,13 +37,13 @@ function setCategoryCount(personalState, action) {
 }
 
 function getCount(personalState, action) {
-  return updateObject({}, action.val);
+  return updateObject(personalState, action.val);
 }
 
 function initializeCount(personalState, action) {
   return updateObject(personalState, {
     [action.subscription]: {
-      categoryClick: 0,
+      categoryClick: 1,
       postClick: 0
     }
   });
@@ -52,11 +52,11 @@ function initializeCount(personalState, action) {
 // Slice reducer
 export const personalization = createReducer(
   {
-    "medium": { postClick: 0, categoryClick: 0 },
-    "hacker-news": { postClick: 0, categoryClick: 0 },
-    "behance": { postClick: 0, categoryClick: 0 },
-    "dribble": { postClick: 0, categoryClick: 0 },
-    "techmeme": { postClick: 0, categoryClick: 0 }
+    "medium": { postClick: 0, categoryClick: 1 },
+    "hacker-news": { postClick: 0, categoryClick: 1 },
+    "behance": { postClick: 0, categoryClick: 1 },
+    "dribble": { postClick: 0, categoryClick: 1 },
+    "techmeme": { postClick: 0, categoryClick: 1 }
   },
   {
     CLICK_CATEGORY: addCategoryCount,
